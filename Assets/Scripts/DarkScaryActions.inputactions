@@ -1,0 +1,13 @@
+{
+    "version": 1,
+    "name": "DarkScaryActions",
+    "maps": [
+        {
+            "name": "Decisions",
+            "id": "1f0be472-0759-4e2f-910b-5bd66522c6cd",
+            "actions": [],
+            "bindings": []
+        }
+    ],
+    "controlSchemes": []
+}
