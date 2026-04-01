@@ -13,7 +13,7 @@ public class Service : MonoBehaviour
     private Manager parentManager;
 
     #region Properties
-    protected Manager Manager => parentManager;
+    protected virtual Manager Manager => parentManager;
     #endregion
 
     /// <summary>
