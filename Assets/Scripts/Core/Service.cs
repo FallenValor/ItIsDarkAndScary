@@ -8,20 +8,31 @@
 *****************************************************************************/
 using UnityEngine;
 
-public class Service : MonoBehaviour
+namespace IDAS
 {
-    private Manager parentManager;
-
-    #region Properties
-    protected virtual Manager Manager => parentManager;
-    #endregion
-
-    /// <summary>
-    /// Initializes the service.
-    /// </summary>
-    /// <returns></returns>
-    public virtual async Awaitable Initialize(Manager manager)
+    public class Service : MonoBehaviour
     {
-        parentManager = manager;
+        private Manager parentManager;
+
+        #region Properties
+        protected virtual Manager Manager => parentManager;
+        #endregion
+
+        /// <summary>
+        /// Initializes the service.
+        /// </summary>
+        /// <returns></returns>
+        public virtual async Awaitable Initialize(Manager manager)
+        {
+            parentManager = manager;
+        }
+
+        /// <summary>
+        /// Initializes the service.
+        /// </summary>
+        /// <returns></returns>
+        public virtual async Awaitable Deinitialize()
+        {
+        }
     }
 }

@@ -9,8 +9,11 @@
 using UnityEngine;
 using XNode;
 
-[CreateAssetMenu(fileName = "DecisionTree", menuName = "Decisions/DecisionTree")]
-public class DecisionTree : NodeGraph
+namespace IDAS.Decisions.Tree
 {
-    
+    [CreateAssetMenu(fileName = "DecisionTree", menuName = "Decisions/DecisionTree")]
+    public class DecisionTree : NodeGraph
+    {
+
+    }
 }

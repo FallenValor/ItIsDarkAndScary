@@ -8,11 +8,15 @@
 *****************************************************************************/
 using UnityEngine;
 
-public class DecisionService : Service
+namespace IDAS.Decisions
 {
-    #region Properties
-    protected DecisionManager DecisionManager => Manager as DecisionManager;
-    #endregion
+    public class DecisionService : Service
+    {
+        #region Properties
+        protected DecisionManager DecisionManager => Manager as DecisionManager;
+        #endregion
 
+
+    }
 
 }

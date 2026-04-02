@@ -6,9 +6,14 @@
 //
 // Brief Description : Manages the decision system and holds the main decision tree.
 *****************************************************************************/
+using IDAS.Decisions.Tree;
 using UnityEngine;
 
-public class DecisionManager : Manager
+namespace IDAS.Decisions
 {
-    [field: SerializeField] public DecisionTree DecisionTree { get; private set; }
+    public class DecisionManager : Manager
+    {
+        [field: SerializeField] public DecisionTree DecisionTree { get; private set; }
+    }
+
 }

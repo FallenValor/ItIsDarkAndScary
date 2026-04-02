@@ -8,7 +8,10 @@
 *****************************************************************************/
 using UnityEngine;
 
-public class SequencerService : DecisionService
+namespace IDAS.Decisions
 {
-    
+    public class SequencerService : DecisionService
+    {
+
+    }
 }
