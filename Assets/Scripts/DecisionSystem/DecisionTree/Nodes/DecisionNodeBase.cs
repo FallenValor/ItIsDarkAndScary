@@ -6,13 +6,15 @@
 //
 // Brief Description : base class for custom xNodes
 *****************************************************************************/
+using IDAS.Decisions;
 using IDAS.Decisions.Tree;
+using System;
 using UnityEngine;
 using XNode;
 
 namespace IDAS
 {
-    public abstract class DecisionNodeBase : Node
+    public abstract class DecisionNodeBase : DarkScaryNode
     {
         #region CONSTS
         public const string CHOICE_PORT_NAME = "choices";
@@ -24,6 +26,7 @@ namespace IDAS
         public Choice[] Choices => choices;
         #endregion
 
+        #region Get Value Implementation
         /// <summary>
         /// Handles getting a specific value from a port.
         /// </summary>
@@ -31,8 +34,36 @@ namespace IDAS
         /// <returns></returns>
         public override object GetValue(NodePort port)
         {
-            return base.GetValue(port);
+            string[] names = port.fieldName.Split(null);
+            // For dynamic port arrays.
+            if (names.Length > 1)
+            {
+                switch (names[0])
+                {
+                    case "choices":
+                        return GetChoiceByString(names[1]);
+                }
+
+            }
+            // Handle normal ports
+            else
+            {
+
+            }
+            return null;
         }
+
+        /// <summary>
+        /// Gets the choice port from GetValue
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
+        private Choice GetChoiceByString(string indexStr)
+        {
+            int index = Int32.Parse(indexStr);
+            return choices[index];
+        }
+        #endregion
 
         /// <summary>
         /// Gets a node that this node transitions to by the index in the choices array.
@@ -47,6 +78,12 @@ namespace IDAS
                 return otherPort.node;
             }
             return null;
+        }
+
+
+        public override void NodeAction(TreeTravelService treeTraveler)
+        {
+            throw new NotImplementedException();
         }
     }
 }

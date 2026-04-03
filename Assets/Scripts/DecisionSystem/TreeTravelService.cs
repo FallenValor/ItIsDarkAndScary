@@ -18,7 +18,7 @@ namespace IDAS.Decisions
     {
         private DecisionTree DecisionTree => DecisionManager.DecisionTree;
 
-        private DecisionNodeBase currentDecision;
+        private DarkScaryNode currentNode;
 
         /// <summary>
         /// Initializes/Deinitializes input references.
@@ -31,7 +31,7 @@ namespace IDAS.Decisions
             {
                 Manager.GetService<InputService>().DecisionInputEvent += OnDecisionInput;
                 // Set the current decision to the starting decision.
-                currentDecision = DecisionTree.GetStartNode();
+                currentNode = DecisionTree.GetStartNode();
             }
             catch (Exception ex)
             {
@@ -51,13 +51,12 @@ namespace IDAS.Decisions
         /// <param name="decision"></param>
         private void OnDecisionInput(int decision)
         {
-            Choice test = currentDecision.GetInputValue<Choice>("inputChoice");
-            Debug.Log(test);
-            if (decision < currentDecision.Choices.Length)
-            {
-                Node nextNode = currentDecision.GetDecisionNode(decision);
-                
-            }
+            
+        }
+
+        public void QueueDecision()
+        {
+
         }
     }
 }
