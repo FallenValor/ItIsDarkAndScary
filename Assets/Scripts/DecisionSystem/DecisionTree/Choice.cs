@@ -13,6 +13,9 @@ namespace IDAS.Decisions.Tree
     [System.Serializable]
     public class Choice
     {
-
+        [SerializeField] private string name;
+        [SerializeField] private int stamina;
+        [SerializeField] private Item item;
+        
     }
 }

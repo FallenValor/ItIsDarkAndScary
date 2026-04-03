@@ -6,6 +6,7 @@
 //
 // Brief Description : Base class for service systems that handle specific functionality.
 *****************************************************************************/
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace IDAS
@@ -22,17 +23,19 @@ namespace IDAS
         /// Initializes the service.
         /// </summary>
         /// <returns></returns>
-        public virtual async Awaitable Initialize(Manager manager)
+        public virtual Task Initialize(Manager manager)
         {
             parentManager = manager;
+            return Task.CompletedTask;
         }
 
         /// <summary>
         /// Initializes the service.
         /// </summary>
         /// <returns></returns>
-        public virtual async Awaitable Deinitialize()
+        public virtual Task Deinitialize()
         {
+            return Task.CompletedTask;
         }
     }
 }

@@ -7,6 +7,7 @@
 // Brief Description : Controls the sequence of moving through decision points on the tree.
 *****************************************************************************/
 using System;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -28,7 +29,7 @@ namespace IDAS.Decisions
         /// </summary>
         /// <param name="manager"></param>
         /// <returns></returns>
-        public override async Awaitable Initialize(Manager manager)
+        public override Task Initialize(Manager manager)
         {
             Listening = true;
             // Subscribes each action to the same function.
@@ -38,18 +39,20 @@ namespace IDAS.Decisions
             {
                 action.performed += OnDecisionInput;
             }
+            return Task.CompletedTask;
         }
 
         /// <summary>
         /// Removes all event subscriptions.
         /// </summary>
         /// <returns></returns>
-        public override async Awaitable Deinitialize()
+        public override Task Deinitialize()
         {
             foreach (var action in map.actions)
             {
                 action.performed -= OnDecisionInput;
             }
+            return Task.CompletedTask;
         }
 
         /// <summary>

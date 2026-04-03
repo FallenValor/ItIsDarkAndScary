@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2936330665803174969}
   - component: {fileID: 5010883138762901439}
   m_Layer: 0
-  m_Name: SequencerService
+  m_Name: TreeTravelService
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

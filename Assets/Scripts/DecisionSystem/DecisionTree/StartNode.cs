@@ -1,19 +1,20 @@
 /*****************************************************************************
-// File Name : DecisionTree.cs
+// File Name : StartNode.cs
 // Author : Brandon Koederitz
 // Creation Date : 4/1/2026
 // Last Modified : 4/1/2026
 //
-// Brief Description : xNode graph used to build out a decision tree.
+// Brief Description : Defines the starting node of a decision tree.
 *****************************************************************************/
+using IDAS.Decisions.Tree;
 using UnityEngine;
 using XNode;
 
-namespace IDAS.Decisions.Tree
+namespace IDAS
 {
-    [CreateAssetMenu(fileName = "DecisionTree", menuName = "Decisions Tree/Decision Tree")]
-    public class DecisionTree : NodeGraph
+    [CreateAssetMenu(fileName = "StartNode", menuName = "Decision Tree/Start Node")]
+    public class StartNode : DecisionNodeBase
     {
-
+    
     }
 }
