@@ -14,6 +14,21 @@ namespace IDAS.Decisions.Tree
     [CreateAssetMenu(fileName = "DecisionTree", menuName = "Decisions Tree/Decision Tree")]
     public class DecisionTree : NodeGraph
     {
-
+        /// <summary>
+        /// Gets the starting node of the decision tree.
+        /// </summary>
+        /// <returns></returns>
+        public StartNode GetStartNode()
+        {
+            foreach(var node in nodes)
+            {
+                Debug.Log(node);
+                if (node is StartNode sn)
+                {
+                    return sn;
+                }
+            }    
+            return null;
+        }
     }
 }

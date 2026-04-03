@@ -29,7 +29,7 @@ namespace IDAS.Decisions
         /// </summary>
         /// <param name="manager"></param>
         /// <returns></returns>
-        public override Task Initialize(Manager manager)
+        public override Task Initialize()
         {
             Listening = true;
             // Subscribes each action to the same function.

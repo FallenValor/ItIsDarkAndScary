@@ -20,12 +20,20 @@ namespace IDAS
         #endregion
 
         /// <summary>
+        /// Pre-initializes the service with all required references that the service needs.
+        /// </summary>
+        /// <param name="manager"></param>
+        public void PreInitialize(Manager manager)
+        {
+            this.parentManager = manager;
+        }
+
+        /// <summary>
         /// Initializes the service.
         /// </summary>
         /// <returns></returns>
-        public virtual Task Initialize(Manager manager)
+        public virtual Task Initialize()
         {
-            parentManager = manager;
             return Task.CompletedTask;
         }
 
