@@ -84,7 +84,7 @@ namespace IDAS
         /// Queues this node as a decision for the player to make when entered.
         /// </summary>
         /// <param name="treeTraveler">The TreeTravelerService scrip that is traversing the DecisionTree.</param>
-        public override void OnNodeEnter(TreeService treeTraveler)
+        public override void OnNodeEnter(DecisionTreeService treeTraveler)
         {
             treeTraveler.QueueDecision(this);
         }

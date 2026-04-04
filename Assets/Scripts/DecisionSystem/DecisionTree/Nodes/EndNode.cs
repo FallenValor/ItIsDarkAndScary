@@ -22,7 +22,7 @@ namespace IDAS
         /// When an end node is reached, end the current decision tree.
         /// </summary>
         /// <param name="treeTraveler"></param>
-        public override void OnNodeEnter(TreeService treeTraveler)
+        public override void OnNodeEnter(DecisionTreeService treeTraveler)
         {
             // TODO: add tree ending implementation.
         }
