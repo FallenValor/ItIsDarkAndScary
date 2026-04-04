@@ -22,7 +22,6 @@ namespace IDAS.Decisions.Tree
         {
             foreach(var node in nodes)
             {
-                Debug.Log(node);
                 if (node is StartNode sn)
                 {
                     return sn;

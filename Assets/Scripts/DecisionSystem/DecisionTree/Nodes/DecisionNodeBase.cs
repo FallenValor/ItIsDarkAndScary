@@ -2,9 +2,9 @@
 // File Name : DarkScaryNode.cs
 // Author : Brandon Koederitz
 // Creation Date : 4/1/2026
-// Last Modified : 4/1/2026
+// Last Modified : 4/4/2026
 //
-// Brief Description : base class for custom xNodes
+// Brief Description : base class for nodes that represent a player's decision.
 *****************************************************************************/
 using IDAS.Decisions;
 using IDAS.Decisions.Tree;
@@ -70,20 +70,23 @@ namespace IDAS
         /// </summary>
         /// <param name="index">The index of the subsequent node to get.</param>
         /// <returns>The subsequent node.</returns>
-        public Node GetDecisionNode(int index)
+        public DarkScaryNode GetDecisionNode(int index)
         {
-            NodePort otherPort = GetPort(DecisionNodeBase.CHOICE_PORT_NAME + " " + index).Connection;
+            NodePort otherPort = GetPort(CHOICE_PORT_NAME + " " + index).Connection;
             if (otherPort != null)
             {
-                return otherPort.node;
+                return otherPort.node as DarkScaryNode;
             }
             return null;
         }
 
-
-        public override void NodeAction(TreeTravelService treeTraveler)
+        /// <summary>
+        /// Queues this node as a decision for the player to make when entered.
+        /// </summary>
+        /// <param name="treeTraveler">The TreeTravelerService scrip that is traversing the DecisionTree.</param>
+        public override void OnNodeEnter(TreeService treeTraveler)
         {
-            throw new NotImplementedException();
+            treeTraveler.QueueDecision(this);
         }
     }
 }

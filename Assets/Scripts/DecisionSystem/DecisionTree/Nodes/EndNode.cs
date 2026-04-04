@@ -1,5 +1,5 @@
 /****************************************************************************
-// File Name : WinNode.cs
+// File Name : EndNode.cs
 // Author : Brandon Koederitz
 // Creation Date : 4/2/2026
 // Last Modified : 4/2/2026
@@ -13,14 +13,18 @@ using XNode;
 
 namespace IDAS
 {
-    [CreateAssetMenu(fileName = "WinNode", menuName = "Scriptable Objects/Win Node")]
-    public class WinNode : DarkScaryNode
+    [CreateAssetMenu(fileName = "EndNode", menuName = "Scriptable Objects/End Node")]
+    public class EndNode : DarkScaryNode
     {
         [SerializeField, Input] private Choice inputChoice;
 
-        public override void NodeAction(TreeTravelService treeTraveler)
+        /// <summary>
+        /// When an end node is reached, end the current decision tree.
+        /// </summary>
+        /// <param name="treeTraveler"></param>
+        public override void OnNodeEnter(TreeService treeTraveler)
         {
-            throw new System.NotImplementedException();
+            // TODO: add tree ending implementation.
         }
     }
 }

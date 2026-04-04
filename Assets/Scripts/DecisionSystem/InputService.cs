@@ -65,7 +65,6 @@ namespace IDAS.Decisions
             // Get the index of the InputAction that was triggered and output the index of the action.
             int index = map.actions.IndexOf((item) => item == callbackContext.action);
             DecisionInputEvent?.Invoke(index);
-            Debug.Log(index);
         }
     }
 }

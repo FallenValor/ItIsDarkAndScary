@@ -1,0 +1,103 @@
+/*****************************************************************************
+// File Name : TreeService.cs
+// Author : Brandon Koederitz
+// Creation Date : 4/1/2026
+// Last Modified : 4/4/2026
+//
+// Brief Description : Manages behaviour that interacts with the decision tree.
+*****************************************************************************/
+using IDAS.Decisions.Tree;
+using System;
+using System.Threading.Tasks;
+using UnityEngine;
+
+namespace IDAS.Decisions
+{
+    public class TreeService : DecisionService
+    {
+        private DecisionTree DecisionTree => DecisionManager.DecisionTree;
+
+        private DarkScaryNode currentNode;
+        private DecisionNodeBase currentDecision;
+
+        #region Events
+        public event Action<DarkScaryNode> ReachNodeEvent;
+        public event Action<DecisionNodeBase> ReachDecisionEvent;
+        #endregion
+
+        /// <summary>
+        /// Initializes/Deinitializes input references.
+        /// </summary>
+        /// <param name="manager"></param>
+        /// <returns></returns>
+        public override Task Initialize()
+        {
+            try
+            {
+                Manager.GetService<InputService>().DecisionInputEvent += OnDecisionInput;
+                // Set the current decision to the starting decision.
+                SetCurrentNode(DecisionTree.GetStartNode());
+            }
+            catch (Exception ex)
+            {
+                Debug.LogException(ex);
+            }
+            return Task.CompletedTask;
+        }
+        public override Task Deinitialize()
+        {
+            Manager.GetService<InputService>().DecisionInputEvent -= OnDecisionInput;
+            return Task.CompletedTask;
+        }
+        
+        /// <summary>
+        /// Sets the current node that the player is at in the decision tree.
+        /// </summary>
+        /// <param name="node"></param>
+        private void SetCurrentNode(DarkScaryNode node)
+        {
+            if (currentNode != null)
+            {
+                currentNode.OnNodeExit(this);
+            }
+            currentNode = node;
+            ReachNodeEvent?.Invoke(currentNode);
+            Debug.Log($"Current node is now {currentNode.name}");
+            if (currentNode != null)
+            {
+                currentNode.OnNodeEnter(this);
+            }
+        }
+
+        #region Decisions
+        /// <summary>
+        /// Progresses through the tree through a currently queued decision based on player input.
+        /// </summary>
+        /// <param name="decision"></param>
+        private void OnDecisionInput(int decision)
+        {
+            if (currentDecision != null && 
+                decision < currentDecision.Choices.Length && 
+                currentDecision.Choices[decision].IsValid())
+            {
+                DarkScaryNode nextNode = currentDecision.GetDecisionNode(decision);
+                // Reduce stamina based on cost.
+                SetCurrentNode(nextNode);
+
+                // Clear the current decision.
+                currentNode = null;
+            }
+        }
+        
+        /// <summary>
+        /// Queues a decision for the player to make.
+        /// </summary>
+        /// <param name="decisionNode">The decision node that the player is making a decision at.</param>
+        public void QueueDecision(DecisionNodeBase decisionNode)
+        {
+            currentDecision = decisionNode;
+            ReachDecisionEvent?.Invoke(decisionNode);
+        }
+        #endregion
+    }
+}
