@@ -27,32 +27,29 @@ namespace IDAS.Decisions
         /// <summary>
         /// Initializes all decision actions.
         /// </summary>
-        /// <param name="manager"></param>
         /// <returns></returns>
-        public override Task Initialize()
+        protected override void Initialize()
         {
             Listening = true;
             // Subscribes each action to the same function.
             inputActions.Enable();
             map = inputActions.FindActionMap(decisionActionMap);
-            foreach(var action in map.actions)
+            foreach (var action in map.actions)
             {
                 action.performed += OnDecisionInput;
             }
-            return Task.CompletedTask;
         }
 
         /// <summary>
         /// Removes all event subscriptions.
         /// </summary>
         /// <returns></returns>
-        public override Task Deinitialize()
+        public override void Deinitialize()
         {
             foreach (var action in map.actions)
             {
                 action.performed -= OnDecisionInput;
             }
-            return Task.CompletedTask;
         }
 
         /// <summary>

@@ -18,7 +18,7 @@ namespace IDAS.Decisions
     {
         private DecisionTree DecisionTree => DecisionManager.DecisionTree;
 
-        private global::DarkScaryNode currentNode;
+        private DarkScaryNode currentNode;
         private DecisionNodeBase currentDecision;
 
         #region Events
@@ -30,24 +30,15 @@ namespace IDAS.Decisions
         /// Initializes/Deinitializes input references.
         /// </summary>
         /// <returns></returns>
-        public override Task Initialize()
+        protected override void Initialize()
         {
-            try
-            {
-                Manager.GetService<InputService>().DecisionInputEvent += OnDecisionInput;
-                // Set the current decision to the starting decision.
-                SetCurrentNode(DecisionTree.GetStartNode());
-            }
-            catch (Exception ex)
-            {
-                Debug.LogException(ex);
-            }
-            return Task.CompletedTask;
+            Manager.GetService<InputService>().DecisionInputEvent += OnDecisionInput;
+            // Set the current decision to the starting decision.
+            SetCurrentNode(DecisionTree.GetStartNode());
         }
-        public override Task Deinitialize()
+        public override void Deinitialize()
         {
             Manager.GetService<InputService>().DecisionInputEvent -= OnDecisionInput;
-            return Task.CompletedTask;
         }
         
         /// <summary>

@@ -6,6 +6,7 @@
 //
 // Brief Description : Base class for service systems that handle specific functionality.
 *****************************************************************************/
+using System;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -20,30 +21,41 @@ namespace IDAS
         #endregion
 
         /// <summary>
-        /// Pre-initializes the service with all required references that the service needs.
+        /// Initializes the service.
         /// </summary>
-        /// <param name="manager"></param>
-        public void PreInitialize(Manager manager)
+        /// <returns></returns>
+        public virtual Task InitializeAsync(Manager manager)
         {
-            this.parentManager = manager;
+            try
+            {
+                this.parentManager = manager;
+                Initialize();
+            }
+            catch (Exception ex)
+            {
+                Debug.LogException(ex);
+            }
+            return Task.CompletedTask;
         }
+
+        protected virtual void Initialize() { }
 
         /// <summary>
         /// Initializes the service.
         /// </summary>
         /// <returns></returns>
-        public virtual Task Initialize()
+        public virtual Task DeinitializeAsync()
         {
+            try
+            {
+                Initialize();
+            }
+            catch (Exception ex)
+            {
+                Debug.LogException(ex);
+            }
             return Task.CompletedTask;
         }
-
-        /// <summary>
-        /// Initializes the service.
-        /// </summary>
-        /// <returns></returns>
-        public virtual Task Deinitialize()
-        {
-            return Task.CompletedTask;
-        }
+        public virtual void Deinitialize() { }
     }
 }

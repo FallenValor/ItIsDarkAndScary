@@ -27,8 +27,7 @@ namespace IDAS
             {
                 Service inst = Instantiate(services[i], transform);
                 serviceInstances[i] = inst;
-                inst.PreInitialize(this);
-                await inst.Initialize();
+                await inst.InitializeAsync(this);
             }
         }
 
@@ -40,7 +39,7 @@ namespace IDAS
         {
             for (int i = 0; i < serviceInstances.Length; i++)
             {
-                await serviceInstances[i].Deinitialize();
+                await serviceInstances[i].DeinitializeAsync();
                 Destroy(serviceInstances[i]);
             }
             serviceInstances = null;
