@@ -24,7 +24,7 @@ namespace IDAS
         /// <param name="treeTraveler"></param>
         public override void OnNodeEnter(DecisionTreeService treeTraveler)
         {
-            // TODO: add tree ending implementation.
+            treeTraveler.EndTree();
         }
     }
 }

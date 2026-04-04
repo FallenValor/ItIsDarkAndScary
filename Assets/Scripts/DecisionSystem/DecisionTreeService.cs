@@ -80,12 +80,15 @@ namespace IDAS.Decisions
                 decision < currentDecision.Choices.Length && 
                 currentDecision.Choices[decision].IsValid())
             {
+                // Debug.
+                Debug.Log($"You chose {currentDecision.Choices[decision].Name}");
+
                 DarkScaryNode nextNode = currentDecision.GetDecisionNode(decision);
                 // Reduce stamina based on cost.
                 SetCurrentNode(nextNode);
 
                 // Clear the current decision.
-                currentNode = null;
+                currentNode = null; 
             }
         }
         
@@ -97,7 +100,21 @@ namespace IDAS.Decisions
         {
             currentDecision = decisionNode;
             ReachDecisionEvent?.Invoke(decisionNode);
+
+            // Debug
+            for(int i = 0; i < decisionNode.Choices.Length; i++)
+            {
+                Debug.Log($"{i}. {decisionNode.Choices[i].Name}");
+            }
         }
         #endregion
+
+        /// <summary>
+        /// Ends the current decision tree.
+        /// </summary>
+        public void EndTree()
+        {
+            Debug.Log("Tree Ended.");
+        }
     }
 }

@@ -19,7 +19,9 @@ namespace IDAS.Decisions.Tree
 
 
         #region Accessors
+        public string Name => name;
         public int Stamina => stamina;
+        public Item Item => item;
         #endregion
 
         /// <summary>
