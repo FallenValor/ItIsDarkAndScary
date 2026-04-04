@@ -18,11 +18,11 @@ namespace IDAS.Decisions
     {
         private DecisionTree DecisionTree => DecisionManager.DecisionTree;
 
-        private DarkScaryNode currentNode;
+        private global::DarkScaryNode currentNode;
         private DecisionNodeBase currentDecision;
 
         #region Events
-        public event Action<DarkScaryNode> ReachNodeEvent;
+        public event Action<global::DarkScaryNode> ReachNodeEvent;
         public event Action<DecisionNodeBase> ReachDecisionEvent;
         #endregion
 
@@ -54,7 +54,7 @@ namespace IDAS.Decisions
         /// Sets the current node that the player is at in the decision tree.
         /// </summary>
         /// <param name="node"></param>
-        private void SetCurrentNode(DarkScaryNode node)
+        private void SetCurrentNode(global::DarkScaryNode node)
         {
             if (currentNode != null)
             {
@@ -83,7 +83,7 @@ namespace IDAS.Decisions
                 // Debug.
                 Debug.Log($"You chose {currentDecision.Choices[decision].Name}");
 
-                DarkScaryNode nextNode = currentDecision.GetDecisionNode(decision);
+                global::DarkScaryNode nextNode = currentDecision.GetDecisionNode(decision);
                 // Reduce stamina based on cost.
                 SetCurrentNode(nextNode);
 
@@ -114,6 +114,7 @@ namespace IDAS.Decisions
         /// </summary>
         public void EndTree()
         {
+            // TODO: Tree End implementation.
             Debug.Log("Tree Ended.");
         }
     }

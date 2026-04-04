@@ -29,5 +29,26 @@ namespace IDAS.Decisions.Tree
             }    
             return null;
         }
+
+        /// <summary>
+        /// Gets a node from the decision tree with a specific name.
+        /// </summary>
+        /// <param name="nodeName">The name of the node to get.</param>
+        /// <returns>The </returns>
+        public DarkScaryNode GetNode(string nodeName)
+        {
+            return nodes.Find(item => item.name == nodeName) as global::DarkScaryNode;
+        }
+
+
+        /// <summary>
+        /// Gets a node from the decision tree with a specific name.
+        /// </summary>
+        /// <param name="nodeName">The name of the node to get.</param>
+        /// <returns>The </returns>
+        public int GetNodeIndex(string nodeName)
+        {
+            return nodes.FindIndex(item => item.name == nodeName);
+        }
     }
 }

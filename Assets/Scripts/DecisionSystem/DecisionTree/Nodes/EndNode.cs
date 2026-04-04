@@ -14,7 +14,7 @@ using XNode;
 namespace IDAS
 {
     [CreateAssetMenu(fileName = "EndNode", menuName = "Scriptable Objects/End Node")]
-    public class EndNode : DarkScaryNode
+    public class EndNode : global::DarkScaryNode
     {
         [SerializeField, Input] private Choice inputChoice;
 

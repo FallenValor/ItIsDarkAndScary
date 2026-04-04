@@ -10,6 +10,7 @@ using IDAS.Decisions;
 using IDAS.Decisions.Tree;
 using System;
 using UnityEngine;
+using System.Linq;
 using XNode;
 
 namespace IDAS
@@ -78,6 +79,15 @@ namespace IDAS
                 return otherPort.node as DarkScaryNode;
             }
             return null;
+        }
+
+        /// <summary>
+        /// Gets a decision 
+        /// </summary>
+        /// <param name="choiceName"></param>
+        public int GetChoiceIndex(string choiceName)
+        {
+            return Array.FindIndex(choices, n => n.Name == choiceName);
         }
 
         /// <summary>
