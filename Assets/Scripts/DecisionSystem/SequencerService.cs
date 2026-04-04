@@ -24,19 +24,19 @@ namespace IDAS.Decisions
         /// Initialize all NodePoints in the current level.
         /// </summary>
         /// <returns></returns>
-        public override async Task Initialize()
+        public override Task Initialize()
         {
             // Initialize all node points.
             NodePoint[] points = FindObjectsByType<NodePoint>(FindObjectsSortMode.InstanceID);
-            foreach (NodePoint point in points)
-            {
-                await point.Initialize(this);
-            }
+            //foreach (NodePoint point in points)
+            //{
+            //    await point.Initialize(this);
+            //}
 
             // Initialize the node point dictionary.
             for(int i = 0; i < points.Length; i++)
             {
-                nodePoints.Add(DecisionManager.DecisionTree.nodes[points[i].nodeIndex] as DarkScaryNode, points[i]);
+                nodePoints.Add(points[i].Node, points[i]);
             }
 
             // Get the starting point.
@@ -44,6 +44,7 @@ namespace IDAS.Decisions
 
             // Spawn the player at the starting node.
             player = Instantiate(playerPrefab, startPoint.transform.position, startPoint.transform.rotation);
+            return Task.CompletedTask;
         }
     }
 }

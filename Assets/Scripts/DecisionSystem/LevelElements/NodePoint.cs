@@ -16,32 +16,13 @@ namespace IDAS.Decisions
     public class NodePoint : MonoBehaviour
     {
         [SerializeField] private DecisionTree tree;
-        [SerializeField] private string nodeName;
-
-        public int nodeIndex { get; private set; }
+        [SerializeField] private DarkScaryNode node;
+        [SerializeField] private string oldNodeName;
 
         #region Properties
         public DecisionTree Tree => tree;
+        public DarkScaryNode Node => node;
         #endregion
 
-        /// <summary>
-        /// Initializes this node point.
-        /// </summary>
-        /// <param name="service"></param>
-        public Task Initialize(SequencerService service)
-        {
-            nodeIndex = tree.GetNodeIndex(nodeName);
-            // If this is a NodePoint for a DecisionNode, initialize child ChoicePoints that define where UI should be.
-            if (tree.nodes[nodeIndex] is DecisionNodeBase decision)
-            {
-                ChoicePoint[] choices = GetComponentsInChildren<ChoicePoint>();
-                foreach (ChoicePoint choicePoint in choices)
-                {
-                    choicePoint.Initialize(decision);
-                }
-            }
-            
-            return Task.CompletedTask;
-        }
     }
 }

@@ -15,18 +15,24 @@ namespace IDAS
 {
     public class ChoicePoint : MonoBehaviour
     {
+        [SerializeField] private int choiceIndex;
         [SerializeField] private string choiceName;
 
-        private int choiceIndex;
+        [SerializeField] private NodePoint parentNode;
 
-        /// <summary>
-        /// Initializes this node point.
-        /// </summary>
-        /// <param name="service"></param>
-        public Task Initialize(DecisionNodeBase node)
+        #region Properties
+        public NodePoint ParentNode
         {
-            choiceIndex = node.GetChoiceIndex(choiceName);
-            return Task.CompletedTask;
+            get
+            {
+                if (parentNode == null)
+                {
+                    parentNode = GetComponentInParent<NodePoint>();
+                }
+                return parentNode;
+            }
         }
+        #endregion
+
     }
 }

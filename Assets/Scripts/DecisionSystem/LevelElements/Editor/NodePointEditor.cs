@@ -6,7 +6,6 @@
 //
 // Brief Description : Custom editor for NodePoints that controls easy assignment of the linked node.
 *****************************************************************************/
-using IDAS.Decisions.Tree;
 using System;
 using System.Linq;
 using UnityEditor;
@@ -18,11 +17,11 @@ namespace IDAS.Decisions.Editors
     public class NodePointEditor : Editor
     {
         private int selectionIndex;
-        private string[] nodes;
 
         // Serialized Properties
         private SerializedProperty tree;
-        private SerializedProperty nodeName;
+        private SerializedProperty node;
+        private SerializedProperty oldNodeName;
 
         /// <summary>
         /// Initialize SerializedProperties
@@ -30,7 +29,8 @@ namespace IDAS.Decisions.Editors
         public void OnEnable()
         {
             tree = serializedObject.FindProperty(nameof(tree));
-            nodeName = serializedObject.FindProperty(nameof(nodeName));
+            node = serializedObject.FindProperty(nameof(node));
+            oldNodeName = serializedObject.FindProperty(nameof(oldNodeName));
         }
 
 
@@ -45,64 +45,58 @@ namespace IDAS.Decisions.Editors
             // Draw the default tree property
             EditorGUILayout.PropertyField(tree);
 
+            // Draw the dropdown for the node name.
             if (point.Tree != null)
             {
-                // Draw the dropdown for the node name.
-                string[] nodeNames = GetTreeNodeNames(point.Tree);
-                selectionIndex = GetSelectionIndex(nodeName, nodeNames);
+                DarkScaryNode[] nodes = point.Tree.nodes.Select(n => n as DarkScaryNode).ToArray();
+                string[] nodeNames = nodes.Select(n => n.name).ToArray();
+                selectionIndex = GetSelectionIndex(node, nodes);
 
                 // Display error text if the node point has an invalid name.
-                if (selectionIndex == -1)
+                if (selectionIndex == -1 && oldNodeName.stringValue != "")
                 {
                     EditorGUILayout.Space();
-                    EditorGUILayout.HelpBox($"No node with the name {nodeName.stringValue} exists in the " +
-                        $"chosen DecisionTree.", MessageType.Error);
-                    EditorGUILayout.PropertyField(nodeName);
+                    EditorGUILayout.HelpBox($"Old node reference was deleted.  " +
+                        $"Old Node Name: {oldNodeName.stringValue}", MessageType.Warning);
                 }
 
                 // Show the popup for choosing a name of a node.
                 EditorGUI.BeginChangeCheck();
-                selectionIndex = EditorGUILayout.Popup("Node Name", selectionIndex, nodeNames);
+                selectionIndex = EditorGUILayout.Popup("Node Selector", selectionIndex, nodeNames);
                 if (EditorGUI.EndChangeCheck())
                 {
                     // Update the string field.
-                    nodeName.stringValue = nodeNames[selectionIndex];
+                    node.objectReferenceValue = point.Tree.nodes[selectionIndex];
+                    oldNodeName.stringValue = point.Tree.nodes[selectionIndex].name;
                 }
+                GUI.enabled = false;
+                EditorGUILayout.PropertyField(node);
+                GUI.enabled = true;
             }
                
             serializedObject.ApplyModifiedProperties();
         }
 
         /// <summary>
-        /// Gets the names of all nodes in the decision tree.
-        /// </summary>
-        /// <param name="tree"></param>
-        /// <returns></returns>
-        private string[] GetTreeNodeNames(DecisionTree tree)
-        {
-            string[] nodeNames = tree.nodes.Select(n => n.name).ToArray();
-            return nodeNames;
-        }
-
-        /// <summary>
         /// Gets the index of the current stored node name value.
         /// </summary>
-        /// <param name="nameProp">The SerializedProperty storing the name of the node this point represents.</param>
-        /// <param name="nodeNames">The string of all node names in the DecisionTree.</param>
+        /// <param name="nodeProp">The SerializedProperty storing the name of the node this point represents.</param>
+        /// <param name="nodes">The string of all node names in the DecisionTree.</param>
         /// <returns>The index of the current node name.</returns>
-        private int GetSelectionIndex(SerializedProperty nameProp, string[] nodeNames)
+        private int GetSelectionIndex(SerializedProperty nodeProp, DarkScaryNode[] nodes)
         {
-            string currentNodeName = nameProp.stringValue;
+            DarkScaryNode node = nodeProp.objectReferenceValue as DarkScaryNode;
 
             // If no node is selected, then set it to the first node.
-            if (currentNodeName == "")
+            if (node == null)
             {
+                // Do not update the OldNodeName property.
                 selectionIndex = 0;
-                nodeName.stringValue = nodeNames[selectionIndex];
+                nodeProp.objectReferenceValue = nodes[selectionIndex];
                 return selectionIndex;
             }
 
-            return Array.IndexOf(nodeNames, currentNodeName); 
+            return Array.IndexOf(nodes, node); 
         }
     }
 }
