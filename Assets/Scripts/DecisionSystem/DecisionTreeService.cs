@@ -4,8 +4,7 @@
 // Creation Date : 4/1/2026
 // Last Modified : 4/4/2026
 //
-// Brief Description : Manages behaviour that interacts with the decision tree, such as making decisions and traveling 
-through the tree.
+// Brief Description : Manages logic for traveling the decision tree.
 *****************************************************************************/
 using IDAS.Decisions.Tree;
 using System;

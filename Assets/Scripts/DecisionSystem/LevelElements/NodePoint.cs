@@ -8,8 +8,6 @@
 takes place.
 *****************************************************************************/
 using IDAS.Decisions.Tree;
-using NaughtyAttributes;
-using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.Splines;
 

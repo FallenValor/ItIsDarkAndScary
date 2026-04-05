@@ -246,7 +246,6 @@ MonoBehaviour:
     keys:
     - choices
     - choices 0
-    - choices 1
     values:
     - _fieldName: choices
       _node: {fileID: 2745487143618092937}
@@ -269,20 +268,8 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 1
-    - _fieldName: choices 1
-      _node: {fileID: 2745487143618092937}
-      _typeQualifiedName: IDAS.Decisions.Tree.Choice[], Assembly-CSharp, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      connections: []
-      _direction: 1
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 1
   flavor: 
   choices:
   - name: Do Thing
-    stamina: 0
-    item: {fileID: 0}
-  - name: Do Thing 4
     stamina: 0
     item: {fileID: 0}

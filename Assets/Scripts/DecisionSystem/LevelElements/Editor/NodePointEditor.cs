@@ -142,27 +142,27 @@ namespace IDAS.Decisions.Editors
                 // Find the corresponding node point for this node.
                 NodePoint linkedPoint = nodes.Find(x => x.Node == nextNodes[i]);
 
-                // Create the spline
-                Spline newSpline = new Spline();
-                // Set the spline's start knot.
-                float3 startPos = new float3(0, 0, 0);
-                BezierKnot startKnot = new BezierKnot(startPos);
-                newSpline.Add(startKnot);
-                // Set the spline's end knot.
-                Vector3 toLinkVector = linkedPoint != null ? linkedPoint.transform.position - 
-                    point.transform.position : Vector3.zero;
-                float3 endPos = new float3(toLinkVector.x, toLinkVector.y, toLinkVector.z);
-                BezierKnot endKnot = new BezierKnot(endPos);
-                newSpline.Add(endKnot);
-
                 // Create the spline GameObject.
                 GameObject splineGO = new GameObject(nextNodes[i].name + " Spline");
                 splineGO.transform.SetParent(point.transform, false);
                 SplineContainer splineCont = splineGO.AddComponent<SplineContainer>();
                 splineGO.AddComponent<CinemachineSplineSmoother>();
 
+                // Create the spline
+                Spline spline = splineCont.Spline;
+                // Set the spline's start knot.
+                float3 startPos = new float3(0, 0, 0);
+                BezierKnot startKnot = new BezierKnot(startPos);
+                spline.Add(startKnot);
+                // Set the spline's end knot.
+                Vector3 toLinkVector = linkedPoint != null ? linkedPoint.transform.position - 
+                    point.transform.position : Vector3.zero;
+                float3 endPos = new float3(toLinkVector.x, toLinkVector.y, toLinkVector.z);
+                BezierKnot endKnot = new BezierKnot(endPos);
+                spline.Add(endKnot);
+
                 // Add the spline.
-                SplineUtility.AddSpline(splineCont, newSpline);
+                splineCont.Spline = spline;
                 splinesProp.GetArrayElementAtIndex(i).objectReferenceValue = splineCont;
             }
         }
