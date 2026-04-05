@@ -28,6 +28,7 @@ namespace IDAS.Decisions.Editors
         private SerializedProperty node;
         private SerializedProperty oldNodeName;
         private SerializedProperty splines;
+        private SerializedProperty cCam;
 
         /// <summary>
         /// Initialize SerializedProperties
@@ -38,6 +39,7 @@ namespace IDAS.Decisions.Editors
             node = serializedObject.FindProperty(nameof(node));
             oldNodeName = serializedObject.FindProperty(nameof(oldNodeName));
             splines = serializedObject.FindProperty(nameof(splines));
+            cCam = serializedObject.FindProperty(nameof(cCam));
         }
 
 
@@ -85,10 +87,17 @@ namespace IDAS.Decisions.Editors
                 GUI.enabled = true;
             }
 
+
             // Update the splines for this node to another node.
             if (GUILayout.Button("Automatic Link Splines"))
             {
                 UpdateNodeSpline(point, splines);
+            }
+
+            //Show components if null.
+            if (cCam.objectReferenceValue == null)
+            {
+                EditorGUILayout.PropertyField(cCam);
             }
                
             serializedObject.ApplyModifiedProperties();

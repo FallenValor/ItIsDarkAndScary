@@ -8,6 +8,7 @@
 takes place.
 *****************************************************************************/
 using IDAS.Decisions.Tree;
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.Splines;
 
@@ -21,10 +22,20 @@ namespace IDAS.Decisions
 
         [SerializeField] private SplineContainer[] splines;
 
+        [Header("Components")]
+        [SerializeField] private CinemachineCamera cCam;
+
         #region Properties
         public DecisionTree Tree => tree;
         public DarkScaryNode Node => node;
+        public CinemachineCamera CCam => cCam;
         public SplineContainer[] Splines => splines;
         #endregion
+
+        
+        private void Reset()
+        {
+            cCam = GetComponentInChildren<CinemachineCamera>();
+        }
     }
 }

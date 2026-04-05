@@ -13,7 +13,7 @@ using UnityEngine;
 
 namespace IDAS.Decisions
 {
-    public delegate Awaitable SequenceTask();
+    public delegate Awaitable SequenceTask(CancellationToken ct);
     public class SequencerService : DecisionService
     {
         #region CONSTS
@@ -60,7 +60,7 @@ namespace IDAS.Decisions
                     }
 
                     // Run the awaiatble in the queue.
-                    await taskQueue.Dequeue()?.Invoke();
+                    await taskQueue.Dequeue()?.Invoke(ct);
                 }
             }
             catch (Exception e)

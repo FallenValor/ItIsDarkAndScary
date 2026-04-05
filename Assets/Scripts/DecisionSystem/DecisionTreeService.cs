@@ -8,7 +8,7 @@
 *****************************************************************************/
 using IDAS.Decisions.Tree;
 using System;
-using System.Threading.Tasks;
+using System.Threading;
 using UnityEngine;
 
 namespace IDAS.Decisions
@@ -20,8 +20,11 @@ namespace IDAS.Decisions
         private DarkScaryNode currentNode;
         private DecisionNodeBase currentDecision;
 
+        private SequencerService sequencer;
+
         #region Events
-        public event Action<global::DarkScaryNode> ReachNodeEvent;
+        public event Action<DarkScaryNode, int, DarkScaryNode> DecisionEvent;
+        public event Action<DarkScaryNode> ReachNodeEvent;
         public event Action<DecisionNodeBase> ReachDecisionEvent;
         #endregion
 
@@ -32,31 +35,13 @@ namespace IDAS.Decisions
         protected override void Initialize()
         {
             Manager.GetService<InputService>().DecisionInputEvent += OnDecisionInput;
+            sequencer = Manager.GetService<SequencerService>();
             // Set the current decision to the starting decision.
             SetCurrentNode(DecisionTree.GetStartNode());
         }
         public override void Deinitialize()
         {
             Manager.GetService<InputService>().DecisionInputEvent -= OnDecisionInput;
-        }
-        
-        /// <summary>
-        /// Sets the current node that the player is at in the decision tree.
-        /// </summary>
-        /// <param name="node"></param>
-        private void SetCurrentNode(DarkScaryNode node)
-        {
-            if (currentNode != null)
-            {
-                currentNode.OnNodeExit(this);
-            }
-            currentNode = node;
-            ReachNodeEvent?.Invoke(currentNode);
-            Debug.Log($"Current node is now {currentNode.name}");
-            if (currentNode != null)
-            {
-                currentNode.OnNodeEnter(this);
-            }
         }
 
         #region Decisions
@@ -73,15 +58,62 @@ namespace IDAS.Decisions
                 // Debug.
                 Debug.Log($"You chose {currentDecision.Choices[decision].Name}");
 
-                global::DarkScaryNode nextNode = currentDecision.GetDecisionNode(decision);
+                DarkScaryNode nextNode = currentDecision.GetDecisionNode(decision);
                 // Reduce stamina based on cost.
-                SetCurrentNode(nextNode);
+
+                // Broadcast that a decision has been made.
+                DecisionEvent?.Invoke(currentNode, decision, nextNode);
+
+                ResetCurrentNode();
+
+                // Queue a SetCurrentNode call in the SequencerService.
+                Awaitable SetNodeWrapper(CancellationToken ct)
+                {
+                    ct.ThrowIfCancellationRequested();
+                    SetCurrentNode(nextNode);
+                    return Awaitable.NextFrameAsync();
+                }
+                Debug.Log("Set Queued");
+                sequencer.QueueAction(SetNodeWrapper);
 
                 // Clear the current decision.
-                currentNode = null; 
+                currentDecision = null; 
             }
         }
-        
+
+        /// <summary>
+        /// Resets the current node.
+        /// </summary>
+        private void ResetCurrentNode()
+        {
+            // Clean up the current node.
+            if (currentNode != null)
+            {
+                currentNode.OnNodeExit(this);
+            }
+            currentNode = null;
+        }
+
+        /// <summary>
+        /// Sets the current node that the player is at in the decision tree.
+        /// </summary>
+        /// <param name="node"></param>
+        private void SetCurrentNode(DarkScaryNode node)
+        {
+            // Clean up the current node.
+            if (currentNode != null)
+            {
+                currentNode.OnNodeExit(this);
+            }
+            currentNode = node;
+            ReachNodeEvent?.Invoke(currentNode);
+            Debug.Log($"Current node is now {currentNode.name}");
+            if (currentNode != null)
+            {
+                currentNode.OnNodeEnter(this);
+            }
+        }
+
         /// <summary>
         /// Queues a decision for the player to make.
         /// </summary>

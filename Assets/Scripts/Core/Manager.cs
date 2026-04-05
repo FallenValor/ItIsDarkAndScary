@@ -42,8 +42,13 @@ namespace IDAS
             for (int i = 0; i < serviceInstances.Length; i++)
             {
                 await serviceInstances[i].DeinitializeAsync();
+                
+            }
+            for (int i = 0; i < serviceInstances.Length; i++)
+            {
                 Destroy(serviceInstances[i]);
             }
+            
             serviceInstances = null;
         }
 
