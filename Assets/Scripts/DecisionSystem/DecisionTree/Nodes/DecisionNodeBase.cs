@@ -67,6 +67,20 @@ namespace IDAS
         #endregion
 
         /// <summary>
+        /// Convers the choices array into a node array.
+        /// </summary>
+        /// <returns></returns>
+        public override DarkScaryNode[] GetAllNextNodes()
+        {
+            DarkScaryNode[] nodes = new DarkScaryNode[choices.Length];
+            for(int i = 0; i < choices.Length; i++)
+            {
+                nodes[i] = GetDecisionNode(i);
+            }
+            return nodes;
+        }
+
+        /// <summary>
         /// Gets a node that this node transitions to by the index in the choices array.
         /// </summary>
         /// <param name="index">The index of the subsequent node to get.</param>

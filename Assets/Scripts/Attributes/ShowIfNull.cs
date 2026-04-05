@@ -8,7 +8,7 @@
 *****************************************************************************/
 using UnityEngine;
 
-namespace Gridmap
+namespace IDAS
 {
     public class ShowIfNullAttribute : PropertyAttribute
     {

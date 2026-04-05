@@ -26,4 +26,10 @@ public abstract class DarkScaryNode : Node
     /// </summary>
     /// <param name="treeTraveler">The TreeTravelerService scrip that is traversing the DecisionTree.</param>
     public virtual void OnNodeExit(DecisionTreeService treeTraveler) { }
+
+    /// <summary>
+    /// Gets all nodes that this node transitions to as an array.
+    /// </summary>
+    /// <return>The array of nodes that this node transitions to.</return>
+    public abstract DarkScaryNode[] GetAllNextNodes();
 }

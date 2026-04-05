@@ -15,29 +15,18 @@ using UnityEngine.Splines;
 
 namespace IDAS.Decisions
 {
-    [RequireComponent(typeof(SplineContainer))]
-    [RequireComponent(typeof(CinemachineSplineSmoother))]
     public class NodePoint : MonoBehaviour
     {
         [SerializeField] private DecisionTree tree;
         [SerializeField] private DarkScaryNode node;
         [SerializeField] private string oldNodeName;
 
+        [SerializeField] private SplineContainer[] splines;
+
         #region Properties
         public DecisionTree Tree => tree;
         public DarkScaryNode Node => node;
-        #endregion
-
-
-        #region Component References
-        [Header("Components")]
-        [SerializeReference, ReadOnly] protected SplineContainer splineC;
-
-        [ContextMenu("Get Component References")]
-        private void Reset()
-        {
-            splineC = GetComponent<SplineContainer>();
-        }
+        public SplineContainer[] Splines => splines;
         #endregion
     }
 }

@@ -13,7 +13,7 @@ using UnityEngine;
 namespace IDAS.Decisions.Editors
 {
     [CustomEditor(typeof(ChoicePoint))]
-    public class ChoicePointEditor : Editor
+    public class ChoicePointEditor : UnityEditor.Editor
     {
         #region CONSTS
         private const string CHOICE_TOOLTIP = "The choice that this ChoicePoint " +
