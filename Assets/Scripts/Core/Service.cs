@@ -7,6 +7,7 @@
 // Brief Description : Base class for service systems that handle specific functionality.
 *****************************************************************************/
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -24,12 +25,16 @@ namespace IDAS
         /// Initializes the service.
         /// </summary>
         /// <returns></returns>
-        public virtual Task InitializeAsync(Manager manager)
+        public virtual Task InitializeAsync(Manager manager, CancellationToken ct)
         {
             try
             {
-                this.parentManager = manager;
-                Initialize();
+                if (!ct.IsCancellationRequested)
+                {
+                    this.parentManager = manager;
+                    ct.ThrowIfCancellationRequested();
+                    Initialize();
+                }
             }
             catch (Exception ex)
             {
@@ -48,7 +53,7 @@ namespace IDAS
         {
             try
             {
-                Initialize();
+                Deinitialize();
             }
             catch (Exception ex)
             {

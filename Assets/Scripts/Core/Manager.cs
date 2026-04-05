@@ -6,6 +6,7 @@
 //
 // Brief Description : Base class for manager systems that coordinate multiple services.
 *****************************************************************************/
+using System.Threading;
 using UnityEngine;
 
 namespace IDAS
@@ -20,14 +21,15 @@ namespace IDAS
         /// Initializes all services within the manager.
         /// </summary>
         /// <returns></returns>
-        public virtual async Awaitable Initialize()
+        public virtual async Awaitable Initialize(CancellationToken ct)
         {
             serviceInstances = new Service[services.Length];
             for (int i = 0; i < services.Length; i++)
             {
                 Service inst = Instantiate(services[i], transform);
                 serviceInstances[i] = inst;
-                await inst.InitializeAsync(this);
+                ct.ThrowIfCancellationRequested();
+                await inst.InitializeAsync(this, ct);
             }
         }
 

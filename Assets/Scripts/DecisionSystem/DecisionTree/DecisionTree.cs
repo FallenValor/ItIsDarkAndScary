@@ -37,7 +37,7 @@ namespace IDAS.Decisions.Tree
         /// <returns>The </returns>
         public DarkScaryNode GetNode(string nodeName)
         {
-            return nodes.Find(item => item.name == nodeName) as global::DarkScaryNode;
+            return nodes.Find(item => item.name == nodeName) as DarkScaryNode;
         }
 
 

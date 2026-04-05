@@ -45,7 +45,7 @@ namespace IDAS.Decisions
         /// Sets the current node that the player is at in the decision tree.
         /// </summary>
         /// <param name="node"></param>
-        private void SetCurrentNode(global::DarkScaryNode node)
+        private void SetCurrentNode(DarkScaryNode node)
         {
             if (currentNode != null)
             {

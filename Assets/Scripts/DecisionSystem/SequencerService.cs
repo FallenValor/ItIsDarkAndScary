@@ -4,23 +4,25 @@
 // Creation Date : 4/4/2026
 // Last Modified : 4/4/2026
 //
-// Brief Description : Manages sequencing player actions and moving the player through the level.
+// Brief Description : Manages sequencing player actions and the progression of the game.
 *****************************************************************************/
-using IDAS.Decisions.Tree;
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
+using System.Threading;
 using UnityEngine;
 
 namespace IDAS.Decisions
 {
+    public delegate Awaitable SequenceTask();
     public class SequencerService : DecisionService
     {
-        [SerializeField] private GameObject playerPrefab;
+        #region CONSTS
+        private const float REQUEUE_WAIT_TIME = 0.5f;
+        #endregion
 
-        private Dictionary<DarkScaryNode, NodePoint> nodePoints;
+        private readonly Queue<SequenceTask> taskQueue = new Queue<SequenceTask>();
 
-        private GameObject player;
+        private CancellationTokenSource queueCts;
 
         /// <summary>
         /// Initialize all NodePoints in the current level.
@@ -28,26 +30,53 @@ namespace IDAS.Decisions
         /// <returns></returns>
         protected override void Initialize()
         {
-            // Initialize all node points.
-            NodePoint[] points = FindObjectsByType<NodePoint>(FindObjectsSortMode.InstanceID);
-            //foreach (NodePoint point in points)
-            //{
-            //    await point.Initialize(this);
-            //}
-
-            // Initialize the node point dictionary.
-            for (int i = 0; i < points.Length; i++)
-            {
-                nodePoints.Add(points[i].Node, points[i]);
-            }
-
-            // Get the starting point.
-            NodePoint startPoint = nodePoints[DecisionManager.DecisionTree.GetStartNode()];
-
-            // Spawn the player at the starting node.
-            player = Instantiate(playerPrefab, startPoint.transform.position, startPoint.transform.rotation);
+            queueCts = new CancellationTokenSource();
+            QueueIterator(queueCts.Token);
         }
 
+        /// <summary>
+        /// Cancels the async function that loops through the queue.
+        /// </summary>
+        public override void Deinitialize()
+        {
+            queueCts.Cancel();
+        }
 
+        /// <summary>
+        /// Continually asyncronously loops through the queue
+        /// </summary>
+        /// <param name="ct"></param>
+        /// <returns></returns>
+        private async void QueueIterator(CancellationToken ct)
+        {
+            try
+            {
+                while (!ct.IsCancellationRequested)
+                {
+                    // Sleep until a task is queued.
+                    while (taskQueue.Count == 0)
+                    {
+                        await Awaitable.WaitForSecondsAsync(REQUEUE_WAIT_TIME);
+                    }
+
+                    // Run the awaiatble in the queue.
+                    await taskQueue.Dequeue()?.Invoke();
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.LogException(e);
+            }
+            
+        }
+
+        /// <summary>
+        /// Enqueues an awaitable returning function as an action to sequence in the queue.
+        /// </summary>
+        /// <param name="toQueue"></param>
+        public void QueueAction(SequenceTask toQueue)
+        {
+            taskQueue.Enqueue(toQueue);
+        }
     }
 }

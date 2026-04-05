@@ -8,11 +8,15 @@
 takes place.
 *****************************************************************************/
 using IDAS.Decisions.Tree;
-using System.Threading.Tasks;
+using NaughtyAttributes;
+using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.Splines;
 
 namespace IDAS.Decisions
 {
+    [RequireComponent(typeof(SplineContainer))]
+    [RequireComponent(typeof(CinemachineSplineSmoother))]
     public class NodePoint : MonoBehaviour
     {
         [SerializeField] private DecisionTree tree;
@@ -24,5 +28,16 @@ namespace IDAS.Decisions
         public DarkScaryNode Node => node;
         #endregion
 
+
+        #region Component References
+        [Header("Components")]
+        [SerializeReference, ReadOnly] protected SplineContainer splineC;
+
+        [ContextMenu("Get Component References")]
+        private void Reset()
+        {
+            splineC = GetComponent<SplineContainer>();
+        }
+        #endregion
     }
 }
