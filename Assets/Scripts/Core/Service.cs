@@ -6,22 +6,61 @@
 //
 // Brief Description : Base class for service systems that handle specific functionality.
 *****************************************************************************/
+using System;
+using System.Threading;
+using System.Threading.Tasks;
 using UnityEngine;
 
-public class Service : MonoBehaviour
+namespace IDAS
 {
-    private Manager parentManager;
-
-    #region Properties
-    protected Manager Manager => parentManager;
-    #endregion
-
-    /// <summary>
-    /// Initializes the service.
-    /// </summary>
-    /// <returns></returns>
-    public virtual async Awaitable Initialize(Manager manager)
+    public class Service : MonoBehaviour
     {
-        parentManager = manager;
+        private Manager parentManager;
+
+        #region Properties
+        protected virtual Manager Manager => parentManager;
+        #endregion
+
+        /// <summary>
+        /// Initializes the service.
+        /// </summary>
+        /// <returns></returns>
+        public virtual Task InitializeAsync(Manager manager, CancellationToken ct)
+        {
+            try
+            {
+                if (!ct.IsCancellationRequested)
+                {
+                    this.parentManager = manager;
+                    ct.ThrowIfCancellationRequested();
+                    Initialize();
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.LogException(ex);
+            }
+            return Task.CompletedTask;
+        }
+
+        protected virtual void Initialize() { }
+
+        /// <summary>
+        /// Initializes the service.
+        /// </summary>
+        /// <returns></returns>
+        public virtual Task DeinitializeAsync()
+        {
+            try
+            {
+                Deinitialize();
+            }
+            catch (Exception ex)
+            {
+                Debug.LogException(ex);
+            }
+            return Task.CompletedTask;
+        }
+        public virtual void Deinitialize() { }
     }
 }
