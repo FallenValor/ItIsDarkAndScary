@@ -7,6 +7,7 @@
 // Brief Description : Controls moving the player along cinemachine dolly tracks to move them through the world
 *****************************************************************************/
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using Unity.Cinemachine;
 using UnityEngine;
@@ -39,11 +40,8 @@ namespace IDAS.Decisions
             sequencer = Manager.GetService<SequencerService>();
 
             // Initialize all node points.
-            NodePoint[] points = FindObjectsByType<NodePoint>(FindObjectsSortMode.InstanceID);
-            //foreach (NodePoint point in points)
-            //{
-            //    await point.Initialize(this);
-            //}
+            NodePoint[] points = FindObjectsByType<NodePoint>(FindObjectsSortMode.InstanceID)
+                .Where(x => !x.IsDuplicate).ToArray();
 
             // Initialize the node point dictionary.
             for (int i = 0; i < points.Length; i++)

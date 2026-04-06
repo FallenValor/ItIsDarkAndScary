@@ -324,8 +324,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 246648044}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.50072515, z: 0, w: 0.86560637}
-  m_LocalPosition: {x: 3.27861, y: 1.332, z: 4.88036}
+  m_LocalRotation: {x: -0.3425753, y: 0.048066884, z: -0.017553128, w: 0.93809575}
+  m_LocalPosition: {x: 9.14, y: 2.53, z: -1.22}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -441,6 +441,10 @@ PrefabInstance:
       propertyPath: inSpline
       value: 
       objectReference: {fileID: 793927454}
+    - target: {fileID: 1365335798254726519, guid: 80798833152ccfd43a1aa3ba16ff92b3, type: 3}
+      propertyPath: isDuplicate
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1365335798254726519, guid: 80798833152ccfd43a1aa3ba16ff92b3, type: 3}
       propertyPath: oldNodeName
       value: Decision1
@@ -1215,7 +1219,7 @@ PrefabInstance:
     - target: {fileID: 1365335798254726519, guid: 80798833152ccfd43a1aa3ba16ff92b3, type: 3}
       propertyPath: node
       value: 
-      objectReference: {fileID: -4811727685758895402, guid: 5faae87cf431f2543bfa46ed574aac48, type: 2}
+      objectReference: {fileID: 7242432516361629633, guid: 5faae87cf431f2543bfa46ed574aac48, type: 2}
     - target: {fileID: 1365335798254726519, guid: 80798833152ccfd43a1aa3ba16ff92b3, type: 3}
       propertyPath: tree
       value: 
@@ -1224,6 +1228,10 @@ PrefabInstance:
       propertyPath: inSpline
       value: 
       objectReference: {fileID: 2042287981}
+    - target: {fileID: 1365335798254726519, guid: 80798833152ccfd43a1aa3ba16ff92b3, type: 3}
+      propertyPath: isDuplicate
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1365335798254726519, guid: 80798833152ccfd43a1aa3ba16ff92b3, type: 3}
       propertyPath: oldNodeName
       value: End

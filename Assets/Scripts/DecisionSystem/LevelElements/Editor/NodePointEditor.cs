@@ -24,6 +24,8 @@ namespace IDAS.Decisions.Editors
     public class NodePointEditor : UnityEditor.Editor
     {
         private int selectionIndex;
+        private bool initialized;
+
 
         // Serialized Properties
         private SerializedProperty tree;
@@ -32,6 +34,7 @@ namespace IDAS.Decisions.Editors
         private SerializedProperty splines;
         private SerializedProperty nextPoints;
         private SerializedProperty cCam;
+        private SerializedProperty isDuplicate;
 
         /// <summary>
         /// Initialize SerializedProperties
@@ -44,6 +47,7 @@ namespace IDAS.Decisions.Editors
             splines = serializedObject.FindProperty(nameof(splines));
             cCam = serializedObject.FindProperty(nameof(cCam));
             nextPoints = serializedObject.FindProperty(nameof(nextPoints));
+            isDuplicate = serializedObject.FindProperty(nameof(isDuplicate));
         }
 
 
@@ -54,7 +58,6 @@ namespace IDAS.Decisions.Editors
         {
             serializedObject.Update();
             NodePoint point = (NodePoint)target;
-
             
 
             // Draw the default tree property
@@ -64,11 +67,18 @@ namespace IDAS.Decisions.Editors
             if (point.Tree != null)
             {
                 DarkScaryNode[] nodes = point.Tree.nodes.Select(n => n as DarkScaryNode).ToArray();
+
+                // Checks for initialization.
+                if (!initialized)
+                {
+                    Initialize(point, nodes);
+                }
+
                 string[] nodeNames = nodes.Select(n => n.name).ToArray();
                 selectionIndex = GetSelectionIndex(node, nodes);
 
                 // Display error text if the node point has an invalid name.
-                if (selectionIndex == -1 && oldNodeName.stringValue != "")
+                if (oldNodeName.stringValue != node.objectReferenceValue.name)
                 {
                     EditorGUILayout.Space();
                     EditorGUILayout.HelpBox($"Old node reference was deleted.  " +
@@ -81,32 +91,49 @@ namespace IDAS.Decisions.Editors
                 if (EditorGUI.EndChangeCheck())
                 {
                     // Update the string field.
-                    node.objectReferenceValue = point.Tree.nodes[selectionIndex];
-                    oldNodeName.stringValue = point.Tree.nodes[selectionIndex].name;
+                    DarkScaryNode newNode = point.Tree.nodes[selectionIndex] as DarkScaryNode;
+                    node.objectReferenceValue = newNode;
+                    oldNodeName.stringValue = newNode.name;
 
                     // Update the node's name.
                     point.gameObject.name = nameof(NodePoint) +  " (" + point.Tree.nodes[selectionIndex].name + ")";
+
+                    // Verify the node is unique.
+                    isDuplicate.boolValue = CheckIsDuplicate(point, newNode);
                 }
+
+                if (isDuplicate.boolValue == true)
+                {
+                    EditorGUILayout.Space();
+                    EditorGUILayout.HelpBox($"This point is a duplicate point referencing " +
+                        $"{node.objectReferenceValue.name} and will be ignored.  Ensure that each node only has " +
+                        $"one point.", MessageType.Error);
+                }
+
                 GUI.enabled = false;
                 EditorGUILayout.PropertyField(node);
-                EditorGUILayout.PropertyField(nextPoints);
-                EditorGUILayout.PropertyField(splines);
+                if (!point.IsDuplicate)
+                {
+                    EditorGUILayout.PropertyField(nextPoints);
+                    EditorGUILayout.PropertyField(splines);
+                }
                 GUI.enabled = true;
-            }
 
-
-            // Update the splines for this node to another node.
-            if (GUILayout.Button("Create Splines"))
-            {
-                CreateNodeSplines(point, splines, nextPoints);
+                // Show buttons for spline management.
+                if (!point.IsDuplicate)
+                {
+                    // Update the splines for this node to another node.
+                    if (GUILayout.Button("Create Splines"))
+                    {
+                        CreateNodeSplines(point, splines, nextPoints);
+                    }
+                    // Update the splines for this node to another node.
+                    if (GUILayout.Button("Update Spline End Points"))
+                    {
+                        UpdateSplineEndPoints(point);
+                    }
+                }
             }
-            // Update the splines for this node to another node.
-            if (GUILayout.Button("Update Spline End Points"))
-            {
-                UpdateSplineEndPoints(point);
-            }
-
-            
 
             //Show components if null.
             if (cCam.objectReferenceValue == null)
@@ -115,6 +142,17 @@ namespace IDAS.Decisions.Editors
             }
                
             serializedObject.ApplyModifiedProperties();
+        }
+
+        /// <summary>
+        /// Controls functions that hsould only be called once the gui starts rendering.
+        /// </summary>
+        private void Initialize(NodePoint point, DarkScaryNode[] nodes)
+        {
+            selectionIndex = GetSelectionIndex(node, nodes);
+
+            // Verify the node is unique.
+            isDuplicate.boolValue = CheckIsDuplicate(point, point.Node);
         }
 
         /// <summary>
@@ -239,6 +277,16 @@ namespace IDAS.Decisions.Editors
         }
 
         /// <summary>
+        /// Checks if there are other points that reference this node.
+        /// </summary>
+        /// <param name="point">The point to check for duplicates of.</param>
+        /// <returns></returns>
+        private bool CheckIsDuplicate(NodePoint point, DarkScaryNode node)
+        {
+            return GetAllNodePointsInScene().Any(x => x.Node == node && x != point );
+        }
+
+        /// <summary>
         /// Gets all node points in the current scene.
         /// </summary>
         /// <returns>A list of all node points in the current scene.</returns>
@@ -248,7 +296,7 @@ namespace IDAS.Decisions.Editors
             GameObject[] roots = SceneManager.GetActiveScene().GetRootGameObjects();
             foreach(var root in roots)
             {
-                nodes.AddRange(root.GetComponentsInChildren<NodePoint>());
+                nodes.AddRange(root.GetComponentsInChildren<NodePoint>().Where(x => !x.IsDuplicate));
             }
             return nodes;
         }
