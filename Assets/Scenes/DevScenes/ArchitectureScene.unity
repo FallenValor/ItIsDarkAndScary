@@ -184,9 +184,9 @@ MonoBehaviour:
           z: 0
           w: 1
     - Position:
-        x: 4.6799994
-        y: 0
-        z: 4.44036
+        x: 4.089999
+        y: -2.53
+        z: 6.10036
       TangentIn:
         x: 0
         y: 0
@@ -503,15 +503,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5602423650115050866, guid: 80798833152ccfd43a1aa3ba16ff92b3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.55
+      value: 9.14
       objectReference: {fileID: 0}
     - target: {fileID: 5602423650115050866, guid: 80798833152ccfd43a1aa3ba16ff92b3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 2.53
       objectReference: {fileID: 0}
     - target: {fileID: 5602423650115050866, guid: 80798833152ccfd43a1aa3ba16ff92b3, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.44
+      value: -1.22
       objectReference: {fileID: 0}
     - target: {fileID: 5602423650115050866, guid: 80798833152ccfd43a1aa3ba16ff92b3, type: 3}
       propertyPath: m_LocalRotation.w
@@ -633,9 +633,9 @@ MonoBehaviour:
           z: 0
           w: 1
     - Position:
-        x: 4.8499994
-        y: 0
-        z: -2.32
+        x: 4.2599993
+        y: -2.53
+        z: -0.65999997
       TangentIn:
         x: 0
         y: 0
@@ -887,9 +887,9 @@ MonoBehaviour:
           z: 0
           w: 1
     - Position:
-        x: 5.27139
-        y: 0
-        z: -4.44036
+        x: 5.86139
+        y: 2.53
+        z: -6.10036
       TangentIn:
         x: 0
         y: 0

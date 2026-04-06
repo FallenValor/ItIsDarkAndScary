@@ -32,4 +32,10 @@ public abstract class DarkScaryNode : Node
     /// </summary>
     /// <return>The array of nodes that this node transitions to.</return>
     public abstract DarkScaryNode[] GetAllNextNodes();
+
+    /// <summary>
+    /// Checks if this node represents a dead end.
+    /// </summary>
+    /// <returns>True if this node is a dead end, false if otherwise.</returns>
+    public abstract bool IsDeadEnd();
 }

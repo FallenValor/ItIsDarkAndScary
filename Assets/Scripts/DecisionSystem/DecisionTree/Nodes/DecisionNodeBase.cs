@@ -96,6 +96,15 @@ namespace IDAS
         }
 
         /// <summary>
+        /// Is a dead end if there are no choices with proper connections.
+        /// </summary>
+        /// <returns></returns>
+        public override bool IsDeadEnd()
+        {
+            return GetAllNextNodes().Length == 0;
+        }
+
+        /// <summary>
         /// Gets a decision 
         /// </summary>
         /// <param name="choiceName"></param>

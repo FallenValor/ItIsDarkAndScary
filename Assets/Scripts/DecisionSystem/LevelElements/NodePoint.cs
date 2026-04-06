@@ -22,7 +22,6 @@ namespace IDAS.Decisions
 
         [SerializeField] private SplineContainer[] splines;
         [SerializeField] private NodePoint[] nextPoints;
-        [SerializeField] private SplineContainer inSpline;
 
         [Header("Components")]
         [SerializeField] private CinemachineCamera cCam;
@@ -33,11 +32,6 @@ namespace IDAS.Decisions
         public CinemachineCamera CCam => cCam;
         public SplineContainer[] Splines => splines;
         public NodePoint[] NextPoints => nextPoints;
-        public SplineContainer InSpline
-        {
-            get { return inSpline; }
-            set { inSpline = value; }
-        }
         #endregion
 
 
