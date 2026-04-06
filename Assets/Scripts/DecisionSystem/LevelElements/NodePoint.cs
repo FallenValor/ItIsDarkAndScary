@@ -21,6 +21,8 @@ namespace IDAS.Decisions
         [SerializeField] private string oldNodeName;
 
         [SerializeField] private SplineContainer[] splines;
+        [SerializeField] private NodePoint[] nextPoints;
+        [SerializeField] private SplineContainer inSpline;
 
         [Header("Components")]
         [SerializeField] private CinemachineCamera cCam;
@@ -30,9 +32,15 @@ namespace IDAS.Decisions
         public DarkScaryNode Node => node;
         public CinemachineCamera CCam => cCam;
         public SplineContainer[] Splines => splines;
+        public NodePoint[] NextPoints => nextPoints;
+        public SplineContainer InSpline
+        {
+            get { return inSpline; }
+            set { inSpline = value; }
+        }
         #endregion
 
-        
+
         private void Reset()
         {
             cCam = GetComponentInChildren<CinemachineCamera>();

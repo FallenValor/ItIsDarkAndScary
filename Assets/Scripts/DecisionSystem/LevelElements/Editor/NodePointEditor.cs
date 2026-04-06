@@ -8,6 +8,7 @@
 *****************************************************************************/
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using Unity.Cinemachine;
 using Unity.Mathematics;
@@ -28,7 +29,9 @@ namespace IDAS.Decisions.Editors
         private SerializedProperty node;
         private SerializedProperty oldNodeName;
         private SerializedProperty splines;
+        private SerializedProperty nextPoints;
         private SerializedProperty cCam;
+        private SerializedProperty inSpline;
 
         /// <summary>
         /// Initialize SerializedProperties
@@ -40,6 +43,8 @@ namespace IDAS.Decisions.Editors
             oldNodeName = serializedObject.FindProperty(nameof(oldNodeName));
             splines = serializedObject.FindProperty(nameof(splines));
             cCam = serializedObject.FindProperty(nameof(cCam));
+            inSpline = serializedObject.FindProperty(nameof(inSpline));
+            nextPoints = serializedObject.FindProperty(nameof(nextPoints));
         }
 
 
@@ -50,6 +55,8 @@ namespace IDAS.Decisions.Editors
         {
             serializedObject.Update();
             NodePoint point = (NodePoint)target;
+
+            
 
             // Draw the default tree property
             EditorGUILayout.PropertyField(tree);
@@ -83,16 +90,32 @@ namespace IDAS.Decisions.Editors
                 }
                 GUI.enabled = false;
                 EditorGUILayout.PropertyField(node);
+                EditorGUILayout.PropertyField(inSpline);
+                EditorGUILayout.PropertyField(nextPoints);
                 EditorGUILayout.PropertyField(splines);
                 GUI.enabled = true;
             }
 
 
             // Update the splines for this node to another node.
-            if (GUILayout.Button("Automatic Link Splines"))
+            if (GUILayout.Button("Create Splines"))
             {
-                UpdateNodeSpline(point, splines);
+                UpdateNodeSpline(point, splines, nextPoints);
             }
+            // Update the splines for this node to another node.
+            if (GUILayout.Button("Update Spline End Points"))
+            {
+                // Update the in spline's end point.
+                SetSplineEndPoint(point.InSpline, point.transform.position);
+
+                // Update all of the out spline's end points.
+                for (int i = 0; i < point.Splines.Length; i++)
+                {
+                    SetSplineEndPoint(point.Splines[i], point.NextPoints[i].transform.position);
+                }
+            }
+
+            
 
             //Show components if null.
             if (cCam.objectReferenceValue == null)
@@ -102,6 +125,8 @@ namespace IDAS.Decisions.Editors
                
             serializedObject.ApplyModifiedProperties();
         }
+
+
 
         /// <summary>
         /// Gets the index of the current stored node name value.
@@ -129,7 +154,7 @@ namespace IDAS.Decisions.Editors
         /// Automatically links this node to it's transition nodes with a cinemachine spline.
         /// </summary>
         /// <param name="point">The node point to update splines for.</param>
-        private void UpdateNodeSpline(NodePoint point, SerializedProperty splinesProp)
+        private void UpdateNodeSpline(NodePoint point, SerializedProperty splinesProp, SerializedProperty nextPoints)
         {
             // Find the other NodePoints in the scene.
             List<NodePoint> nodes = GetAllNodePointsInScene();
@@ -142,8 +167,10 @@ namespace IDAS.Decisions.Editors
                 DestroyImmediate(point.Splines[i].gameObject);
             }
             splinesProp.ClearArray();
+            nextPoints.ClearArray();
 
             splinesProp.arraySize = nextNodes.Length;
+            nextPoints.arraySize = nextNodes.Length;
             // Create new splines.
             for (int i = 0; i < nextNodes.Length; i++)
             {
@@ -173,7 +200,28 @@ namespace IDAS.Decisions.Editors
                 // Add the spline.
                 splineCont.Spline = spline;
                 splinesProp.GetArrayElementAtIndex(i).objectReferenceValue = splineCont;
+                nextPoints.GetArrayElementAtIndex(i).objectReferenceValue = linkedPoint;
+
+                // Link the spline
+                linkedPoint.InSpline = splineCont;
+                EditorUtility.SetDirty(linkedPoint);
             }
+        }
+
+        /// <summary>
+        /// Updates the spline's end point based on the world position of the spline's end point.
+        /// </summary>
+        /// <param name="endWorldPos"></param>
+        private void SetSplineEndPoint(SplineContainer spline, Vector3 endWorldPos)
+        {
+            if (spline == null) { return; }
+            int knotIndex = spline.Spline.Knots.Count() - 1;
+            BezierKnot endKnot = spline.Spline.Knots.ElementAt(knotIndex);
+            Vector3 toLinkVector = endWorldPos - spline.transform.position;
+            float3 endPos = new float3(toLinkVector.x, toLinkVector.y, toLinkVector.z);
+            endKnot.Position = endPos;
+            spline.Spline.SetKnot(knotIndex, endKnot);
+            EditorUtility.SetDirty(spline);
         }
 
         /// <summary>
