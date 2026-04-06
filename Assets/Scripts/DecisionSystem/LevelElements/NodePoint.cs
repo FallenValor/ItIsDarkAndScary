@@ -19,8 +19,10 @@ namespace IDAS.Decisions
         [SerializeField] private DecisionTree tree;
         [SerializeField] private DarkScaryNode node;
         [SerializeField] private string oldNodeName;
+        [SerializeField] private bool isDuplicate;
 
         [SerializeField] private SplineContainer[] splines;
+        [SerializeField] private NodePoint[] nextPoints;
 
         [Header("Components")]
         [SerializeField] private CinemachineCamera cCam;
@@ -30,9 +32,11 @@ namespace IDAS.Decisions
         public DarkScaryNode Node => node;
         public CinemachineCamera CCam => cCam;
         public SplineContainer[] Splines => splines;
+        public NodePoint[] NextPoints => nextPoints;
+        public bool IsDuplicate => isDuplicate;
         #endregion
 
-        
+
         private void Reset()
         {
             cCam = GetComponentInChildren<CinemachineCamera>();

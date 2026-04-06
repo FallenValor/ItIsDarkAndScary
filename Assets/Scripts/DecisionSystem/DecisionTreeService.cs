@@ -7,7 +7,9 @@
 // Brief Description : Manages logic for traveling the decision tree.
 *****************************************************************************/
 using IDAS.Decisions.Tree;
+using NUnit.Framework;
 using System;
+using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 
@@ -21,6 +23,7 @@ namespace IDAS.Decisions
         private DecisionNodeBase currentDecision;
 
         private SequencerService sequencer;
+        private TimerService timer;
 
         #region Events
         public event Action<DarkScaryNode, int, DarkScaryNode> DecisionEvent;
@@ -36,12 +39,17 @@ namespace IDAS.Decisions
         {
             Manager.GetService<InputService>().DecisionInputEvent += OnDecisionInput;
             sequencer = Manager.GetService<SequencerService>();
+
+            timer = Manager.GetService<TimerService>();
+            timer.TimerCompleteEvent += MakeRandomDecision;
+
             // Set the current decision to the starting decision.
             SetCurrentNode(DecisionTree.GetStartNode());
         }
         public override void Deinitialize()
         {
             Manager.GetService<InputService>().DecisionInputEvent -= OnDecisionInput;
+            timer.TimerCompleteEvent -= MakeRandomDecision;
         }
 
         #region Decisions
@@ -51,15 +59,55 @@ namespace IDAS.Decisions
         /// <param name="decision"></param>
         private void OnDecisionInput(int decision)
         {
-            if (currentDecision != null && 
-                decision < currentDecision.Choices.Length && 
+            if (currentDecision != null &&
+                decision < currentDecision.Choices.Length &&
                 currentDecision.Choices[decision].IsValid())
             {
                 // Debug.
                 Debug.Log($"You chose {currentDecision.Choices[decision].Name}");
+                MakeDecision(decision);
+            }
+        }
 
+        /// <summary>
+        /// Forces the player to make a random decision.
+        /// </summary>
+        private void MakeRandomDecision()
+        {
+            int randomDecisionIndex = GetRandomDecisionIndex(currentDecision);
+            MakeDecision(randomDecisionIndex);
+        }
+
+        /// <summary>
+        /// Gets a random valid decision index for a decision.
+        /// </summary>
+        /// <returns></returns>
+        private static int GetRandomDecisionIndex(DecisionNodeBase decision)
+        {
+            List<int> validIndicies = new List<int>();
+            for(int i = 0; i < decision.Choices.Length; i++)
+            {
+                if (decision.Choices[i].IsValid())
+                {
+                    validIndicies.Add(i);
+                }
+            }
+            return validIndicies[UnityEngine.Random.Range(0, validIndicies.Count)];
+        }
+
+        /// <summary>
+        /// Progresses the player through a decided choice.
+        /// </summary>
+        /// <param name="decision"></param>
+        private void MakeDecision(int decision)
+        {
+            if (currentDecision != null &&
+                decision < currentDecision.Choices.Length &&
+                currentDecision.Choices[decision].IsValid())
+            { 
                 DarkScaryNode nextNode = currentDecision.GetDecisionNode(decision);
-                // Reduce stamina based on cost.
+
+                timer.StopTimer();
 
                 // Broadcast that a decision has been made.
                 DecisionEvent?.Invoke(currentNode, decision, nextNode);
@@ -77,8 +125,10 @@ namespace IDAS.Decisions
                 sequencer.QueueAction(SetNodeWrapper);
 
                 // Clear the current decision.
-                currentDecision = null; 
+                currentDecision = null;
             }
+
+            
         }
 
         /// <summary>
@@ -122,6 +172,9 @@ namespace IDAS.Decisions
         {
             currentDecision = decisionNode;
             ReachDecisionEvent?.Invoke(decisionNode);
+
+            // Start the timer.
+            timer.StartTimer();
 
             // Debug
             for(int i = 0; i < decisionNode.Choices.Length; i++)

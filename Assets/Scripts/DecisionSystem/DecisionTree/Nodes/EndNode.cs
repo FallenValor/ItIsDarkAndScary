@@ -28,6 +28,15 @@ namespace IDAS
         }
 
         /// <summary>
+        /// End nodes are never dead ends.
+        /// </summary>
+        /// <returns></returns>
+        public override bool IsDeadEnd()
+        {
+            return false;
+        }
+
+        /// <summary>
         /// When an end node is reached, end the current decision tree.
         /// </summary>
         /// <param name="treeTraveler"></param>

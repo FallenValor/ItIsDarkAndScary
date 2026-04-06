@@ -7,6 +7,7 @@
 // Brief Description : Controls moving the player along cinemachine dolly tracks to move them through the world
 *****************************************************************************/
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using Unity.Cinemachine;
 using UnityEngine;
@@ -39,11 +40,8 @@ namespace IDAS.Decisions
             sequencer = Manager.GetService<SequencerService>();
 
             // Initialize all node points.
-            NodePoint[] points = FindObjectsByType<NodePoint>(FindObjectsSortMode.InstanceID);
-            //foreach (NodePoint point in points)
-            //{
-            //    await point.Initialize(this);
-            //}
+            NodePoint[] points = FindObjectsByType<NodePoint>(FindObjectsSortMode.InstanceID)
+                .Where(x => !x.IsDuplicate).ToArray();
 
             // Initialize the node point dictionary.
             for (int i = 0; i < points.Length; i++)
@@ -92,14 +90,17 @@ namespace IDAS.Decisions
         /// </summary>
         /// <param name="splineIndex">The index of the subsequent node/spline to move to.</param>
         /// <returns></returns>
-        public async Awaitable MoveToPoint(NodePoint startPoint, int splineIndex, NodePoint endNode, CancellationToken ct)
+        public async Awaitable MoveToPoint(NodePoint startPoint, int splineIndex, NodePoint endPoint, CancellationToken ct)
         {
             // Get the spline to move along.
-            SplineContainer spline = startPoint.Splines[splineIndex];
-            if (spline == null)
+            if (splineIndex > startPoint.Splines.Length || startPoint.Splines[splineIndex] == null)
             {
+                Debug.LogWarning($"No Spline found connecting nodes {startPoint} and {endPoint}.  " +
+                    $"Using default Cinemachine interpolation.");
+                endPoint.CCam.Prioritize();
                 return;
             }
+            SplineContainer spline = startPoint.Splines[splineIndex];
 
             //Update the player.
             player.CameraPosition = 0;
@@ -117,7 +118,7 @@ namespace IDAS.Decisions
                 await Awaitable.NextFrameAsync();
             }
 
-            endNode.CCam.Prioritize();
+            endPoint.CCam.Prioritize();
             Debug.Log("Hit end of track");
         }
     }
