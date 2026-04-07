@@ -115,7 +115,10 @@ namespace IDAS.Decisions
             }
             catch (Exception e)
             {
-                Debug.LogException(e);
+                if (e is not OperationCanceledException)
+                {
+                    Debug.LogException(e);
+                }
             }
         }
     }

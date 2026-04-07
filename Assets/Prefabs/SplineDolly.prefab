@@ -95,9 +95,9 @@ MonoBehaviour:
   SplineOffset: {x: 0, y: 0, z: 0}
   CameraRotation: 2
   Damping:
-    Enabled: 0
+    Enabled: 1
     Position: {x: 0, y: 0, z: 0}
-    Angular: 0
+    Angular: 3
   AutomaticDolly:
     Enabled: 0
     Method:
