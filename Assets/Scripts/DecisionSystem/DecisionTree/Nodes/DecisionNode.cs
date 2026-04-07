@@ -12,7 +12,7 @@ using XNode;
 
 namespace IDAS
 {
-    [CreateAssetMenu(fileName = "DecisionNode", menuName = "Decision Tree/DecisionNode")]
+    [CreateAssetMenu(fileName = "DecisionNode", menuName = "IDAS/Nodes/DecisionNode")]
     public class DecisionNode : DecisionNodeBase
     {
         [SerializeField, Input] private Choice inputChoice;

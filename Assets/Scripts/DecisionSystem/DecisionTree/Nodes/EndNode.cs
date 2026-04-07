@@ -13,7 +13,7 @@ using XNode;
 
 namespace IDAS
 {
-    [CreateAssetMenu(fileName = "EndNode", menuName = "Scriptable Objects/End Node")]
+    [CreateAssetMenu(fileName = "EndNode", menuName = "IDAS/Nodes/End Node")]
     public class EndNode : DarkScaryNode
     {
         [SerializeField, Input] private Choice inputChoice;
