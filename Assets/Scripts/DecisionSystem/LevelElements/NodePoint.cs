@@ -41,6 +41,8 @@ namespace IDAS.Decisions
         public SplinePointPair[] NextSplines => nextSplines;
         public bool IsDuplicate => isDuplicate;
         public bool IsIgnored => isDuplicate;
+
+        public bool HasSplines => node == null ? false : node.HasOut;
         #endregion
 
         #region Nested

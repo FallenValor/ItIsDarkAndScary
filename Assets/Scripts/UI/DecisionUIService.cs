@@ -33,7 +33,7 @@ namespace IDAS.UI
         /// </summary>
         /// <param name="obj"></param>
         /// <exception cref="System.NotImplementedException"></exception>
-        private void VisualizeDecision(DecisionNodeBase obj)
+        private void VisualizeDecision(DecisionNode obj)
         {
             throw new System.NotImplementedException();
         }

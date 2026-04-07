@@ -41,7 +41,7 @@ namespace IDAS.Decisions
         /// </summary>
         protected override void Initialize()
         {
-            Manager.GetService<DecisionTreeService>().DecisionEvent += QueueMoveToPoint;
+            Manager.GetService<DecisionTreeService>().MovementEvent += QueueMoveToPoint;
 
             sequencer = Manager.GetService<SequencerService>();
 
@@ -75,7 +75,7 @@ namespace IDAS.Decisions
         /// </summary>
         public override void Deinitialize()
         {
-            Manager.GetService<DecisionTreeService>().DecisionEvent -= QueueMoveToPoint;
+            Manager.GetService<DecisionTreeService>().MovementEvent -= QueueMoveToPoint;
         }
 
         /// <summary>

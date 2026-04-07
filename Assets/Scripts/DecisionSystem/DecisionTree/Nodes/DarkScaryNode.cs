@@ -7,35 +7,39 @@
 // Brief Description : Abstract base class for all xNodes that make up a decision tree.
 *****************************************************************************/
 using IDAS.Decisions;
+using IDAS.Decisions.Tree;
 using System;
 using UnityEngine;
 using XNode;
 
-public abstract class DarkScaryNode : Node 
+namespace IDAS
 {
-    [SerializeField, TextArea] private string flavor;
+    public abstract class DarkScaryNode : Node
+    {
+        [SerializeField, Input] private Choice inputChoice;
+        [SerializeField, TextArea] private string flavor;
 
-    /// <summary>
-    /// Queues any behaviour that should trigger when this node is reached.
-    /// </summary>
-    /// <param name="treeTraveler">The TreeTravelerService scrip that is traversing the DecisionTree.</param>
-    public abstract void OnNodeEnter(DecisionTreeService treeTraveler);
+        #region Properties
+        public virtual bool RandomSelectable => true;
+        public virtual bool HasOut => true;
+        #endregion
 
-    /// <summary>
-    /// Queues any behaviour that should trigger when this node is left.
-    /// </summary>
-    /// <param name="treeTraveler">The TreeTravelerService scrip that is traversing the DecisionTree.</param>
-    public virtual void OnNodeExit(DecisionTreeService treeTraveler) { }
+        /// <summary>
+        /// Queues any behaviour that should trigger when this node is reached.
+        /// </summary>
+        /// <param name="treeTraveler">The TreeTravelerService scrip that is traversing the DecisionTree.</param>
+        public abstract void OnNodeEnter(DecisionTreeService treeTraveler);
 
-    /// <summary>
-    /// Gets all nodes that this node transitions to as an array.
-    /// </summary>
-    /// <return>The array of nodes that this node transitions to.</return>
-    public abstract DarkScaryNode[] GetAllNextNodes();
+        /// <summary>
+        /// Queues any behaviour that should trigger when this node is left.
+        /// </summary>
+        /// <param name="treeTraveler">The TreeTravelerService scrip that is traversing the DecisionTree.</param>
+        public virtual void OnNodeExit(DecisionTreeService treeTraveler) { }
 
-    /// <summary>
-    /// Checks if this node represents a dead end.
-    /// </summary>
-    /// <returns>True if this node is a dead end, false if otherwise.</returns>
-    public abstract bool IsDeadEnd();
+        /// <summary>
+        /// Gets all nodes that this node transitions to as an array.
+        /// </summary>
+        /// <return>The array of nodes that this node transitions to.</return>
+        public abstract DarkScaryNode[] GetAllNextNodes();
+    }
 }

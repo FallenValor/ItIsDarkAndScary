@@ -116,7 +116,7 @@ namespace IDAS.Decisions.Editors
 
                 GUI.enabled = false;
                 EditorGUILayout.PropertyField(node);
-                if (!point.IsDuplicate)
+                if (!point.IsDuplicate && point.HasSplines)
                 {
                     EditorGUILayout.PropertyField(nextPoints);
                     EditorGUILayout.PropertyField(splines);
@@ -124,7 +124,7 @@ namespace IDAS.Decisions.Editors
                 GUI.enabled = true;
 
                 // Show buttons for spline management.
-                if (!point.IsDuplicate)
+                if (!point.IsDuplicate && point.HasSplines)
                 {
                     // Update the splines for this node to another node.
                     if (GUILayout.Button("Create Splines"))

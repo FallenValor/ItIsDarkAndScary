@@ -51,7 +51,7 @@ namespace IDAS.Decisions.Editors
             EditorGUILayout.PropertyField(parentNode);
 
             // Draw the dropdown for the choice index/name.
-            if (point.ParentNode != null && point.ParentNode.Node is DecisionNodeBase dNode)
+            if (point.ParentNode != null && point.ParentNode.Node is DecisionNode dNode)
             {
                 if (dNode.Choices.Length > 0)
                 {
@@ -122,7 +122,7 @@ namespace IDAS.Decisions.Editors
         /// </summary>
         /// <param name="node"></param>
         /// <returns></returns>
-        private string[] GetChoiceNamesFormatted(DecisionNodeBase node)
+        private string[] GetChoiceNamesFormatted(DecisionNode node)
         {
             string[] choiceNames = new string[node.Choices.Length];
             for(int i = 0; i < choiceNames.Length; i++)

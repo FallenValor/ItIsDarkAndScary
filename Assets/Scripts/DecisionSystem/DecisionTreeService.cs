@@ -19,14 +19,16 @@ namespace IDAS.Decisions
         private DecisionTree DecisionTree => DecisionManager.DecisionTree;
 
         private DarkScaryNode currentNode;
-        private DecisionNodeBase currentDecision;
+        private DecisionNode currentDecision;
+
+        private DarkScaryNode previousNode;
 
         private SequencerService sequencer;
         private TimerService timer;
 
         #region Events
-        public event Action<DarkScaryNode, int, DarkScaryNode> DecisionEvent;
-        public event Action<DecisionNodeBase> ReachDecisionEvent;
+        public event Action<DarkScaryNode, int, DarkScaryNode> MovementEvent;
+        public event Action<DecisionNode> ReachDecisionEvent;
         #endregion
 
         /// <summary>
@@ -50,84 +52,6 @@ namespace IDAS.Decisions
             timer.TimerCompleteEvent -= MakeRandomDecision;
         }
 
-        #region Decisions
-        /// <summary>
-        /// Progresses through the tree through a currently queued decision based on player input.
-        /// </summary>
-        /// <param name="decision"></param>
-        private void OnDecisionInput(int decision)
-        {
-            if (currentDecision != null &&
-                decision < currentDecision.Choices.Length &&
-                currentDecision.Choices[decision].IsValid())
-            {
-                // Debug.
-                Debug.Log($"You chose {currentDecision.Choices[decision].Name}");
-                MakeDecision(decision);
-            }
-        }
-
-        /// <summary>
-        /// Forces the player to make a random decision.
-        /// </summary>
-        private void MakeRandomDecision()
-        {
-            int randomDecisionIndex = GetRandomDecisionIndex(currentDecision);
-            MakeDecision(randomDecisionIndex);
-        }
-
-        /// <summary>
-        /// Gets a random valid decision index for a decision.
-        /// </summary>
-        /// <returns></returns>
-        private static int GetRandomDecisionIndex(DecisionNodeBase decision)
-        {
-            List<int> validIndicies = new List<int>();
-            for(int i = 0; i < decision.Choices.Length; i++)
-            {
-                if (decision.Choices[i].IsValid())
-                {
-                    validIndicies.Add(i);
-                }
-            }
-            return validIndicies[UnityEngine.Random.Range(0, validIndicies.Count)];
-        }
-
-        /// <summary>
-        /// Progresses the player through a decided choice.
-        /// </summary>
-        /// <param name="decision"></param>
-        private void MakeDecision(int decision)
-        {
-            if (currentDecision != null &&
-                decision < currentDecision.Choices.Length &&
-                currentDecision.Choices[decision].IsValid())
-            { 
-                DarkScaryNode nextNode = currentDecision.GetDecisionNode(decision);
-
-                timer.StopTimer();
-
-                // Broadcast that a decision has been made.
-                DecisionEvent?.Invoke(currentNode, decision, nextNode);
-
-                ResetCurrentNode();
-
-                // Queue a SetCurrentNode call in the SequencerService.
-                Awaitable SetNodeWrapper(CancellationToken ct)
-                {
-                    ct.ThrowIfCancellationRequested();
-                    SetCurrentNode(nextNode);
-                    return Awaitable.NextFrameAsync();
-                }
-                Debug.Log("Set Queued");
-                sequencer.QueueAction(SetNodeWrapper);
-
-                // Clear the current decision.
-                currentDecision = null;
-            }
-
-            
-        }
 
         /// <summary>
         /// Resets the current node.
@@ -162,10 +86,97 @@ namespace IDAS.Decisions
         }
 
         /// <summary>
+        /// Moves the player to a next node in the decision tree.
+        /// </summary>
+        /// <param name="nextNode">The node to move to.</param>
+        /// <param name="decisionIndex">The index of the decision made.</param>
+        public void MoveToNode(DarkScaryNode nextNode, int decisionIndex)
+        {
+            // Broadcast that a decision has been made.
+            MovementEvent?.Invoke(currentNode, decisionIndex, nextNode);
+
+            ResetCurrentNode();
+
+            // Queue a SetCurrentNode call in the SequencerService.
+            Awaitable SetNodeWrapper(CancellationToken ct)
+            {
+                ct.ThrowIfCancellationRequested();
+                SetCurrentNode(nextNode);
+                return Awaitable.NextFrameAsync();
+            }
+            Debug.Log("Set Queued");
+            sequencer.QueueAction(SetNodeWrapper);
+        }
+
+        #region Decisions
+        /// <summary>
+        /// Progresses through the tree through a currently queued decision based on player input.
+        /// </summary>
+        /// <param name="decision"></param>
+        private void OnDecisionInput(int decision)
+        {
+            if (currentDecision != null &&
+                decision < currentDecision.Choices.Length &&
+                currentDecision.Choices[decision].IsValid())
+            {
+                // Debug.
+                Debug.Log($"You chose {currentDecision.Choices[decision].Name}");
+                MakeDecision(decision);
+            }
+        }
+
+        /// <summary>
+        /// Forces the player to make a random decision.
+        /// </summary>
+        private void MakeRandomDecision()
+        {
+            int randomDecisionIndex = GetRandomDecisionIndex(currentDecision);
+            MakeDecision(randomDecisionIndex);
+        }
+
+        /// <summary>
+        /// Gets a random valid decision index for a decision.
+        /// </summary>
+        /// <returns></returns>
+        private static int GetRandomDecisionIndex(DecisionNode decision)
+        {
+            List<int> validIndicies = new List<int>();
+            for(int i = 0; i < decision.Choices.Length; i++)
+            {
+                if (decision.Choices[i].IsValid() && decision.GetDecisionNode(i).RandomSelectable)
+                {
+                    validIndicies.Add(i);
+                }
+            }
+            return validIndicies[UnityEngine.Random.Range(0, validIndicies.Count)];
+        }
+
+        /// <summary>
+        /// Progresses the player through a decided choice.
+        /// </summary>
+        /// <param name="decision"></param>
+        private void MakeDecision(int decision)
+        {
+            if (currentDecision != null &&
+                decision < currentDecision.Choices.Length &&
+                currentDecision.Choices[decision].IsValid())
+            { 
+                DarkScaryNode nextNode = currentDecision.GetDecisionNode(decision);
+
+                timer.StopTimer();
+
+                MoveToNode(nextNode, decision);
+
+                // Clear the current decision.
+                currentDecision = null;
+            }
+        }
+
+        /// <summary>
         /// Queues a decision for the player to make.
         /// </summary>
         /// <param name="decisionNode">The decision node that the player is making a decision at.</param>
-        public void QueueDecision(DecisionNodeBase decisionNode)
+        public void QueueDecision(DecisionNode decisionNode)
         {
             currentDecision = decisionNode;
             ReachDecisionEvent?.Invoke(decisionNode);
