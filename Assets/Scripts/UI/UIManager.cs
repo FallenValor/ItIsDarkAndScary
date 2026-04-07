@@ -24,12 +24,12 @@ namespace IDAS.UI
         /// </summary>
         /// <param name="ct"></param>
         /// <returns></returns>
-        public override async Awaitable Initialize(CancellationToken ct)
+        public override async Awaitable Initialize(ApplicationManager am, CancellationToken ct)
         {
             // Spawn the canvas prefab before initialization.
             Instantiate(eventSystemPrefab);
             Canvas = Instantiate(canvasPrefab);
-            await base.Initialize(ct);
+            await base.Initialize(am, ct);
         }
     }
 }

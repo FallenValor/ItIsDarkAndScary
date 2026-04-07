@@ -20,6 +20,7 @@ namespace IDAS.Decisions
         private bool isRunning;
 
         #region Events
+        public event Action TimerStartEvent;
         public event Action<float, float> TimerUpdateEvent;
         public event Action TimerCompleteEvent;
         public event Action TimerCancelEvent;

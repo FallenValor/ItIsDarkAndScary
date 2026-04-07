@@ -29,7 +29,7 @@ namespace IDAS
             {
                 Manager inst = Instantiate(managers[i], transform);
                 managerInstances[i] = inst;
-                await inst.Initialize(cts.Token);
+                await inst.Initialize(this, cts.Token);
             }
         }
 

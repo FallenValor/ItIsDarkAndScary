@@ -27,7 +27,6 @@ namespace IDAS.Decisions
 
         #region Events
         public event Action<DarkScaryNode, int, DarkScaryNode> DecisionEvent;
-        public event Action<DarkScaryNode> ReachNodeEvent;
         public event Action<DecisionNodeBase> ReachDecisionEvent;
         #endregion
 
@@ -156,7 +155,6 @@ namespace IDAS.Decisions
                 currentNode.OnNodeExit(this);
             }
             currentNode = node;
-            ReachNodeEvent?.Invoke(currentNode);
             Debug.Log($"Current node is now {currentNode.name}");
             if (currentNode != null)
             {
