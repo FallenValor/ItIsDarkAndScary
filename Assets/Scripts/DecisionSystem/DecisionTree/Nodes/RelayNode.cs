@@ -23,6 +23,22 @@ namespace IDAS
         #endregion
 
         /// <summary>
+        /// Gets an out value based on port name.
+        /// </summary>
+        /// <param name="port"></param>
+        /// <returns></returns>
+        public override object GetValue(NodePort port)
+        {
+            switch (port.fieldName)
+            {
+                case nameof(outputChoice):
+                    return outputChoice;
+                default:
+                    return base.GetValue(port);
+            }
+        }
+
+        /// <summary>
         /// The only next node is the node linked by outputChoice;
         /// </summary>
         /// <returns></returns>
