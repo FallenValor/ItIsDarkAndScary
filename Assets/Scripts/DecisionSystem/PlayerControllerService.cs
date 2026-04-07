@@ -32,6 +32,10 @@ namespace IDAS.Decisions
         private CinemachineSplineDolly splineDolly;
         private CinemachineBrain player;
 
+        #region Properties
+        private GameObject Player => player.gameObject;
+        #endregion
+
         /// <summary>
         ///  Initializes the player prefab and dictionary of node points.
         /// </summary>
@@ -125,6 +129,20 @@ namespace IDAS.Decisions
 
             endPoint.CCam.Prioritize();
             Debug.Log("Hit end of track");
+        }
+
+        /// <summary>
+        /// Gets the node point that corresponds to a given node.
+        /// </summary>
+        /// <param name="node"></param>
+        /// <returns></returns>
+        public NodePoint GetPoint(DarkScaryNode node)
+        {
+            if (nodePoints.ContainsKey(node))
+            {
+                return nodePoints[node];
+            }
+            return null;
         }
     }
 }

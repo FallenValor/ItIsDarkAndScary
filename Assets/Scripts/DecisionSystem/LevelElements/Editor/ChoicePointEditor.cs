@@ -110,7 +110,7 @@ namespace IDAS.Decisions.Editors
             }
             else
             {
-                EditorGUILayout.HelpBox($"This ChoiceNode must be a child of a NodePoint that corresponds to a " +
+                EditorGUILayout.HelpBox($"This ChoiceNode must have an assigned ParentNode that corresponds to a " +
                     $"DecisionNode", MessageType.Error);
             }
 
