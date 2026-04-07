@@ -27,6 +27,7 @@ namespace IDAS.Decisions.Editors
         // Serialized Properties
         private SerializedProperty choiceIndex;
         private SerializedProperty choiceName;
+        private SerializedProperty parentNode;
 
         /// <summary>
         /// Initialize SerializedProperties
@@ -35,6 +36,7 @@ namespace IDAS.Decisions.Editors
         {
             choiceIndex = serializedObject.FindProperty(nameof(choiceIndex));
             choiceName = serializedObject.FindProperty(nameof(choiceName));
+            parentNode = serializedObject.FindProperty(nameof(parentNode));
         }
 
         /// <summary>
@@ -45,6 +47,8 @@ namespace IDAS.Decisions.Editors
             serializedObject.Update();
 
             ChoicePoint point = (ChoicePoint)target;
+
+            EditorGUILayout.PropertyField(parentNode);
 
             // Draw the dropdown for the choice index/name.
             if (point.ParentNode != null && point.ParentNode.Node is DecisionNodeBase dNode)
@@ -106,7 +110,7 @@ namespace IDAS.Decisions.Editors
             }
             else
             {
-                EditorGUILayout.HelpBox($"This ChoiceNode must be a child of a NodePoint that corresponds to a " +
+                EditorGUILayout.HelpBox($"This ChoiceNode must have an assigned ParentNode that corresponds to a " +
                     $"DecisionNode", MessageType.Error);
             }
 

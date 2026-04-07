@@ -42,6 +42,7 @@ namespace IDAS.Decisions
             }
             cts = new CancellationTokenSource();
             isRunning = true;
+            TimerStartEvent?.Invoke();
             TimerAsync(time, cts.Token);
         }
 
