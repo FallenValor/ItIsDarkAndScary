@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.Cinemachine;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -28,11 +29,14 @@ namespace IDAS.Decisions.Editors
         // Serialized Properties
         private SerializedProperty tree;
         private SerializedProperty node;
+
+        private SerializedProperty cCam;
+
         private SerializedProperty oldNodeName;
+        private SerializedProperty isDuplicate;
         private SerializedProperty splines;
         private SerializedProperty nextPoints;
-        private SerializedProperty cCam;
-        private SerializedProperty isDuplicate;
+        private SerializedProperty nextSplines;
 
         /// <summary>
         /// Initialize SerializedProperties
@@ -41,11 +45,14 @@ namespace IDAS.Decisions.Editors
         {
             tree = serializedObject.FindProperty(nameof(tree));
             node = serializedObject.FindProperty(nameof(node));
-            oldNodeName = serializedObject.FindProperty(nameof(oldNodeName));
-            splines = serializedObject.FindProperty(nameof(splines));
+
             cCam = serializedObject.FindProperty(nameof(cCam));
-            nextPoints = serializedObject.FindProperty(nameof(nextPoints));
+
+            oldNodeName = serializedObject.FindProperty(nameof(oldNodeName));
             isDuplicate = serializedObject.FindProperty(nameof(isDuplicate));
+            splines = serializedObject.FindProperty(nameof(splines));
+            nextPoints = serializedObject.FindProperty(nameof(nextPoints));
+            nextSplines = serializedObject.FindProperty(nameof(nextSplines));
         }
 
 
@@ -57,7 +64,6 @@ namespace IDAS.Decisions.Editors
             serializedObject.Update();
             NodePoint point = (NodePoint)target;
             
-
             // Draw the default tree property
             EditorGUILayout.PropertyField(tree);
 
@@ -210,16 +216,16 @@ namespace IDAS.Decisions.Editors
         /// <param name="point">The node point to update splines for.</param>
         private void CreateNodeSplines(NodePoint point, SerializedProperty splinesProp, SerializedProperty nextPoints)
         {
+            // Store existing spline and point arrays.
+            SplineContainer[] oldSplines = PropertyToArray<SplineContainer>(splinesProp);
+            NodePoint[] oldNextPoints = PropertyToArray<NodePoint>(nextPoints);
+
             // Find the other NodePoints in the scene.
-            List<NodePoint> nodes = GetAllNodePointsInScene();
+            List<NodePoint> points = GetAllNodePointsInScene();
             DarkScaryNode[] nextNodes = point.Node.GetAllNextNodes();
 
-            // Clear the existing splines.
-            for(int i = 0; i < point.Splines.Length; i++)
-            {
-                if (point.Splines[i] == null) { continue; }
-                DestroyImmediate(point.Splines[i].gameObject);
-            }
+            List<SplineContainer> toDelete = oldSplines.ToList();
+
             splinesProp.ClearArray();
             nextPoints.ClearArray();
 
@@ -230,7 +236,22 @@ namespace IDAS.Decisions.Editors
             {
                 if (nextNodes[i] == null) { continue; }
                 // Find the corresponding node point for this node.
-                NodePoint linkedPoint = nodes.Find(x => x.Node == nextNodes[i]);
+                NodePoint linkedPoint = points.Find(x => x.Node == nextNodes[i]);
+
+                // Check for an existing spline.  If one exists, just update it's end point and leave.
+                int index = Array.IndexOf(oldNextPoints, linkedPoint);
+                if (index > -1)
+                {
+                    SplineContainer existingSpline = oldSplines[index];
+                    if (existingSpline != null)
+                    {
+                        SetSplineEndPoint(existingSpline, linkedPoint.transform.position);
+                        splinesProp.GetArrayElementAtIndex(i).objectReferenceValue = existingSpline;
+                        nextPoints.GetArrayElementAtIndex(i).objectReferenceValue = linkedPoint;
+                        toDelete.Remove(existingSpline);
+                        continue;
+                    }
+                }
 
                 // Create the spline GameObject.
                 GameObject splineGO = new GameObject(nextNodes[i].name + " Spline");
@@ -256,6 +277,29 @@ namespace IDAS.Decisions.Editors
                 splinesProp.GetArrayElementAtIndex(i).objectReferenceValue = splineCont;
                 nextPoints.GetArrayElementAtIndex(i).objectReferenceValue = linkedPoint;
             }
+
+            // Clear unused splines.
+            for (int i = 0; i < toDelete.Count; i++)
+            {
+                if (toDelete[i] == null) { continue; }
+                DestroyImmediate(toDelete[i].gameObject);
+            }
+        }
+
+        /// <summary>
+        /// Converts an array SerializedProperty of object values into a normal array.
+        /// </summary>
+        /// <param name="property"></param>
+        /// <returns></returns>
+        private T[] PropertyToArray<T>(SerializedProperty property) where T : class
+        {
+            if (!property.isArray) { return null; }
+            T[] arr = new T[property.arraySize];
+            for(int i = 0; i < property.arraySize; i++)
+            {
+                arr[i] = property.GetArrayElementAtIndex(i).objectReferenceValue as T;
+            }
+            return arr;
         }
 
         /// <summary>

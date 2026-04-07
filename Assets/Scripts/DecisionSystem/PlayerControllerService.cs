@@ -43,7 +43,7 @@ namespace IDAS.Decisions
 
             // Initialize all node points.
             NodePoint[] points = FindObjectsByType<NodePoint>(FindObjectsSortMode.InstanceID)
-                .Where(x => !x.IsDuplicate).ToArray();
+                .Where(x => !x.IsIgnored).ToArray();
 
             // Initialize the node point dictionary.
             for (int i = 0; i < points.Length; i++)
