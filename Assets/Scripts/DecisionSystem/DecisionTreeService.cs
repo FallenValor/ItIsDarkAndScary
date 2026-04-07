@@ -7,7 +7,6 @@
 // Brief Description : Manages logic for traveling the decision tree.
 *****************************************************************************/
 using IDAS.Decisions.Tree;
-using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Threading;

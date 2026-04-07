@@ -21,14 +21,16 @@ namespace IDAS.Decisions
         private const float REQUIRED_END_DIST = 0.01f;
         #endregion
 
-        [SerializeField] private CinemachineSplineDolly playerPrefabCamera;
+        [SerializeField] private CinemachineBrain playerPrefab;
+        [SerializeField] private CinemachineSplineDolly splineDollyPrefab;
         [SerializeField] private float playerTravelSpeed;
 
         private readonly Dictionary<DarkScaryNode, NodePoint> nodePoints = new Dictionary<DarkScaryNode, NodePoint>();
 
         private SequencerService sequencer;
 
-        private CinemachineSplineDolly player;
+        private CinemachineSplineDolly splineDolly;
+        private CinemachineBrain player;
 
         /// <summary>
         ///  Initializes the player prefab and dictionary of node points.
@@ -54,7 +56,10 @@ namespace IDAS.Decisions
             NodePoint startPoint = nodePoints[startNode];
 
             // Spawn the player at the starting node.
-            player = Instantiate(playerPrefabCamera, startPoint.transform.position, startPoint.transform.rotation);
+            player = Instantiate(playerPrefab, startPoint.transform.position, startPoint.transform.rotation);
+
+            // Spawn the dolly at the starting node.
+            splineDolly = Instantiate(splineDollyPrefab, startPoint.transform.position, startPoint.transform.rotation);
             startPoint.CCam.Prioritize();
 
             // Debug
@@ -79,7 +84,7 @@ namespace IDAS.Decisions
         {
             async Awaitable MoveToPointWrapper(CancellationToken ct)
             {
-                await MoveToPoint(nodePoints[currentNode], nodeIndex, nodePoints[targetNode], ct);
+                await MoveToPointAsync(nodePoints[currentNode], nodeIndex, nodePoints[targetNode], ct);
             }
             // Queue the MoveToPoint call with the SequencerService.
             sequencer.QueueAction(MoveToPointWrapper);
@@ -90,7 +95,7 @@ namespace IDAS.Decisions
         /// </summary>
         /// <param name="splineIndex">The index of the subsequent node/spline to move to.</param>
         /// <returns></returns>
-        public async Awaitable MoveToPoint(NodePoint startPoint, int splineIndex, NodePoint endPoint, CancellationToken ct)
+        public async Awaitable MoveToPointAsync(NodePoint startPoint, int splineIndex, NodePoint endPoint, CancellationToken ct)
         {
             // Get the spline to move along.
             if (splineIndex > startPoint.Splines.Length || startPoint.Splines[splineIndex] == null)
@@ -103,16 +108,16 @@ namespace IDAS.Decisions
             SplineContainer spline = startPoint.Splines[splineIndex];
 
             //Update the player.
-            player.CameraPosition = 0;
-            player.Spline = spline;
-            player.VirtualCamera.Prioritize();
+            splineDolly.CameraPosition = 0;
+            splineDolly.Spline = spline;
+            splineDolly.VirtualCamera.Prioritize();
             float splineLength = spline.CalculateLength();
 
             // Continually move the player along the spline.
-            while(player.CameraPosition < splineLength - REQUIRED_END_DIST)
+            while(splineDolly.CameraPosition < splineLength - REQUIRED_END_DIST)
             {
                 ct.ThrowIfCancellationRequested();
-                player.CameraPosition += playerTravelSpeed * Time.deltaTime;
+                splineDolly.CameraPosition += playerTravelSpeed * Time.deltaTime;
 
                 
                 await Awaitable.NextFrameAsync();

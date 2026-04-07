@@ -8,7 +8,6 @@
 *****************************************************************************/
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using Unity.Cinemachine;
 using Unity.Mathematics;
@@ -16,7 +15,6 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Splines;
-using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 
 namespace IDAS.Decisions.Editors
 {
