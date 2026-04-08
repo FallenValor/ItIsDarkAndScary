@@ -13,7 +13,7 @@ namespace IDAS.Decisions
     public class DecisionService : Service
     {
         #region Properties
-        protected DecisionManager DecisionManager => Manager as DecisionManager;
+        public DecisionManager DecisionManager => Manager as DecisionManager;
         #endregion
     }
 

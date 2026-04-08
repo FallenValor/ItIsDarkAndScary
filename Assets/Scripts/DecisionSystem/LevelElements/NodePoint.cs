@@ -8,6 +8,7 @@
 takes place.
 *****************************************************************************/
 using IDAS.Decisions.Tree;
+using IDAS.Items;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.Splines;
@@ -19,6 +20,8 @@ namespace IDAS.Decisions
         // User Data
         [SerializeField] private DecisionTree tree;
         [SerializeField] private DarkScaryNode node;
+        [Header("Item")]
+        [SerializeField] private Item associatedItem;
 
         [Header("Components")]
         [SerializeField] private CinemachineCamera cCam;
@@ -35,6 +38,7 @@ namespace IDAS.Decisions
         #region Properties
         public DecisionTree Tree => tree;
         public DarkScaryNode Node => node;
+        public Item AssociatedItem => associatedItem;
         public CinemachineCamera CCam => cCam;
         public SplineContainer[] Splines => splines;
         public NodePoint[] NextPoints => nextPoints;
@@ -43,6 +47,7 @@ namespace IDAS.Decisions
         public bool IsIgnored => isDuplicate;
 
         public bool HasSplines => node == null ? false : node.HasOut;
+        public bool HasItem => node is ItemNode;
         #endregion
 
         #region Nested

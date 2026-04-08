@@ -29,6 +29,7 @@ namespace IDAS.Decisions.Editors
         // Serialized Properties
         private SerializedProperty tree;
         private SerializedProperty node;
+        private SerializedProperty associatedItem;
 
         private SerializedProperty cCam;
 
@@ -45,6 +46,7 @@ namespace IDAS.Decisions.Editors
         {
             tree = serializedObject.FindProperty(nameof(tree));
             node = serializedObject.FindProperty(nameof(node));
+            associatedItem = serializedObject.FindProperty(nameof(associatedItem));
 
             cCam = serializedObject.FindProperty(nameof(cCam));
 
@@ -114,6 +116,7 @@ namespace IDAS.Decisions.Editors
                         $"one point.", MessageType.Error);
                 }
 
+                // Draw readonly debug fields.
                 GUI.enabled = false;
                 EditorGUILayout.PropertyField(node);
                 if (!point.IsDuplicate && point.HasSplines)
@@ -136,6 +139,12 @@ namespace IDAS.Decisions.Editors
                     {
                         UpdateSplineEndPoints(point);
                     }
+                }
+
+                // Draw an item field if this is an item node.
+                if (point.HasItem)
+                {
+                    EditorGUILayout.PropertyField(associatedItem);
                 }
             }
 
