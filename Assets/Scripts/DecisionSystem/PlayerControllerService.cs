@@ -25,8 +25,6 @@ namespace IDAS.Decisions
         [SerializeField] private CinemachineSplineDolly splineDollyPrefab;
         [SerializeField] private float playerTravelSpeed;
 
-        private readonly Dictionary<DarkScaryNode, NodePoint> nodePoints = new Dictionary<DarkScaryNode, NodePoint>();
-
         private SequencerService sequencer;
 
         private CinemachineSplineDolly splineDolly;
@@ -34,6 +32,7 @@ namespace IDAS.Decisions
 
         #region Properties
         private GameObject Player => player.gameObject;
+        private Dictionary<DarkScaryNode, NodePoint> NodePoints => DecisionManager.NodePoints;
         #endregion
 
         /// <summary>
@@ -41,23 +40,17 @@ namespace IDAS.Decisions
         /// </summary>
         protected override void Initialize()
         {
-            Manager.GetService<DecisionTreeService>().MovementEvent += QueueMoveToPoint;
+            DecisionTreeService dts = Manager.GetService<DecisionTreeService>();
+            if (dts != null)
+            {
+                dts.MovementEvent += QueueMoveToPoint;
+            }
 
             sequencer = Manager.GetService<SequencerService>();
 
-            // Initialize all node points.
-            NodePoint[] points = FindObjectsByType<NodePoint>(FindObjectsSortMode.InstanceID)
-                .Where(x => !x.IsIgnored).ToArray();
-
-            // Initialize the node point dictionary.
-            for (int i = 0; i < points.Length; i++)
-            {
-                nodePoints.Add(points[i].Node, points[i]);
-            }
-
             // Get the starting point.
             DarkScaryNode startNode = DecisionManager.DecisionTree.GetStartNode();
-            NodePoint startPoint = nodePoints[startNode];
+            NodePoint startPoint = NodePoints[startNode];
 
             // Spawn the player at the starting node.
             player = Instantiate(playerPrefab, startPoint.transform.position, startPoint.transform.rotation);
@@ -75,7 +68,11 @@ namespace IDAS.Decisions
         /// </summary>
         public override void Deinitialize()
         {
-            Manager.GetService<DecisionTreeService>().MovementEvent -= QueueMoveToPoint;
+            DecisionTreeService dts = Manager.GetService<DecisionTreeService>();
+            if (dts != null)
+            {
+                dts.MovementEvent -= QueueMoveToPoint;
+            }
         }
 
         /// <summary>
@@ -88,7 +85,7 @@ namespace IDAS.Decisions
         {
             async Awaitable MoveToPointWrapper(CancellationToken ct)
             {
-                await MoveToPointAsync(nodePoints[currentNode], nodeIndex, nodePoints[targetNode], ct);
+                await MoveToPointAsync(NodePoints[currentNode], nodeIndex, NodePoints[targetNode], ct);
             }
             // Queue the MoveToPoint call with the SequencerService.
             sequencer.QueueAction(MoveToPointWrapper);
@@ -138,9 +135,9 @@ namespace IDAS.Decisions
         /// <returns></returns>
         public NodePoint GetPoint(DarkScaryNode node)
         {
-            if (nodePoints.ContainsKey(node))
+            if (NodePoints.ContainsKey(node))
             {
-                return nodePoints[node];
+                return NodePoints[node];
             }
             return null;
         }

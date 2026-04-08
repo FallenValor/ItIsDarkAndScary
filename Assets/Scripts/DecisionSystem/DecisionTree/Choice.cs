@@ -7,6 +7,7 @@
 // Brief Description : Class that represents a specific choice within a decision tree.
 *****************************************************************************/
 using UnityEngine;
+using IDAS.Items;
 
 namespace IDAS.Decisions.Tree
 {
@@ -15,13 +16,15 @@ namespace IDAS.Decisions.Tree
     {
         [SerializeField] private string name;
         [SerializeField] private int stamina;
-        [SerializeField] private Item item;
+        [SerializeField] private ItemID item;
+        [SerializeField] private bool consumeItem;
 
 
         #region Accessors
         public string Name => name;
         public int Stamina => stamina;
-        public Item Item => item;
+        public ItemID Item => item;
+        public bool ConsumeItem => consumeItem;
         #endregion
 
         /// <summary>
