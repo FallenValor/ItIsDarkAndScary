@@ -6,11 +6,10 @@
 //
 // Brief Description : Manages player held items.
 *****************************************************************************/
-using UnityEngine;
 using IDAS.Items;
-using System.Collections.Generic;
 using System;
 using System.Linq;
+using UnityEngine;
 
 namespace IDAS.Decisions
 {
@@ -21,9 +20,11 @@ namespace IDAS.Decisions
 
         private ItemData[] heldItems;
 
+        private PlayerController player;
+
         #region Nested
         [System.Serializable]
-        private struct ItemData
+        private class ItemData
         {
             [SerializeField] internal ItemID id;
             [SerializeField] internal Item obj;
@@ -42,6 +43,12 @@ namespace IDAS.Decisions
         protected override void Initialize()
         {
             heldItems = new ItemData[maxItems];
+
+            PlayerControllerService pcs = DecisionManager.GetService<PlayerControllerService>();
+            if (pcs != null)
+            {
+                player = pcs.Player;
+            }
         }
 
         /// <summary>
@@ -52,6 +59,13 @@ namespace IDAS.Decisions
         public void GainItem(ItemID item, ItemNode node)
         {
             if (maxItems <= 0) { return; }
+
+            // Drop the last item.
+            if (heldItems[^1] != null)
+            {
+                heldItems[^1].obj.DropItem();
+            }
+
             // Shift all items over 1 index.
             for(int i = 0; i < maxItems - 1; i++)
             {
@@ -66,6 +80,21 @@ namespace IDAS.Decisions
             }
 
             heldItems[0] = new ItemData(item, itemObj);
+
+            // Update Persistent Data.
+        }
+
+        /// <summary>
+        /// Removes an item from the player's inventory.
+        /// </summary>
+        /// <param name="itemId"></param>
+        public void RemoveItem(ItemID itemId)
+        {
+            int index = Array.FindIndex(heldItems, x => x.id == itemId);
+            ItemData data = heldItems[index];
+            // Do cleanup on the removed item.
+            data.obj.RemoveItem();
+            heldItems[index] = null;
         }
 
         /// <summary>

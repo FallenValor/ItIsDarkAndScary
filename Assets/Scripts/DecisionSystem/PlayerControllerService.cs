@@ -21,17 +21,17 @@ namespace IDAS.Decisions
         private const float REQUIRED_END_DIST = 0.01f;
         #endregion
 
-        [SerializeField] private CinemachineBrain playerPrefab;
+        [SerializeField] private PlayerController playerPrefab;
         [SerializeField] private CinemachineSplineDolly splineDollyPrefab;
         [SerializeField] private float playerTravelSpeed;
 
         private SequencerService sequencer;
 
         private CinemachineSplineDolly splineDolly;
-        private CinemachineBrain player;
+        private PlayerController player;
 
         #region Properties
-        private GameObject Player => player.gameObject;
+        public PlayerController Player => player;
         private Dictionary<DarkScaryNode, NodePoint> NodePoints => DecisionManager.NodePoints;
         #endregion
 

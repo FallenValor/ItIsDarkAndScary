@@ -20,6 +20,14 @@ namespace IDAS.Items
         private Item Prefab => itemPrefab;
         #endregion
 
+        public void DropItem()
+        {
 
+        }
+
+        public void RemoveItem()
+        {
+
+        }
     }
 }

@@ -37,6 +37,5 @@ namespace IDAS
                 itemService.GainItem(item, this);
             }
         }
-
     }
 }
