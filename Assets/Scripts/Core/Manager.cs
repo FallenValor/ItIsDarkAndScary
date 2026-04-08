@@ -17,12 +17,15 @@ namespace IDAS
 
         private Service[] serviceInstances;
 
+        public ApplicationManager ApplicationManager { get; private set; }
+
         /// <summary>
         /// Initializes all services within the manager.
         /// </summary>
         /// <returns></returns>
-        public virtual async Awaitable Initialize(CancellationToken ct)
+        public virtual async Awaitable Initialize(ApplicationManager applicationManager, CancellationToken ct)
         {
+            ApplicationManager = applicationManager;
             serviceInstances = new Service[services.Length];
             for (int i = 0; i < services.Length; i++)
             {

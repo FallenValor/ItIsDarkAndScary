@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2924066270461562622}
   - component: {fileID: 5761531582690245085}
   m_Layer: 0
-  m_Name: Player
+  m_Name: SplineDolly
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -95,9 +95,9 @@ MonoBehaviour:
   SplineOffset: {x: 0, y: 0, z: 0}
   CameraRotation: 2
   Damping:
-    Enabled: 0
+    Enabled: 1
     Position: {x: 0, y: 0, z: 0}
-    Angular: 0
+    Angular: 3
   AutomaticDolly:
     Enabled: 0
     Method:

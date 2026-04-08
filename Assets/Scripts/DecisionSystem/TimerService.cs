@@ -20,6 +20,7 @@ namespace IDAS.Decisions
         private bool isRunning;
 
         #region Events
+        public event Action TimerStartEvent;
         public event Action<float, float> TimerUpdateEvent;
         public event Action TimerCompleteEvent;
         public event Action TimerCancelEvent;
@@ -41,6 +42,7 @@ namespace IDAS.Decisions
             }
             cts = new CancellationTokenSource();
             isRunning = true;
+            TimerStartEvent?.Invoke();
             TimerAsync(time, cts.Token);
         }
 
@@ -113,7 +115,10 @@ namespace IDAS.Decisions
             }
             catch (Exception e)
             {
-                Debug.LogException(e);
+                if (e is not OperationCanceledException)
+                {
+                    Debug.LogException(e);
+                }
             }
         }
     }

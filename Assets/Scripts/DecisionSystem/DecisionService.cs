@@ -15,8 +15,6 @@ namespace IDAS.Decisions
         #region Properties
         protected DecisionManager DecisionManager => Manager as DecisionManager;
         #endregion
-
-
     }
 
 }

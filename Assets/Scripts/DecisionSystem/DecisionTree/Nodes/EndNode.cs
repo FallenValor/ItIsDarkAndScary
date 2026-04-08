@@ -13,11 +13,13 @@ using XNode;
 
 namespace IDAS
 {
-    [CreateAssetMenu(fileName = "EndNode", menuName = "Scriptable Objects/End Node")]
+    [CreateAssetMenu(fileName = "EndNode", menuName = "IDAS/Nodes/End Node")]
     public class EndNode : DarkScaryNode
     {
-        [SerializeField, Input] private Choice inputChoice;
 
+        #region Properties
+        public override bool HasOut => false;
+        #endregion
         /// <summary>
         /// REturn an empty array as there are no next nodes.
         /// </summary>
@@ -25,15 +27,6 @@ namespace IDAS
         public override DarkScaryNode[] GetAllNextNodes()
         {
             return new DarkScaryNode[0];
-        }
-
-        /// <summary>
-        /// End nodes are never dead ends.
-        /// </summary>
-        /// <returns></returns>
-        public override bool IsDeadEnd()
-        {
-            return false;
         }
 
         /// <summary>

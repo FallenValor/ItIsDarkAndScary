@@ -19,6 +19,7 @@ namespace IDAS
 
         #region Properties
         protected virtual Manager Manager => parentManager;
+        protected ApplicationManager AppManager => Manager.ApplicationManager;
         #endregion
 
         /// <summary>

@@ -13,8 +13,9 @@ using XNode;
 
 namespace IDAS
 {
-    [CreateAssetMenu(fileName = "StartNode", menuName = "Decision Tree/Start Node")]
-    public class StartNode : DecisionNodeBase
+    [CreateAssetMenu(fileName = "StartNode", menuName = "IDAS/Nodes/Start Node")]
+    [NodeTint("#522A3D")]
+    public class StartNode : DecisionNode
     {
     
     }

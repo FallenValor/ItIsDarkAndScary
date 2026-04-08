@@ -16,16 +16,21 @@ namespace IDAS.Decisions
 {
     public class NodePoint : MonoBehaviour
     {
+        // User Data
         [SerializeField] private DecisionTree tree;
         [SerializeField] private DarkScaryNode node;
-        [SerializeField] private string oldNodeName;
-        [SerializeField] private bool isDuplicate;
-
-        [SerializeField] private SplineContainer[] splines;
-        [SerializeField] private NodePoint[] nextPoints;
 
         [Header("Components")]
         [SerializeField] private CinemachineCamera cCam;
+
+        // Internal data.
+        [SerializeField] private string oldNodeName;
+        [SerializeField] private bool isDuplicate;
+        [SerializeField] private SplineContainer[] splines;
+        [SerializeField] private NodePoint[] nextPoints;
+        [SerializeField] private SplinePointPair[] nextSplines;
+
+
 
         #region Properties
         public DecisionTree Tree => tree;
@@ -33,7 +38,23 @@ namespace IDAS.Decisions
         public CinemachineCamera CCam => cCam;
         public SplineContainer[] Splines => splines;
         public NodePoint[] NextPoints => nextPoints;
+        public SplinePointPair[] NextSplines => nextSplines;
         public bool IsDuplicate => isDuplicate;
+        public bool IsIgnored => isDuplicate;
+
+        public bool HasSplines => node == null ? false : node.HasOut;
+        #endregion
+
+        #region Nested
+        [System.Serializable]
+        public struct SplinePointPair
+        {
+            [field: SerializeField] public SplineContainer spline { get; private set; }
+            [field: SerializeField] public NodePoint point { get; private set; }
+
+
+        }
+
         #endregion
 
 

@@ -11,7 +11,7 @@ using XNode;
 
 namespace IDAS.Decisions.Tree
 {
-    [CreateAssetMenu(fileName = "DecisionTree", menuName = "Decisions Tree/Decision Tree")]
+    [CreateAssetMenu(fileName = "DecisionTree", menuName = "IDAS/Decision Tree")]
     public class DecisionTree : NodeGraph
     {
         /// <summary>

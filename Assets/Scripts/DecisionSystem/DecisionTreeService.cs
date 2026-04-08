@@ -7,7 +7,6 @@
 // Brief Description : Manages logic for traveling the decision tree.
 *****************************************************************************/
 using IDAS.Decisions.Tree;
-using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -20,15 +19,16 @@ namespace IDAS.Decisions
         private DecisionTree DecisionTree => DecisionManager.DecisionTree;
 
         private DarkScaryNode currentNode;
-        private DecisionNodeBase currentDecision;
+        private DecisionNode currentDecision;
+
+        private DarkScaryNode previousNode;
 
         private SequencerService sequencer;
         private TimerService timer;
 
         #region Events
-        public event Action<DarkScaryNode, int, DarkScaryNode> DecisionEvent;
-        public event Action<DarkScaryNode> ReachNodeEvent;
-        public event Action<DecisionNodeBase> ReachDecisionEvent;
+        public event Action<DarkScaryNode, int, DarkScaryNode> MovementEvent;
+        public event Action<DecisionNode> ReachDecisionEvent;
         #endregion
 
         /// <summary>
@@ -50,6 +50,62 @@ namespace IDAS.Decisions
         {
             Manager.GetService<InputService>().DecisionInputEvent -= OnDecisionInput;
             timer.TimerCompleteEvent -= MakeRandomDecision;
+        }
+
+
+        /// <summary>
+        /// Resets the current node.
+        /// </summary>
+        private void ResetCurrentNode()
+        {
+            // Clean up the current node.
+            if (currentNode != null)
+            {
+                currentNode.OnNodeExit(this);
+            }
+            currentNode = null;
+        }
+
+        /// <summary>
+        /// Sets the current node that the player is at in the decision tree.
+        /// </summary>
+        /// <param name="node"></param>
+        private void SetCurrentNode(DarkScaryNode node)
+        {
+            // Clean up the current node.
+            if (currentNode != null)
+            {
+                currentNode.OnNodeExit(this);
+            }
+            currentNode = node;
+            Debug.Log($"Current node is now {currentNode.name}");
+            if (currentNode != null)
+            {
+                currentNode.OnNodeEnter(this);
+            }
+        }
+
+        /// <summary>
+        /// Moves the player to a next node in the decision tree.
+        /// </summary>
+        /// <param name="nextNode">The node to move to.</param>
+        /// <param name="decisionIndex">The index of the decision made.</param>
+        public void MoveToNode(DarkScaryNode nextNode, int decisionIndex)
+        {
+            // Broadcast that a decision has been made.
+            MovementEvent?.Invoke(currentNode, decisionIndex, nextNode);
+
+            ResetCurrentNode();
+
+            // Queue a SetCurrentNode call in the SequencerService.
+            Awaitable SetNodeWrapper(CancellationToken ct)
+            {
+                ct.ThrowIfCancellationRequested();
+                SetCurrentNode(nextNode);
+                return Awaitable.NextFrameAsync();
+            }
+            Debug.Log("Set Queued");
+            sequencer.QueueAction(SetNodeWrapper);
         }
 
         #region Decisions
@@ -82,12 +138,12 @@ namespace IDAS.Decisions
         /// Gets a random valid decision index for a decision.
         /// </summary>
         /// <returns></returns>
-        private static int GetRandomDecisionIndex(DecisionNodeBase decision)
+        private static int GetRandomDecisionIndex(DecisionNode decision)
         {
             List<int> validIndicies = new List<int>();
             for(int i = 0; i < decision.Choices.Length; i++)
             {
-                if (decision.Choices[i].IsValid())
+                if (decision.Choices[i].IsValid() && decision.GetDecisionNode(i).RandomSelectable)
                 {
                     validIndicies.Add(i);
                 }
@@ -109,58 +165,10 @@ namespace IDAS.Decisions
 
                 timer.StopTimer();
 
-                // Broadcast that a decision has been made.
-                DecisionEvent?.Invoke(currentNode, decision, nextNode);
-
-                ResetCurrentNode();
-
-                // Queue a SetCurrentNode call in the SequencerService.
-                Awaitable SetNodeWrapper(CancellationToken ct)
-                {
-                    ct.ThrowIfCancellationRequested();
-                    SetCurrentNode(nextNode);
-                    return Awaitable.NextFrameAsync();
-                }
-                Debug.Log("Set Queued");
-                sequencer.QueueAction(SetNodeWrapper);
+                MoveToNode(nextNode, decision);
 
                 // Clear the current decision.
                 currentDecision = null;
-            }
-
-            
-        }
-
-        /// <summary>
-        /// Resets the current node.
-        /// </summary>
-        private void ResetCurrentNode()
-        {
-            // Clean up the current node.
-            if (currentNode != null)
-            {
-                currentNode.OnNodeExit(this);
-            }
-            currentNode = null;
-        }
-
-        /// <summary>
-        /// Sets the current node that the player is at in the decision tree.
-        /// </summary>
-        /// <param name="node"></param>
-        private void SetCurrentNode(DarkScaryNode node)
-        {
-            // Clean up the current node.
-            if (currentNode != null)
-            {
-                currentNode.OnNodeExit(this);
-            }
-            currentNode = node;
-            ReachNodeEvent?.Invoke(currentNode);
-            Debug.Log($"Current node is now {currentNode.name}");
-            if (currentNode != null)
-            {
-                currentNode.OnNodeEnter(this);
             }
         }
 
@@ -168,7 +176,7 @@ namespace IDAS.Decisions
         /// Queues a decision for the player to make.
         /// </summary>
         /// <param name="decisionNode">The decision node that the player is making a decision at.</param>
-        public void QueueDecision(DecisionNodeBase decisionNode)
+        public void QueueDecision(DecisionNode decisionNode)
         {
             currentDecision = decisionNode;
             ReachDecisionEvent?.Invoke(decisionNode);
