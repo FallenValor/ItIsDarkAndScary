@@ -1,0 +1,1196 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7586760363591247971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a7f6ab65eb9db34d953f62f7c2cb441, type: 3}
+  m_Name: Enter patio
+  m_EditorClassIdentifier: Assembly-CSharp::IDAS.DecisionNode
+  graph: {fileID: 11400000}
+  position: {x: 3382.2104, y: 717.36505}
+  ports:
+    keys:
+    - choices
+    - inputChoice
+    - choices 0
+    values:
+    - _fieldName: choices
+      _node: {fileID: -7586760363591247971}
+      _typeQualifiedName: IDAS.Decisions.Tree.Choice[], Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: inputChoice
+      _node: {fileID: -7586760363591247971}
+      _typeQualifiedName: IDAS.Decisions.Tree.Choice, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: choices 0
+        node: {fileID: 4085994826305448165}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: choices 0
+      _node: {fileID: -7586760363591247971}
+      _typeQualifiedName: IDAS.Decisions.Tree.Choice[], Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: inputChoice
+        node: {fileID: -4311630680214305850}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+  inputChoice:
+    name: 
+    stamina: 0
+    item: 0
+    consumeItem: 0
+  flavor: Patio
+  choices:
+  - name: Jump down
+    stamina: 1
+    item: 0
+    consumeItem: 0
+--- !u!114 &-4753767631099065923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a7f6ab65eb9db34d953f62f7c2cb441, type: 3}
+  m_Name: Enter
+  m_EditorClassIdentifier: Assembly-CSharp::IDAS.DecisionNode
+  graph: {fileID: 11400000}
+  position: {x: 312, y: -72}
+  ports:
+    keys:
+    - inputChoice
+    - choices
+    - choices 0
+    - choices 1
+    values:
+    - _fieldName: inputChoice
+      _node: {fileID: -4753767631099065923}
+      _typeQualifiedName: IDAS.Decisions.Tree.Choice, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: choices 0
+        node: {fileID: 2745487143618092937}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: choices
+      _node: {fileID: -4753767631099065923}
+      _typeQualifiedName: IDAS.Decisions.Tree.Choice[], Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: choices 0
+      _node: {fileID: -4753767631099065923}
+      _typeQualifiedName: IDAS.Decisions.Tree.Choice[], Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: inputChoice
+        node: {fileID: 4156741380305649285}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: choices 1
+      _node: {fileID: -4753767631099065923}
+      _typeQualifiedName: IDAS.Decisions.Tree.Choice[], Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: inputChoice
+        node: {fileID: -3085201931253188345}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  inputChoice:
+    name: 
+    stamina: 0
+    item: 0
+    consumeItem: 0
+  flavor: Main lobby
+  choices:
+  - name: Left Door
+    stamina: 0
+    item: 0
+    consumeItem: 0
+  - name: Righ Door
+    stamina: 0
+    item: 0
+    consumeItem: 0
+--- !u!114 &-4311630680214305850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a7f6ab65eb9db34d953f62f7c2cb441, type: 3}
+  m_Name: Jump down
+  m_EditorClassIdentifier: Assembly-CSharp::IDAS.DecisionNode
+  graph: {fileID: 11400000}
+  position: {x: 3798.4727, y: 831.813}
+  ports:
+    keys:
+    - choices
+    - inputChoice
+    - choices 0
+    values:
+    - _fieldName: choices
+      _node: {fileID: -4311630680214305850}
+      _typeQualifiedName: IDAS.Decisions.Tree.Choice[], Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: inputChoice
+      _node: {fileID: -4311630680214305850}
+      _typeQualifiedName: IDAS.Decisions.Tree.Choice, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: choices 0
+        node: {fileID: -7586760363591247971}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: choices 0
+      _node: {fileID: -4311630680214305850}
+      _typeQualifiedName: IDAS.Decisions.Tree.Choice[], Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: inputChoice
+        node: {fileID: 7540128971956505245}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+  inputChoice:
+    name: 
+    stamina: 0
+    item: 0
+    consumeItem: 0
+  flavor: Garden
+  choices:
+  - name: Rest
+    stamina: 0
+    item: 0
+    consumeItem: 0
+--- !u!114 &-3085201931253188345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a7f6ab65eb9db34d953f62f7c2cb441, type: 3}
+  m_Name: Right Door
+  m_EditorClassIdentifier: Assembly-CSharp::IDAS.DecisionNode
+  graph: {fileID: 11400000}
+  position: {x: 664, y: 120}
+  ports:
+    keys:
+    - inputChoice
+    - choices
+    - choices 0
+    values:
+    - _fieldName: inputChoice
+      _node: {fileID: -3085201931253188345}
+      _typeQualifiedName: IDAS.Decisions.Tree.Choice, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: choices 1
+        node: {fileID: -4753767631099065923}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: choices
+      _node: {fileID: -3085201931253188345}
+      _typeQualifiedName: IDAS.Decisions.Tree.Choice[], Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: choices 0
+      _node: {fileID: -3085201931253188345}
+      _typeQualifiedName: IDAS.Decisions.Tree.Choice[], Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: inputChoice
+        node: {fileID: -154721927330458388}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  inputChoice:
+    name: 
+    stamina: 0
+    item: 0
+    consumeItem: 0
+  flavor: Dining Room
+  choices:
+  - name: Enter passageway
+    stamina: 0
+    item: 0
+    consumeItem: 0
+--- !u!114 &-1865917453469700838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a7f6ab65eb9db34d953f62f7c2cb441, type: 3}
+  m_Name: TookKey
+  m_EditorClassIdentifier: Assembly-CSharp::IDAS.DecisionNode
+  graph: {fileID: 11400000}
+  position: {x: 1608, y: -72}
+  ports:
+    keys:
+    - choices
+    - inputChoice
+    - choices 0
+    - choices 1
+    values:
+    - _fieldName: choices
+      _node: {fileID: -1865917453469700838}
+      _typeQualifiedName: IDAS.Decisions.Tree.Choice[], Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: inputChoice
+      _node: {fileID: -1865917453469700838}
+      _typeQualifiedName: IDAS.Decisions.Tree.Choice, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: outputChoice
+        node: {fileID: 4172591809872747738}
+        reroutePoints: []
+      - fieldName: outputChoice
+        node: {fileID: 2042536765121994550}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: choices 0
+      _node: {fileID: -1865917453469700838}
+      _typeQualifiedName: IDAS.Decisions.Tree.Choice[], Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: inputChoice
+        node: {fileID: 4172591809872747738}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: choices 1
+      _node: {fileID: -1865917453469700838}
+      _typeQualifiedName: IDAS.Decisions.Tree.Choice[], Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: inputChoice
+        node: {fileID: 1716082216918422990}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+  inputChoice:
+    name: 
+    stamina: 0
+    item: 0
+    consumeItem: 0
+  flavor: Piano Lounge
+  choices:
+  - name: Enter door
+    stamina: 0
+    item: 0
+    consumeItem: 0
+  - name: Enter hall
+    stamina: 0
+    item: 0
+    consumeItem: 0
+--- !u!114 &-1669373181462860933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac5f02f5b4c420b4fa398a27c4b5ccfb, type: 3}
+  m_Name: TakeBottle
+  m_EditorClassIdentifier: Assembly-CSharp::IDAS.ItemNode
+  graph: {fileID: 11400000}
+  position: {x: 1272, y: 344}
+  ports:
+    keys:
+    - outputChoice
+    - inputChoice
+    values:
+    - _fieldName: outputChoice
+      _node: {fileID: -1669373181462860933}
+      _typeQualifiedName: IDAS.Decisions.Tree.Choice, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: inputChoice
+        node: {fileID: -630539205963770746}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: inputChoice
+      _node: {fileID: -1669373181462860933}
+      _typeQualifiedName: IDAS.Decisions.Tree.Choice, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: choices 0
+        node: {fileID: -154721927330458388}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  inputChoice:
+    name: 
+    stamina: 0
+    item: 0
+    consumeItem: 0
+  flavor: 
+  outputChoice:
+    name: 
+    stamina: 0
+    item: 0
+    consumeItem: 0
+  item: 1
+--- !u!114 &-630539205963770746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a7f6ab65eb9db34d953f62f7c2cb441, type: 3}
+  m_Name: TookBottle
+  m_EditorClassIdentifier: Assembly-CSharp::IDAS.DecisionNode
+  graph: {fileID: 11400000}
+  position: {x: 1576, y: 328}
+  ports:
+    keys:
+    - choices
+    - inputChoice
+    - choices 0
+    - choices 1
+    values:
+    - _fieldName: choices
+      _node: {fileID: -630539205963770746}
+      _typeQualifiedName: IDAS.Decisions.Tree.Choice[], Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: inputChoice
+      _node: {fileID: -630539205963770746}
+      _typeQualifiedName: IDAS.Decisions.Tree.Choice, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: outputChoice
+        node: {fileID: 6624313322949139281}
+        reroutePoints: []
+      - fieldName: outputChoice
+        node: {fileID: -1669373181462860933}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: choices 0
+      _node: {fileID: -630539205963770746}
+      _typeQualifiedName: IDAS.Decisions.Tree.Choice[], Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: inputChoice
+        node: {fileID: 6624313322949139281}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: choices 1
+      _node: {fileID: -630539205963770746}
+      _typeQualifiedName: IDAS.Decisions.Tree.Choice[], Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: inputChoice
+        node: {fileID: 1716082216918422990}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+  inputChoice:
+    name: 
+    stamina: 0
+    item: 0
+    consumeItem: 0
+  flavor: Kitchen
+  choices:
+  - name: Enter door
+    stamina: 0
+    item: 0
+    consumeItem: 0
+  - name: Enter hall
+    stamina: 0
+    item: 0
+    consumeItem: 0
+--- !u!114 &-154721927330458388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a7f6ab65eb9db34d953f62f7c2cb441, type: 3}
+  m_Name: Passageway
+  m_EditorClassIdentifier: Assembly-CSharp::IDAS.DecisionNode
+  graph: {fileID: 11400000}
+  position: {x: 984, y: 232}
+  ports:
+    keys:
+    - inputChoice
+    - choices
+    - choices 0
+    values:
+    - _fieldName: inputChoice
+      _node: {fileID: -154721927330458388}
+      _typeQualifiedName: IDAS.Decisions.Tree.Choice, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: choices 0
+        node: {fileID: -3085201931253188345}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: choices
+      _node: {fileID: -154721927330458388}
+      _typeQualifiedName: IDAS.Decisions.Tree.Choice[], Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: choices 0
+      _node: {fileID: -154721927330458388}
+      _typeQualifiedName: IDAS.Decisions.Tree.Choice[], Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: inputChoice
+        node: {fileID: -1669373181462860933}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  inputChoice:
+    name: 
+    stamina: 0
+    item: 0
+    consumeItem: 0
+  flavor: Kitchen
+  choices:
+  - name: Take bottle
+    stamina: 0
+    item: 0
+    consumeItem: 0
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20af2dc68309e7b4b9c22a32fa9cda8c, type: 3}
+  m_Name: MansionLevel
+  m_EditorClassIdentifier: Assembly-CSharp::DecisionTree
+  nodes:
+  - {fileID: 2745487143618092937}
+  - {fileID: -4753767631099065923}
+  - {fileID: -3085201931253188345}
+  - {fileID: -154721927330458388}
+  - {fileID: 4156741380305649285}
+  - {fileID: 603592712356981002}
+  - {fileID: -1865917453469700838}
+  - {fileID: 2042536765121994550}
+  - {fileID: 4172591809872747738}
+  - {fileID: -630539205963770746}
+  - {fileID: -1669373181462860933}
+  - {fileID: 6624313322949139281}
+  - {fileID: 1716082216918422990}
+  - {fileID: 2500153075108311786}
+  - {fileID: 4085994826305448165}
+  - {fileID: -7586760363591247971}
+  - {fileID: -4311630680214305850}
+  - {fileID: 7540128971956505245}
+--- !u!114 &603592712356981002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a7f6ab65eb9db34d953f62f7c2cb441, type: 3}
+  m_Name: Farther down
+  m_EditorClassIdentifier: Assembly-CSharp::IDAS.DecisionNode
+  graph: {fileID: 11400000}
+  position: {x: 968, y: -136}
+  ports:
+    keys:
+    - inputChoice
+    - choices
+    - choices 0
+    values:
+    - _fieldName: inputChoice
+      _node: {fileID: 603592712356981002}
+      _typeQualifiedName: IDAS.Decisions.Tree.Choice, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: choices 0
+        node: {fileID: 4156741380305649285}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: choices
+      _node: {fileID: 603592712356981002}
+      _typeQualifiedName: IDAS.Decisions.Tree.Choice[], Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: choices 0
+      _node: {fileID: 603592712356981002}
+      _typeQualifiedName: IDAS.Decisions.Tree.Choice[], Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: inputChoice
+        node: {fileID: 2042536765121994550}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  inputChoice:
+    name: 
+    stamina: 0
+    item: 0
+    consumeItem: 0
+  flavor: Piano Lounge
+  choices:
+  - name: Take spooky key
+    stamina: 0
+    item: 0
+    consumeItem: 0
+--- !u!114 &1716082216918422990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a7f6ab65eb9db34d953f62f7c2cb441, type: 3}
+  m_Name: EnterHall
+  m_EditorClassIdentifier: Assembly-CSharp::IDAS.DecisionNode
+  graph: {fileID: 11400000}
+  position: {x: 2232, y: 376}
+  ports:
+    keys:
+    - choices
+    - inputChoice
+    - choices 0
+    values:
+    - _fieldName: choices
+      _node: {fileID: 1716082216918422990}
+      _typeQualifiedName: IDAS.Decisions.Tree.Choice[], Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: inputChoice
+      _node: {fileID: 1716082216918422990}
+      _typeQualifiedName: IDAS.Decisions.Tree.Choice, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: choices 1
+        node: {fileID: -630539205963770746}
+        reroutePoints: []
+      - fieldName: choices 1
+        node: {fileID: -1865917453469700838}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: choices 0
+      _node: {fileID: 1716082216918422990}
+      _typeQualifiedName: IDAS.Decisions.Tree.Choice[], Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: inputChoice
+        node: {fileID: 2500153075108311786}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+  inputChoice:
+    name: 
+    stamina: 0
+    item: 0
+    consumeItem: 0
+  flavor: Servants Hallway
+  choices:
+  - name: Enter poolroom
+    stamina: 0
+    item: 0
+    consumeItem: 0
+--- !u!114 &2042536765121994550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac5f02f5b4c420b4fa398a27c4b5ccfb, type: 3}
+  m_Name: TakeKey
+  m_EditorClassIdentifier: Assembly-CSharp::IDAS.ItemNode
+  graph: {fileID: 11400000}
+  position: {x: 1298.1826, y: -64.999596}
+  ports:
+    keys:
+    - outputChoice
+    - inputChoice
+    values:
+    - _fieldName: outputChoice
+      _node: {fileID: 2042536765121994550}
+      _typeQualifiedName: IDAS.Decisions.Tree.Choice, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: inputChoice
+        node: {fileID: -1865917453469700838}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: inputChoice
+      _node: {fileID: 2042536765121994550}
+      _typeQualifiedName: IDAS.Decisions.Tree.Choice, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: choices 0
+        node: {fileID: 603592712356981002}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  inputChoice:
+    name: 
+    stamina: 0
+    item: 0
+    consumeItem: 0
+  flavor: 
+  outputChoice:
+    name: 
+    stamina: 0
+    item: 0
+    consumeItem: 0
+  item: 2
+--- !u!114 &2500153075108311786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a7f6ab65eb9db34d953f62f7c2cb441, type: 3}
+  m_Name: Enter poolroom
+  m_EditorClassIdentifier: Assembly-CSharp::IDAS.DecisionNode
+  graph: {fileID: 11400000}
+  position: {x: 2583.6064, y: 479.23727}
+  ports:
+    keys:
+    - choices
+    - inputChoice
+    - choices 0
+    - choices 1
+    values:
+    - _fieldName: choices
+      _node: {fileID: 2500153075108311786}
+      _typeQualifiedName: IDAS.Decisions.Tree.Choice[], Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: inputChoice
+      _node: {fileID: 2500153075108311786}
+      _typeQualifiedName: IDAS.Decisions.Tree.Choice, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: choices 0
+        node: {fileID: 1716082216918422990}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: choices 0
+      _node: {fileID: 2500153075108311786}
+      _typeQualifiedName: IDAS.Decisions.Tree.Choice[], Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: inputChoice
+        node: {fileID: 4085994826305448165}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: choices 1
+      _node: {fileID: 2500153075108311786}
+      _typeQualifiedName: IDAS.Decisions.Tree.Choice[], Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: inputChoice
+        node: {fileID: 4085994826305448165}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+  inputChoice:
+    name: 
+    stamina: 0
+    item: 0
+    consumeItem: 0
+  flavor: Poolroom
+  choices:
+  - name: Use key
+    stamina: 0
+    item: 2
+    consumeItem: 1
+  - name: Use Bottle
+    stamina: 0
+    item: 1
+    consumeItem: 1
+--- !u!114 &2745487143618092937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 671072010f6d8d846be29292b6e340b9, type: 3}
+  m_Name: Start
+  m_EditorClassIdentifier: Assembly-CSharp::IDAS.StartNode
+  graph: {fileID: 11400000}
+  position: {x: -56, y: -184}
+  ports:
+    keys:
+    - choices
+    - choices 0
+    - inputChoice
+    values:
+    - _fieldName: choices
+      _node: {fileID: 2745487143618092937}
+      _typeQualifiedName: IDAS.Decisions.Tree.Choice[], Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: choices 0
+      _node: {fileID: 2745487143618092937}
+      _typeQualifiedName: IDAS.Decisions.Tree.Choice[], Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: inputChoice
+        node: {fileID: -4753767631099065923}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: inputChoice
+      _node: {fileID: 2745487143618092937}
+      _typeQualifiedName: IDAS.Decisions.Tree.Choice, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  inputChoice:
+    name: 
+    stamina: 0
+    item: 0
+    consumeItem: 0
+  flavor: Mansion enterance
+  choices:
+  - name: Enter
+    stamina: 0
+    item: 0
+    consumeItem: 0
+--- !u!114 &4085994826305448165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a7f6ab65eb9db34d953f62f7c2cb441, type: 3}
+  m_Name: Used item
+  m_EditorClassIdentifier: Assembly-CSharp::IDAS.DecisionNode
+  graph: {fileID: 11400000}
+  position: {x: 3010.4954, y: 607.98114}
+  ports:
+    keys:
+    - choices
+    - inputChoice
+    - choices 0
+    values:
+    - _fieldName: choices
+      _node: {fileID: 4085994826305448165}
+      _typeQualifiedName: IDAS.Decisions.Tree.Choice[], Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: inputChoice
+      _node: {fileID: 4085994826305448165}
+      _typeQualifiedName: IDAS.Decisions.Tree.Choice, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: choices 0
+        node: {fileID: 2500153075108311786}
+        reroutePoints: []
+      - fieldName: choices 1
+        node: {fileID: 2500153075108311786}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: choices 0
+      _node: {fileID: 4085994826305448165}
+      _typeQualifiedName: IDAS.Decisions.Tree.Choice[], Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: inputChoice
+        node: {fileID: -7586760363591247971}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+  inputChoice:
+    name: 
+    stamina: 0
+    item: 0
+    consumeItem: 0
+  flavor: Door opens
+  choices:
+  - name: Enter patio
+    stamina: 0
+    item: 0
+    consumeItem: 0
+--- !u!114 &4156741380305649285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a7f6ab65eb9db34d953f62f7c2cb441, type: 3}
+  m_Name: Left Door
+  m_EditorClassIdentifier: Assembly-CSharp::IDAS.DecisionNode
+  graph: {fileID: 11400000}
+  position: {x: 664, y: -168}
+  ports:
+    keys:
+    - choices
+    - inputChoice
+    - choices 0
+    values:
+    - _fieldName: choices
+      _node: {fileID: 4156741380305649285}
+      _typeQualifiedName: IDAS.Decisions.Tree.Choice[], Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: inputChoice
+      _node: {fileID: 4156741380305649285}
+      _typeQualifiedName: IDAS.Decisions.Tree.Choice, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: choices 0
+        node: {fileID: -4753767631099065923}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: choices 0
+      _node: {fileID: 4156741380305649285}
+      _typeQualifiedName: IDAS.Decisions.Tree.Choice[], Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: inputChoice
+        node: {fileID: 603592712356981002}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+  inputChoice:
+    name: 
+    stamina: 0
+    item: 0
+    consumeItem: 0
+  flavor: Ballroom
+  choices:
+  - name: Move farther
+    stamina: 0
+    item: 0
+    consumeItem: 0
+--- !u!114 &4172591809872747738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df4c4b86465f8c74e9b6b1ad7678f366, type: 3}
+  m_Name: Enter door
+  m_EditorClassIdentifier: Assembly-CSharp::IDAS.RelayNode
+  graph: {fileID: 11400000}
+  position: {x: 1896, y: -72}
+  ports:
+    keys:
+    - outputChoice
+    - inputChoice
+    values:
+    - _fieldName: outputChoice
+      _node: {fileID: 4172591809872747738}
+      _typeQualifiedName: IDAS.Decisions.Tree.Choice, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: inputChoice
+        node: {fileID: -1865917453469700838}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: inputChoice
+      _node: {fileID: 4172591809872747738}
+      _typeQualifiedName: IDAS.Decisions.Tree.Choice, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: choices 0
+        node: {fileID: -1865917453469700838}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  inputChoice:
+    name: 
+    stamina: 0
+    item: 0
+    consumeItem: 0
+  flavor: Haunted closet (OUCH)
+  outputChoice:
+    name: 
+    stamina: 0
+    item: 0
+    consumeItem: 0
+--- !u!114 &6624313322949139281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df4c4b86465f8c74e9b6b1ad7678f366, type: 3}
+  m_Name: Enter door
+  m_EditorClassIdentifier: Assembly-CSharp::IDAS.RelayNode
+  graph: {fileID: 11400000}
+  position: {x: 1816, y: 296}
+  ports:
+    keys:
+    - outputChoice
+    - inputChoice
+    values:
+    - _fieldName: outputChoice
+      _node: {fileID: 6624313322949139281}
+      _typeQualifiedName: IDAS.Decisions.Tree.Choice, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: inputChoice
+        node: {fileID: -630539205963770746}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: inputChoice
+      _node: {fileID: 6624313322949139281}
+      _typeQualifiedName: IDAS.Decisions.Tree.Choice, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: choices 0
+        node: {fileID: -630539205963770746}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  inputChoice:
+    name: 
+    stamina: 0
+    item: 0
+    consumeItem: 0
+  flavor: Haunted closet (OUCH)
+  outputChoice:
+    name: 
+    stamina: 0
+    item: 0
+    consumeItem: 0
+--- !u!114 &7540128971956505245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5988fe76b17b2904ebf80904b8c2abc7, type: 3}
+  m_Name: Rest
+  m_EditorClassIdentifier: Assembly-CSharp::IDAS.EndNode
+  graph: {fileID: 11400000}
+  position: {x: 4122.4727, y: 959.8131}
+  ports:
+    keys:
+    - inputChoice
+    values:
+    - _fieldName: inputChoice
+      _node: {fileID: 7540128971956505245}
+      _typeQualifiedName: IDAS.Decisions.Tree.Choice, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: choices 0
+        node: {fileID: -4311630680214305850}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  inputChoice:
+    name: 
+    stamina: 0
+    item: 0
+    consumeItem: 0
+  flavor: You rest in the garden
