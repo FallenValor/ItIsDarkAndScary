@@ -62,9 +62,8 @@ namespace IDAS.Decisions
             Item itemObj = null;
             if (DecisionManager.NodePoints.ContainsKey(node))
             {
-                DecisionManager.NodePoints[node]
+                itemObj = DecisionManager.NodePoints[node].AssociatedItem;
             }
-            
 
             heldItems[0] = new ItemData(item, itemObj);
         }
