@@ -47,11 +47,23 @@ namespace IDAS.Decisions.Tree
                 {
                     isInvalid |= true;
                 }
-                // If the player doesnt have the item, mark as invalid.
-                isInvalid |= !itemService.HasItem(item);
+                else
+                {
+                    // If the player doesnt have the item, mark as invalid.
+                    isInvalid |= !itemService.HasItem(item);
+                }
             }
 
             return !isInvalid;
+        }
+
+        /// <summary>
+        /// Choices are random selectable if they have no associated cost.
+        /// </summary>
+        /// <returns></returns>
+        public bool IsRandomSelectable()
+        {
+            return item == ItemID.None && stamina <= 0;
         }
 
         /// <summary>

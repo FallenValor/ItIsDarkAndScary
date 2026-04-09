@@ -103,6 +103,7 @@ namespace IDAS.Decisions
         {
             if (maxItems <= 0) { return; }
 
+            Debug.Log("Gained " + item);
             // Drop the last item.
             if (heldItems[^1] != null)
             {
@@ -141,6 +142,7 @@ namespace IDAS.Decisions
         /// <param name="itemId"></param>
         public void RemoveItem(ItemID itemId)
         {
+            //Debug.Log("Removed " + itemId);
             int index = Array.FindIndex(heldItems, x => x.id == itemId);
             ItemData data = heldItems[index];
             // Do cleanup on the removed item.
@@ -155,7 +157,7 @@ namespace IDAS.Decisions
         /// <returns>True if the player is holding the item, false if otherwise.</returns>
         public bool HasItem(ItemID itemId)
         {
-            return heldItems.Any(x => x.id == itemId);
+            return heldItems.Any(x => x != null && x.id == itemId);
         }
     }
 }
