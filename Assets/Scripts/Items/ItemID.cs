@@ -13,6 +13,11 @@ namespace IDAS.Items
     public enum ItemID
     {
         None,
-        Test
+        AlcoholBottle,
+        SpookyKey,
+        Hatchet,
+        Torch,
+        ScaryBook,
+        WalkingStick
     }
 }
