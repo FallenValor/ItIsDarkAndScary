@@ -8,6 +8,7 @@
 *****************************************************************************/
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using Unity.Cinemachine;
 using Unity.Mathematics;
@@ -89,6 +90,11 @@ namespace IDAS.Decisions.Editors
                     EditorGUILayout.Space();
                     EditorGUILayout.HelpBox($"Old node reference was deleted.  " +
                         $"Old Node Name: {oldNodeName.stringValue}", MessageType.Warning);
+                    // Update the splines for this node to another node.
+                    if (GUILayout.Button("Update Name"))
+                    {
+                        UpdateName(point.Node.name, point);
+                    }
                 }
 
                 // Show the popup for choosing a name of a node.
@@ -99,10 +105,7 @@ namespace IDAS.Decisions.Editors
                     // Update the string field.
                     DarkScaryNode newNode = point.Tree.nodes[selectionIndex] as DarkScaryNode;
                     node.objectReferenceValue = newNode;
-                    oldNodeName.stringValue = newNode.name;
-
-                    // Update the node's name.
-                    point.gameObject.name = nameof(NodePoint) +  " (" + point.Tree.nodes[selectionIndex].name + ")";
+                    UpdateName(newNode.name, point);
 
                     // Verify the node is unique.
                     isDuplicate.boolValue = CheckIsDuplicate(point, newNode);
@@ -157,6 +160,19 @@ namespace IDAS.Decisions.Editors
             }
                
             serializedObject.ApplyModifiedProperties();
+        }
+
+        /// <summary>
+        /// Updates the point's name.
+        /// </summary>
+        /// <param name="name">The name of the node this point connects to.</param>
+        /// <param name="point">The point to update the name of.</param>
+        private void UpdateName(string name, NodePoint point)
+        {
+            oldNodeName.stringValue = name;
+
+            // Update the node's name.
+            point.gameObject.name = nameof(NodePoint) + " (" + point.Tree.nodes[selectionIndex].name + ")";
         }
 
         /// <summary>

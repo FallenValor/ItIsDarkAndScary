@@ -16,13 +16,13 @@ namespace IDAS
     {
         [Header("Item Settings")]
         [SerializeField] private float preItemDelay;
-        [SerializeField] private ItemID item;
+        [SerializeField] private ItemID gainedItem;
 
 
         #region Properties
         // Relay nodes cannot be randomly selected.
         public override bool RandomSelectable => true;
-        public ItemID ID => item;
+        public ItemID ID => gainedItem;
         #endregion
 
 
@@ -39,7 +39,7 @@ namespace IDAS
             ItemService itemService = treeTraveler.DecisionManager.GetService<ItemService>();
             if (itemService != null)
             {
-                itemService.GainItemSequenced(item, this);
+                itemService.GainItemSequenced(gainedItem, this);
             }
 
             base.OnNodeEnter(treeTraveler);
