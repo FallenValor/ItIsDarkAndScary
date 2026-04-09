@@ -178,6 +178,7 @@ namespace IDAS.Decisions
         /// <returns></returns>
         private ItemData[] ExtractPrefabData(ItemData[] items)
         {
+            if (items == null) { return null; }
             ItemData[] prefabItems = new ItemData[items.Length];
             for(int i = 0; i < items.Length; i++)
             {
@@ -193,6 +194,7 @@ namespace IDAS.Decisions
         /// <returns></returns>
         private ItemData[] InstantiateItems(ItemData[] items)
         {
+            if (items == null) { return null; }
             ItemData[] instItems = new ItemData[items.Length];
             for (int i = 0; i < items.Length; i++)
             {
