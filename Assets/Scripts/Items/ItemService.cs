@@ -16,6 +16,9 @@ namespace IDAS.Decisions
 {
     public class ItemService : DecisionService
     {
+        #region CONSTS
+        private const string ITEM_DATA_KEY = "Items";
+        #endregion
 
         [SerializeField] private int maxItems;
 
@@ -48,12 +51,19 @@ namespace IDAS.Decisions
         }
         #endregion
 
+
         /// <summary>
         /// Initializes all items and references to said items.
         /// </summary>
         protected override void Initialize()
         {
-            heldItems = new ItemData[maxItems];
+            // Retrieves from persistent data.  If no data, set to a new array.
+            // Update Persistent Data.
+            heldItems = InstantiateItems(PersistentData.RetrieveData<ItemData[]>(ITEM_DATA_KEY));
+            if (heldItems == null)
+            {
+                heldItems = new ItemData[maxItems];
+            }
 
             PlayerControllerService pcs = DecisionManager.GetService<PlayerControllerService>();
             if (pcs != null)
@@ -134,6 +144,7 @@ namespace IDAS.Decisions
             heldItems[0].obj.SetEquippedTransform(player.GetItemSlot(0));
 
             // Update Persistent Data.
+            PersistentData.SaveData(ITEM_DATA_KEY, ExtractPrefabData(heldItems));
         }
 
         /// <summary>
@@ -158,6 +169,37 @@ namespace IDAS.Decisions
         public bool HasItem(ItemID itemId)
         {
             return heldItems.Any(x => x != null && x.id == itemId);
+        }
+
+        /// <summary>
+        /// Converts an array of item instance data to item prefab data.
+        /// </summary>
+        /// <param name="items"></param>
+        /// <returns></returns>
+        private ItemData[] ExtractPrefabData(ItemData[] items)
+        {
+            ItemData[] prefabItems = new ItemData[items.Length];
+            for(int i = 0; i < items.Length; i++)
+            {
+                prefabItems[i] = items[i].GetPrefabData();
+            }
+            return prefabItems;
+        }
+
+        /// <summary>
+        /// Instantiates an array of item data from prefabs.
+        /// </summary>
+        /// <param name="items"></param>
+        /// <returns></returns>
+        private ItemData[] InstantiateItems(ItemData[] items)
+        {
+            ItemData[] instItems = new ItemData[items.Length];
+            for (int i = 0; i < items.Length; i++)
+            {
+                Item spawnedItem = Instantiate(items[i].obj);
+                instItems[i] = new ItemData(items[i].id, spawnedItem);
+            }
+            return instItems;
         }
     }
 }
