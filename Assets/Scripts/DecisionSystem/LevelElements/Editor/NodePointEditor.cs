@@ -142,8 +142,10 @@ namespace IDAS.Decisions.Editors
                 }
 
                 // Draw an item field if this is an item node.
-                if (point.HasItem)
+                if (point.Item != Items.ItemID.None)
                 {
+                    EditorGUILayout.Space(10);
+                    EditorGUILayout.LabelField($"Item: {point.Item}");
                     EditorGUILayout.PropertyField(associatedItem);
                 }
             }

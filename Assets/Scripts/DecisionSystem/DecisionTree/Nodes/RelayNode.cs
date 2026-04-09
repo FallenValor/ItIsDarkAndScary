@@ -8,6 +8,7 @@
 *****************************************************************************/
 using IDAS.Decisions;
 using IDAS.Decisions.Tree;
+using System.Threading;
 using UnityEngine;
 using XNode;
 
@@ -15,6 +16,7 @@ namespace IDAS
 {
     public class RelayNode : DarkScaryNode
     {
+        [SerializeField] private float delay;
         [SerializeField, Output(backingValue = ShowBackingValue.Never)] private Choice outputChoice;
 
         #region Properties
@@ -67,8 +69,28 @@ namespace IDAS
         /// <param name="treeTraveler"></param>
         public override void OnNodeEnter(DecisionTreeService treeTraveler)
         {
+            QueueDelay(treeTraveler, delay);
             // Relay nodes always use a decision index of 0.
             treeTraveler.MoveToNode(GetNextNode(), 0);
+        }
+
+        /// <summary>
+        /// Queues a delay with the sequencer service.
+        /// </summary>
+        /// <param name="treeService"></param>
+        protected void QueueDelay(DecisionTreeService treeService, float delay)
+        {
+            async Awaitable DelayWrapper(CancellationToken ct)
+            {
+                await Awaitable.WaitForSecondsAsync(delay, ct);
+            }
+
+            // Queue a delay with the sequencer.
+            SequencerService sequencer = treeService.DecisionManager.GetService<SequencerService>();
+            if (sequencer != null)
+            {
+                sequencer.QueueAction(DelayWrapper);
+            }
         }
     }
 }

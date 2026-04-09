@@ -44,6 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 654da68be72cb2343bbfcdc2176a6b92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.Decisions.PlayerControllerService
-  playerPrefab: {fileID: 5544213578080486804, guid: 7b38fd31e75929443a70323c901854b4, type: 3}
+  playerPrefab: {fileID: 3089525995144345670, guid: 7b38fd31e75929443a70323c901854b4, type: 3}
   splineDollyPrefab: {fileID: 5761531582690245085, guid: 86500d8b2ebe66f49baaa58cecb29283, type: 3}
-  playerTravelSpeed: 1
+  playerTravelSpeed: 5

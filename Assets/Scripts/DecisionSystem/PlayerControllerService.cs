@@ -6,6 +6,7 @@
 //
 // Brief Description : Controls moving the player along cinemachine dolly tracks to move them through the world
 *****************************************************************************/
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -98,34 +99,42 @@ namespace IDAS.Decisions
         /// <returns></returns>
         public async Awaitable MoveToPointAsync(NodePoint startPoint, int splineIndex, NodePoint endPoint, CancellationToken ct)
         {
-            // Get the spline to move along.
-            if (splineIndex > startPoint.Splines.Length || startPoint.Splines[splineIndex] == null)
+            try
             {
-                Debug.LogWarning($"No Spline found connecting nodes {startPoint} and {endPoint}.  " +
-                    $"Using default Cinemachine interpolation.");
+                // Get the spline to move along.
+                if (splineIndex > startPoint.Splines.Length || startPoint.Splines[splineIndex] == null)
+                {
+                    Debug.LogWarning($"No Spline found connecting nodes {startPoint} and {endPoint}.  " +
+                        $"Using default Cinemachine interpolation.");
+                    endPoint.CCam.Prioritize();
+                    return;
+                }
+                SplineContainer spline = startPoint.Splines[splineIndex];
+
+                //Update the player.
+                splineDolly.CameraPosition = 0;
+                splineDolly.Spline = spline;
+                splineDolly.VirtualCamera.Prioritize();
+                float splineLength = spline.CalculateLength();
+
+                // Continually move the player along the spline.
+                while (splineDolly.CameraPosition < splineLength - REQUIRED_END_DIST)
+                {
+                    ct.ThrowIfCancellationRequested();
+                    splineDolly.CameraPosition += playerTravelSpeed * Time.deltaTime;
+
+
+                    await Awaitable.NextFrameAsync();
+                }
+
                 endPoint.CCam.Prioritize();
-                return;
+                Debug.Log("Hit end of track");
             }
-            SplineContainer spline = startPoint.Splines[splineIndex];
-
-            //Update the player.
-            splineDolly.CameraPosition = 0;
-            splineDolly.Spline = spline;
-            splineDolly.VirtualCamera.Prioritize();
-            float splineLength = spline.CalculateLength();
-
-            // Continually move the player along the spline.
-            while(splineDolly.CameraPosition < splineLength - REQUIRED_END_DIST)
+            catch (Exception e)
             {
-                ct.ThrowIfCancellationRequested();
-                splineDolly.CameraPosition += playerTravelSpeed * Time.deltaTime;
-
-                
-                await Awaitable.NextFrameAsync();
+                Debug.LogException(e);
             }
-
-            endPoint.CCam.Prioritize();
-            Debug.Log("Hit end of track");
+            
         }
 
         /// <summary>

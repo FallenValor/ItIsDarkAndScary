@@ -20,7 +20,6 @@ namespace IDAS.Decisions
         // User Data
         [SerializeField] private DecisionTree tree;
         [SerializeField] private DarkScaryNode node;
-        [Header("Item")]
         [SerializeField] private Item associatedItem;
 
         [Header("Components")]
@@ -47,7 +46,7 @@ namespace IDAS.Decisions
         public bool IsIgnored => isDuplicate;
 
         public bool HasSplines => node == null ? false : node.HasOut;
-        public bool HasItem => node is ItemNode;
+        public ItemID Item => node is ItemNode i ? i.ID : ItemID.None;
         #endregion
 
         #region Nested

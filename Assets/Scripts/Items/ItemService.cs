@@ -9,6 +9,7 @@
 using IDAS.Items;
 using System;
 using System.Linq;
+using System.Threading;
 using UnityEngine;
 
 namespace IDAS.Decisions
@@ -21,6 +22,7 @@ namespace IDAS.Decisions
         private ItemData[] heldItems;
 
         private PlayerController player;
+        private SequencerService sequencer;
 
         #region Nested
         [System.Serializable]
@@ -33,6 +35,15 @@ namespace IDAS.Decisions
             {
                 this.id = id;
                 this.obj = obj;
+            }
+
+            /// <summary>
+            /// Creates a new version of this class containing data for the prefab of the item.
+            /// </summary>
+            /// <returns></returns>
+            internal ItemData GetPrefabData()
+            {
+                return new ItemData(id, obj.Prefab);
             }
         }
         #endregion
@@ -48,6 +59,38 @@ namespace IDAS.Decisions
             if (pcs != null)
             {
                 player = pcs.Player;
+            }
+            else
+            {
+                Debug.LogWarning("ItemService is missing it's dependen service PlayerControllerService.");
+
+            }
+
+            sequencer = DecisionManager.GetService<SequencerService>();
+
+            // Load items from PersistentDataService.
+        }
+
+        /// <summary>
+        /// Has this player gain a specific item, utilizing the sequencer to await delays.
+        /// </summary>
+        /// <param name="item">The item for the player to gain.</param>
+        /// <param name="node">The node that the player gained the item from.</param>
+        public void GainItemSequenced(ItemID item, ItemNode node)
+        {
+            if (sequencer != null)
+            {
+                Awaitable GainItemWrapper(CancellationToken ct)
+                {
+                    ct.ThrowIfCancellationRequested();
+                    GainItem(item, node);
+                    return Awaitable.NextFrameAsync(ct);
+                }
+                sequencer.QueueAction(GainItemWrapper);
+            }
+            else
+            {
+                GainItem(item, node);
             }
         }
 
@@ -69,7 +112,13 @@ namespace IDAS.Decisions
             // Shift all items over 1 index.
             for(int i = 0; i < maxItems - 1; i++)
             {
-                heldItems[i + 1] = heldItems[i];
+                ItemData current = heldItems[i];
+                heldItems[i + 1] = current;
+                // Update the item's hand location.
+                if (current != null && current.obj != null)
+                {
+                    current.obj.SetEquippedTransform(player.GetItemSlot(i + 1));
+                }
             }
 
             // Get the associated item GameObject from the node.
@@ -80,6 +129,8 @@ namespace IDAS.Decisions
             }
 
             heldItems[0] = new ItemData(item, itemObj);
+            // Update the item's hand location.
+            heldItems[0].obj.SetEquippedTransform(player.GetItemSlot(0));
 
             // Update Persistent Data.
         }

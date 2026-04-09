@@ -12,6 +12,7 @@ namespace IDAS.Items
 {
     public enum ItemID
     {
-        None
+        None,
+        Test
     }
 }

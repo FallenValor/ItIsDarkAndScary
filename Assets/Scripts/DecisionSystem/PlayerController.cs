@@ -14,5 +14,11 @@ namespace IDAS
     public class PlayerController : MonoBehaviour
     {
         [SerializeField] private Transform[] itemSlots;
+
+        public Transform GetItemSlot(int index)
+        {
+            if (index < 0 || index >= itemSlots.Length) { return null; }
+            return itemSlots[index];
+        }
     }
 }

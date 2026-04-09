@@ -49,12 +49,14 @@ MonoBehaviour:
     item: 0
     consumeItem: 0
   flavor: 
+  delay: 1
   outputChoice:
     name: 
     stamina: 0
     item: 0
     consumeItem: 0
-  item: 0
+  preItemDelay: 1
+  item: 1
 --- !u!114 &-7075797193503857708
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,6 +112,7 @@ MonoBehaviour:
     - inputChoice
     - choices
     - choices 0
+    - choices 1
     values:
     - _fieldName: inputChoice
       _node: {fileID: -4753767631099065923}
@@ -144,6 +147,18 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 1
+    - _fieldName: choices 1
+      _node: {fileID: -4753767631099065923}
+      _typeQualifiedName: IDAS.Decisions.Tree.Choice[], Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: inputChoice
+        node: {fileID: -3085201931253188345}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
   inputChoice:
     name: 
     stamina: 0
@@ -152,6 +167,10 @@ MonoBehaviour:
   flavor: 
   choices:
   - name: Win
+    stamina: 0
+    item: 0
+    consumeItem: 0
+  - name: Other
     stamina: 0
     item: 0
     consumeItem: 0
@@ -179,7 +198,10 @@ MonoBehaviour:
       _node: {fileID: -3085201931253188345}
       _typeQualifiedName: IDAS.Decisions.Tree.Choice, Assembly-CSharp, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
-      connections: []
+      connections:
+      - fieldName: choices 1
+        node: {fileID: -4753767631099065923}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -468,6 +490,7 @@ MonoBehaviour:
     item: 0
     consumeItem: 0
   flavor: 
+  delay: 2
   outputChoice:
     name: 
     stamina: 0
