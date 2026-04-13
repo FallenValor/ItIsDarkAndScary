@@ -182,6 +182,7 @@ namespace IDAS.Decisions
             ItemData[] prefabItems = new ItemData[items.Length];
             for(int i = 0; i < items.Length; i++)
             {
+                if (items[i] == null) { continue; }
                 prefabItems[i] = items[i].GetPrefabData();
             }
             return prefabItems;
@@ -198,6 +199,7 @@ namespace IDAS.Decisions
             ItemData[] instItems = new ItemData[items.Length];
             for (int i = 0; i < items.Length; i++)
             {
+                if (items[i] == null) { continue; }
                 Item spawnedItem = Instantiate(items[i].obj);
                 instItems[i] = new ItemData(items[i].id, spawnedItem);
             }
