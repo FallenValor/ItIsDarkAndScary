@@ -20,7 +20,6 @@ namespace IDAS.Items
         [SerializeField] private AnimationCurve lerpCurve;
 
         #region Components
-        [Header("Components")]
         [SerializeField, ShowIfNull] private Rigidbody rb;
 
         private void Reset()
