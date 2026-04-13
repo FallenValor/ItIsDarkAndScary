@@ -7,7 +7,6 @@
 // Brief Description : Controls visualizing the decision timer on the canvas.
 *****************************************************************************/
 using IDAS.Decisions;
-using IDAS.UI;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,7 +15,9 @@ namespace IDAS.UI
     public class TimerUIService : UIService
     {
         [SerializeField] private GameObject timerParent;
-        [SerializeField] private Image timerImage;
+        [SerializeField] private Image[] timerImages;
+        [SerializeField] private float startingSteepness;
+        [SerializeField] private float steepnessRate;
 
         private TimerService timer;
         private float currentSteepness;
@@ -31,6 +32,8 @@ namespace IDAS.UI
             timer.TimerStartEvent += ShowTimer;
             timer.TimerCancelEvent += HideTimer;
             timer.TimerCompleteEvent += HideTimer;
+
+            currentSteepness = startingSteepness;
         }
         
         /// <summary>
@@ -46,6 +49,8 @@ namespace IDAS.UI
 
         public void ShowTimer()
         {
+            // Increases the timer curve steepness.
+            currentSteepness += steepnessRate;
             timerParent.SetActive(true);
         }
         public void HideTimer()
@@ -60,7 +65,10 @@ namespace IDAS.UI
         /// <param name="normalizedTime"></param>
         private void OnUpdateTimer(float time, float normalizedTime)
         {
-            timerImage.fillAmount = TimerSkewCurve(normalizedTime, currentSteepness);
+            foreach(var timerImage in timerImages)
+            {
+                timerImage.fillAmount = TimerSkewCurve(1 - normalizedTime, currentSteepness);
+            }
         }
 
         /// <summary>
