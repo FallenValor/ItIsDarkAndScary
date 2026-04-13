@@ -57,13 +57,13 @@ MonoBehaviour:
     name: 
     stamina: 0
     item: 0
-    consumeItem: 0
+    consume: 0
   flavor: Patio
   choices:
   - name: Jump down
     stamina: 1
     item: 0
-    consumeItem: 0
+    consume: 0
 --- !u!114 &-4753767631099065923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134,17 +134,17 @@ MonoBehaviour:
     name: 
     stamina: 0
     item: 0
-    consumeItem: 0
+    consume: 0
   flavor: Main lobby
   choices:
   - name: Left Door
     stamina: 0
     item: 0
-    consumeItem: 0
+    consume: 0
   - name: Righ Door
     stamina: 0
     item: 0
-    consumeItem: 0
+    consume: 0
 --- !u!114 &-4311630680214305850
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,13 +202,13 @@ MonoBehaviour:
     name: 
     stamina: 0
     item: 0
-    consumeItem: 0
+    consume: 0
   flavor: Garden
   choices:
   - name: Rest
     stamina: 0
     item: 0
-    consumeItem: 0
+    consume: 0
 --- !u!114 &-3085201931253188345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -266,13 +266,13 @@ MonoBehaviour:
     name: 
     stamina: 0
     item: 0
-    consumeItem: 0
+    consume: 0
   flavor: Dining Room
   choices:
   - name: Enter passageway
     stamina: 0
     item: 0
-    consumeItem: 0
+    consume: 0
 --- !u!114 &-1865917453469700838
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -346,17 +346,17 @@ MonoBehaviour:
     name: 
     stamina: 0
     item: 0
-    consumeItem: 0
+    consume: 0
   flavor: Piano Lounge
   choices:
   - name: Enter door
     stamina: 0
     item: 0
-    consumeItem: 0
+    consume: 0
   - name: Enter hall
     stamina: 0
     item: 0
-    consumeItem: 0
+    consume: 0
 --- !u!114 &-1669373181462860933
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -404,14 +404,16 @@ MonoBehaviour:
     name: 
     stamina: 0
     item: 0
-    consumeItem: 0
+    consume: 0
   flavor: 
+  delay: 0
   outputChoice:
     name: 
     stamina: 0
     item: 0
-    consumeItem: 0
-  item: 1
+    consume: 0
+  preItemDelay: 0
+  gainedItem: 1
 --- !u!114 &-630539205963770746
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -485,17 +487,17 @@ MonoBehaviour:
     name: 
     stamina: 0
     item: 0
-    consumeItem: 0
+    consume: 0
   flavor: Kitchen
   choices:
   - name: Enter door
     stamina: 0
     item: 0
-    consumeItem: 0
+    consume: 0
   - name: Enter hall
     stamina: 0
     item: 0
-    consumeItem: 0
+    consume: 0
 --- !u!114 &-154721927330458388
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -553,13 +555,13 @@ MonoBehaviour:
     name: 
     stamina: 0
     item: 0
-    consumeItem: 0
+    consume: 0
   flavor: Kitchen
   choices:
   - name: Take bottle
     stamina: 0
     item: 0
-    consumeItem: 0
+    consume: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -648,13 +650,13 @@ MonoBehaviour:
     name: 
     stamina: 0
     item: 0
-    consumeItem: 0
+    consume: 0
   flavor: Piano Lounge
   choices:
   - name: Take spooky key
     stamina: 0
     item: 0
-    consumeItem: 0
+    consume: 0
 --- !u!114 &1716082216918422990
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -715,13 +717,13 @@ MonoBehaviour:
     name: 
     stamina: 0
     item: 0
-    consumeItem: 0
+    consume: 0
   flavor: Servants Hallway
   choices:
   - name: Enter poolroom
     stamina: 0
     item: 0
-    consumeItem: 0
+    consume: 0
 --- !u!114 &2042536765121994550
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -769,14 +771,16 @@ MonoBehaviour:
     name: 
     stamina: 0
     item: 0
-    consumeItem: 0
+    consume: 0
   flavor: 
+  delay: 0
   outputChoice:
     name: 
     stamina: 0
     item: 0
-    consumeItem: 0
-  item: 2
+    consume: 0
+  preItemDelay: 0
+  gainedItem: 2
 --- !u!114 &2500153075108311786
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -847,17 +851,17 @@ MonoBehaviour:
     name: 
     stamina: 0
     item: 0
-    consumeItem: 0
+    consume: 0
   flavor: Poolroom
   choices:
   - name: Use key
     stamina: 0
     item: 2
-    consumeItem: 1
+    consume: 1
   - name: Use Bottle
     stamina: 0
     item: 1
-    consumeItem: 1
+    consume: 1
 --- !u!114 &2745487143618092937
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -912,13 +916,13 @@ MonoBehaviour:
     name: 
     stamina: 0
     item: 0
-    consumeItem: 0
+    consume: 0
   flavor: Mansion enterance
   choices:
   - name: Enter
     stamina: 0
     item: 0
-    consumeItem: 0
+    consume: 0
 --- !u!114 &4085994826305448165
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -979,13 +983,13 @@ MonoBehaviour:
     name: 
     stamina: 0
     item: 0
-    consumeItem: 0
+    consume: 0
   flavor: Door opens
   choices:
   - name: Enter patio
     stamina: 0
     item: 0
-    consumeItem: 0
+    consume: 0
 --- !u!114 &4156741380305649285
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1043,13 +1047,13 @@ MonoBehaviour:
     name: 
     stamina: 0
     item: 0
-    consumeItem: 0
+    consume: 0
   flavor: Ballroom
   choices:
   - name: Move farther
     stamina: 0
     item: 0
-    consumeItem: 0
+    consume: 0
 --- !u!114 &4172591809872747738
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1060,7 +1064,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: df4c4b86465f8c74e9b6b1ad7678f366, type: 3}
-  m_Name: Enter door
+  m_Name: LoungeCloset
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.RelayNode
   graph: {fileID: 11400000}
   position: {x: 1896, y: -72}
@@ -1097,13 +1101,14 @@ MonoBehaviour:
     name: 
     stamina: 0
     item: 0
-    consumeItem: 0
+    consume: 0
   flavor: Haunted closet (OUCH)
+  delay: 0
   outputChoice:
     name: 
     stamina: 0
     item: 0
-    consumeItem: 0
+    consume: 0
 --- !u!114 &6624313322949139281
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1114,7 +1119,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: df4c4b86465f8c74e9b6b1ad7678f366, type: 3}
-  m_Name: Enter door
+  m_Name: KitchenCloset
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.RelayNode
   graph: {fileID: 11400000}
   position: {x: 1816, y: 296}
@@ -1151,13 +1156,14 @@ MonoBehaviour:
     name: 
     stamina: 0
     item: 0
-    consumeItem: 0
+    consume: 0
   flavor: Haunted closet (OUCH)
+  delay: 0
   outputChoice:
     name: 
     stamina: 0
     item: 0
-    consumeItem: 0
+    consume: 0
 --- !u!114 &7540128971956505245
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1192,5 +1198,5 @@ MonoBehaviour:
     name: 
     stamina: 0
     item: 0
-    consumeItem: 0
+    consume: 0
   flavor: You rest in the garden
