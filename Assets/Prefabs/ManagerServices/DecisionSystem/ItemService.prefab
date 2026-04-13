@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2936330665803174969}
-  - component: {fileID: -3705845742520723261}
+  - component: {fileID: -3603786871459262086}
   m_Layer: 0
-  m_Name: PlayerService
+  m_Name: ItemService
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-3705845742520723261
+--- !u!114 &-3603786871459262086
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,9 +41,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5505657428692705915}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 654da68be72cb2343bbfcdc2176a6b92, type: 3}
+  m_Script: {fileID: 11500000, guid: 659cc62ca6c6e864dbc25a2abf4ee5aa, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::IDAS.Decisions.PlayerControllerService
-  playerPrefab: {fileID: 3089525995144345670, guid: 7b38fd31e75929443a70323c901854b4, type: 3}
-  splineDollyPrefab: {fileID: 5761531582690245085, guid: 86500d8b2ebe66f49baaa58cecb29283, type: 3}
-  playerTravelSpeed: 5
+  m_EditorClassIdentifier: Assembly-CSharp::IDAS.Decisions.ItemService
+  maxItems: 2

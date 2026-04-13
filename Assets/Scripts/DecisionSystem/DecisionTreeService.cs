@@ -117,7 +117,7 @@ namespace IDAS.Decisions
         {
             if (currentDecision != null &&
                 decision < currentDecision.Choices.Length &&
-                currentDecision.Choices[decision].IsValid())
+                currentDecision.Choices[decision].IsValid(DecisionManager))
             {
                 // Debug.
                 Debug.Log($"You chose {currentDecision.Choices[decision].Name}");
@@ -138,12 +138,14 @@ namespace IDAS.Decisions
         /// Gets a random valid decision index for a decision.
         /// </summary>
         /// <returns></returns>
-        private static int GetRandomDecisionIndex(DecisionNode decision)
+        private int GetRandomDecisionIndex(DecisionNode decision)
         {
             List<int> validIndicies = new List<int>();
             for(int i = 0; i < decision.Choices.Length; i++)
             {
-                if (decision.Choices[i].IsValid() && decision.GetDecisionNode(i).RandomSelectable)
+                if (decision.Choices[i].IsValid(DecisionManager) && 
+                    decision.Choices[i].IsRandomSelectable() && 
+                    decision.GetDecisionNode(i).RandomSelectable)
                 {
                     validIndicies.Add(i);
                 }
@@ -159,9 +161,11 @@ namespace IDAS.Decisions
         {
             if (currentDecision != null &&
                 decision < currentDecision.Choices.Length &&
-                currentDecision.Choices[decision].IsValid())
+                currentDecision.Choices[decision].IsValid(DecisionManager))
             { 
                 DarkScaryNode nextNode = currentDecision.GetDecisionNode(decision);
+
+                currentDecision.Choices[decision].OnChosen(DecisionManager);
 
                 timer.StopTimer();
 
@@ -187,7 +191,10 @@ namespace IDAS.Decisions
             // Debug
             for(int i = 0; i < decisionNode.Choices.Length; i++)
             {
-                Debug.Log($"{i}. {decisionNode.Choices[i].Name}");
+                if (decisionNode.Choices[i].IsValid(DecisionManager))
+                {
+                    Debug.Log($"{i}. {decisionNode.Choices[i].Name}");
+                }
             }
         }
         #endregion
