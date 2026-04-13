@@ -14,12 +14,15 @@ namespace IDAS
 {
     public class ItemNode : RelayNode
     {
-        [SerializeField] private ItemID item;
+        [Header("Item Settings")]
+        [SerializeField] private float preItemDelay;
+        [SerializeField] private ItemID gainedItem;
 
 
         #region Properties
         // Relay nodes cannot be randomly selected.
         public override bool RandomSelectable => true;
+        public ItemID ID => gainedItem;
         #endregion
 
 
@@ -29,14 +32,17 @@ namespace IDAS
         /// <param name="treeTraveler"></param>
         public override void OnNodeEnter(DecisionTreeService treeTraveler)
         {
-            base.OnNodeEnter(treeTraveler);
+            // Queue a delay with the sequencer.
+            QueueDelay(treeTraveler, preItemDelay);
+
             // Item nodes also give the player an item when passed.
             ItemService itemService = treeTraveler.DecisionManager.GetService<ItemService>();
             if (itemService != null)
             {
-                itemService.GainItem(item, this);
+                itemService.GainItemSequenced(gainedItem, this);
             }
-        }
 
+            base.OnNodeEnter(treeTraveler);
+        }
     }
 }
