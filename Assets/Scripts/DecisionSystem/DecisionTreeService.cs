@@ -28,7 +28,7 @@ namespace IDAS.Decisions
 
         #region Events
         public event Action<DarkScaryNode, int, DarkScaryNode> MovementEvent;
-        public event Action<DecisionNode> ReachDecisionEvent;
+        public event Action<DecisionNode, NodePoint> ReachDecisionEvent;
         #endregion
 
         /// <summary>
@@ -183,7 +183,7 @@ namespace IDAS.Decisions
         public void QueueDecision(DecisionNode decisionNode)
         {
             currentDecision = decisionNode;
-            ReachDecisionEvent?.Invoke(decisionNode);
+            ReachDecisionEvent?.Invoke(decisionNode, DecisionManager.GetPoint(decisionNode));
 
             // Start the timer.
             timer.StartTimer();

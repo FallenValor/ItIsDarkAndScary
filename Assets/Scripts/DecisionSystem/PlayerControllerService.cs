@@ -33,7 +33,6 @@ namespace IDAS.Decisions
 
         #region Properties
         public PlayerController Player => player;
-        private Dictionary<DarkScaryNode, NodePoint> NodePoints => DecisionManager.NodePoints;
         #endregion
 
         /// <summary>
@@ -51,7 +50,7 @@ namespace IDAS.Decisions
 
             // Get the starting point.
             DarkScaryNode startNode = DecisionManager.DecisionTree.GetStartNode();
-            NodePoint startPoint = NodePoints[startNode];
+            NodePoint startPoint = DecisionManager.GetPoint(startNode);
 
             // Spawn the player at the starting node.
             player = Instantiate(playerPrefab, startPoint.transform.position, startPoint.transform.rotation);
@@ -86,7 +85,7 @@ namespace IDAS.Decisions
         {
             async Awaitable MoveToPointWrapper(CancellationToken ct)
             {
-                await MoveToPointAsync(NodePoints[currentNode], nodeIndex, NodePoints[targetNode], ct);
+                await MoveToPointAsync(DecisionManager.GetPoint(currentNode), nodeIndex, DecisionManager.GetPoint(targetNode), ct);
             }
             // Queue the MoveToPoint call with the SequencerService.
             sequencer.QueueAction(MoveToPointWrapper);
@@ -135,20 +134,6 @@ namespace IDAS.Decisions
                 Debug.LogException(e);
             }
             
-        }
-
-        /// <summary>
-        /// Gets the node point that corresponds to a given node.
-        /// </summary>
-        /// <param name="node"></param>
-        /// <returns></returns>
-        public NodePoint GetPoint(DarkScaryNode node)
-        {
-            if (NodePoints.ContainsKey(node))
-            {
-                return NodePoints[node];
-            }
-            return null;
         }
     }
 }

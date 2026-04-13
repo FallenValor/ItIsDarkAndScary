@@ -7,13 +7,19 @@
 // Brief Description : Controls visualizing player decisions on the canvas.
 *****************************************************************************/
 using IDAS.Decisions;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace IDAS.UI
 {
     public class DecisionUIService : UIService
     {
+        [SerializeField] private DecisionDisplay displayPrefab;
+
         private DecisionTreeService decisionService;
+        private DecisionManager decisionManager;
+
+        private readonly Queue<DecisionDisplay> displayPool = new Queue<DecisionDisplay>();
 
         /// <summary>
         /// Setup event subscriptions
@@ -29,13 +35,29 @@ namespace IDAS.UI
         }
 
         /// <summary>
-        /// 
+        /// Visualizes all choices for a decision on 
         /// </summary>
-        /// <param name="obj"></param>
-        /// <exception cref="System.NotImplementedException"></exception>
-        private void VisualizeDecision(DecisionNode obj)
+        /// <param name="node">The node that needs to have it's choices visualized.</param>
+        /// <param name="point">The point to get the ChoicePoints from.</param>
+        private void VisualizeDecision(DecisionNode node, NodePoint point)
         {
-            throw new System.NotImplementedException();
+            
         }
+
+        #region Display Object Pooling
+        private DecisionDisplay GetDisplay()
+        {
+            DecisionDisplay display = displayPool.Count > 0 ? displayPool.Dequeue() : 
+                Instantiate(displayPrefab, transform);
+            display.gameObject.SetActive(true);
+            return display;
+        }
+
+        private void ReturnDisplay(DecisionDisplay display)
+        {
+            displayPool.Enqueue(display);
+            display.gameObject.SetActive(false);
+        }
+        #endregion
     }
 }

@@ -134,14 +134,18 @@ namespace IDAS.Decisions
 
             // Get the associated item GameObject from the node.
             Item itemObj = null;
-            if (DecisionManager.NodePoints.ContainsKey(node))
+            NodePoint point = DecisionManager.GetPoint(node);
+            if (node != null)
             {
-                itemObj = DecisionManager.NodePoints[node].AssociatedItem;
+                itemObj = point.AssociatedItem;
             }
 
             heldItems[0] = new ItemData(item, itemObj);
-            // Update the item's hand location.
-            heldItems[0].obj.SetEquippedTransform(player.GetItemSlot(0));
+            if (heldItems[0].obj != null)
+            {
+                // Update the item's hand location.
+                heldItems[0].obj.SetEquippedTransform(player.GetItemSlot(0));
+            }
 
             // Update Persistent Data.
             PersistentData.SaveData(ITEM_DATA_KEY, ExtractPrefabData(heldItems));
