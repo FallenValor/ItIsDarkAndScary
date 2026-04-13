@@ -19,6 +19,10 @@ namespace IDAS
 
         public ApplicationManager ApplicationManager { get; private set; }
 
+        #region Properties
+        protected virtual Transform ParentTransform => transform;
+        #endregion
+
         /// <summary>
         /// Initializes all services within the manager.
         /// </summary>
@@ -29,7 +33,7 @@ namespace IDAS
             serviceInstances = new Service[services.Length];
             for (int i = 0; i < services.Length; i++)
             {
-                Service inst = Instantiate(services[i], transform);
+                Service inst = Instantiate(services[i], ParentTransform);
                 serviceInstances[i] = inst;
                 ct.ThrowIfCancellationRequested();
                 await inst.InitializeAsync(this, ct);

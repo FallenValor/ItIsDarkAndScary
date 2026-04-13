@@ -15,7 +15,7 @@ namespace IDAS
     {
         [SerializeField] private Manager[] managers;
 
-        private Manager[] managerInstances;
+        //private Manager[] managerInstances;
         private CancellationTokenSource cts;
 
         /// <summary>
@@ -23,13 +23,13 @@ namespace IDAS
         /// </summary>
         private async Awaitable Awake()
         {
-            managerInstances = new Manager[managers.Length];
+            //managerInstances = new Manager[managers.Length];
             cts = new CancellationTokenSource();
             for (int i = 0; i < managers.Length; i++)
             {
-                Manager inst = Instantiate(managers[i], transform);
-                managerInstances[i] = inst;
-                await inst.Initialize(this, cts.Token);
+                //Manager inst = Instantiate(managers[i], transform);
+                //managerInstances[i] = inst;
+                await managers[i].Initialize(this, cts.Token);
             }
         }
 
@@ -38,11 +38,11 @@ namespace IDAS
         /// </summary>
         private async Awaitable OnDestroy()
         {
-            managerInstances = new Manager[managers.Length];
+            //managerInstances = new Manager[managers.Length];
             cts.Cancel();
             for (int i = 0; i < managers.Length; i++)
             {
-                await managerInstances[i].Deinitialize();
+                await managers[i].Deinitialize();
             }
         }
 
@@ -53,7 +53,7 @@ namespace IDAS
         /// <returns>The found manager.</returns>
         public T GetManager<T>() where T : Manager
         {
-            foreach (var manager in managerInstances)
+            foreach (var manager in managers)
             {
                 if (manager is T typedInst)
                 {

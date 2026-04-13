@@ -19,6 +19,8 @@ namespace IDAS.UI
 
         public Canvas Canvas { get; private set; }
 
+        protected override Transform ParentTransform => Canvas.transform;
+
         /// <summary>
         /// Initializes 
         /// </summary>
@@ -27,8 +29,8 @@ namespace IDAS.UI
         public override async Awaitable Initialize(ApplicationManager am, CancellationToken ct)
         {
             // Spawn the canvas prefab before initialization.
-            Instantiate(eventSystemPrefab);
-            Canvas = Instantiate(canvasPrefab);
+            Instantiate(eventSystemPrefab, transform);
+            Canvas = Instantiate(canvasPrefab, transform);
             await base.Initialize(am, ct);
         }
     }
