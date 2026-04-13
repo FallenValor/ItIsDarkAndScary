@@ -41,6 +41,20 @@ namespace IDAS
         }
 
         /// <summary>
+        /// Start function that triggers beginning of game behaviour after initialization.
+        /// </summary>
+        /// <param name="ct"></param>
+        /// <returns></returns>
+        public virtual async Awaitable GameStart(CancellationToken ct)
+        {
+            for (int i = 0; i < services.Length; i++)
+            {
+                ct.ThrowIfCancellationRequested();
+                await serviceInstances[i].GameStartAsync(ct);
+            }
+        }
+
+        /// <summary>
         /// Initializes all services within the manager.
         /// </summary>
         /// <returns></returns>

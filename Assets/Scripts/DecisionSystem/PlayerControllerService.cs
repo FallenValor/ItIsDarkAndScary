@@ -7,8 +7,6 @@
 // Brief Description : Controls moving the player along cinemachine dolly tracks to move them through the world
 *****************************************************************************/
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using Unity.Cinemachine;
 using UnityEngine;
@@ -31,6 +29,8 @@ namespace IDAS.Decisions
         private CinemachineSplineDolly splineDolly;
         private PlayerController player;
 
+        private CinemachineVirtualCameraBase priorityCamera;
+
         #region Properties
         public PlayerController Player => player;
         #endregion
@@ -43,7 +43,7 @@ namespace IDAS.Decisions
             DecisionTreeService dts = Manager.GetService<DecisionTreeService>();
             if (dts != null)
             {
-                dts.MovementEvent += QueueMoveToPoint;
+                dts.MakeDecisionEvent += QueueMoveToPoint;
             }
 
             sequencer = Manager.GetService<SequencerService>();
@@ -57,10 +57,7 @@ namespace IDAS.Decisions
 
             // Spawn the dolly at the starting node.
             splineDolly = Instantiate(splineDollyPrefab, startPoint.transform.position, startPoint.transform.rotation);
-            startPoint.CCam.Prioritize();
-
-            // Debug
-            //MoveToPoint(0);
+            SetPriorityCamera(startPoint.CCam);
         }
 
         /// <summary>
@@ -71,7 +68,20 @@ namespace IDAS.Decisions
             DecisionTreeService dts = Manager.GetService<DecisionTreeService>();
             if (dts != null)
             {
-                dts.MovementEvent -= QueueMoveToPoint;
+                dts.MakeDecisionEvent -= QueueMoveToPoint;
+            }
+        }
+
+        private void SetPriorityCamera(CinemachineVirtualCameraBase cam)
+        {
+            if (priorityCamera != null)
+            {
+                priorityCamera.Priority = 0;
+            }
+            priorityCamera = cam;
+            if (priorityCamera != null)
+            {
+                priorityCamera.Priority = 1;
             }
         }
 
@@ -113,7 +123,7 @@ namespace IDAS.Decisions
                 //Update the player.
                 splineDolly.CameraPosition = 0;
                 splineDolly.Spline = spline;
-                splineDolly.VirtualCamera.Prioritize();
+                SetPriorityCamera(splineDolly.VirtualCamera);
                 float splineLength = spline.CalculateLength();
 
                 // Continually move the player along the spline.
@@ -125,8 +135,7 @@ namespace IDAS.Decisions
 
                     await Awaitable.NextFrameAsync();
                 }
-
-                endPoint.CCam.Prioritize();
+                SetPriorityCamera(endPoint.CCam);
                 Debug.Log("Hit end of track");
             }
             catch (Exception e)

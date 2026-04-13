@@ -14,12 +14,14 @@ namespace IDAS.UI
 {
     public class DecisionUIService : UIService
     {
-        [SerializeField] private DecisionDisplay displayPrefab;
+        [SerializeField] private Transform defaultDisplayPosition;
+        [SerializeField] private ChoiceDisplay displayPrefab;
 
         private DecisionTreeService decisionService;
-        private DecisionManager decisionManager;
 
-        private readonly Queue<DecisionDisplay> displayPool = new Queue<DecisionDisplay>();
+        private ChoiceDisplay[] currentDisplays;
+
+        private readonly Queue<ChoiceDisplay> displayPool = new Queue<ChoiceDisplay>();
 
         /// <summary>
         /// Setup event subscriptions
@@ -28,10 +30,13 @@ namespace IDAS.UI
         {
             decisionService = AppManager.GetManager<DecisionManager>().GetService<DecisionTreeService>();
             decisionService.ReachDecisionEvent += VisualizeDecision;
+            decisionService.MakeDecisionEvent += ClearDisplays;
         }
+
         public override void Deinitialize()
         {
             decisionService.ReachDecisionEvent -= VisualizeDecision;
+            decisionService.MakeDecisionEvent -= ClearDisplays;
         }
 
         /// <summary>
@@ -41,19 +46,61 @@ namespace IDAS.UI
         /// <param name="point">The point to get the ChoicePoints from.</param>
         private void VisualizeDecision(DecisionNode node, NodePoint point)
         {
-            
+            Dictionary<Transform, ChoiceDisplay> displayDict = new Dictionary<Transform, ChoiceDisplay>();
+            List<ChoiceDisplay> displayList = new List<ChoiceDisplay>();
+
+            //loop through each choice.
+            for(int i = 0; i < node.Choices.Length; i++)
+            {
+                // Get the ChoiceDisplay to edit.
+                Transform choicePoint = point.ChoicePoints[i];
+                ChoiceDisplay display;
+                if (displayDict.ContainsKey(choicePoint))
+                {
+                    display = displayDict[choicePoint];
+                }
+                else
+                {
+                    // Get a new display to use.
+                    display = GetDisplay();
+                    display.SetTargetTransform(choicePoint, defaultDisplayPosition.position);
+                    displayDict.Add(choicePoint, display);
+                    displayList.Add(display);
+                }
+
+                display.AddChoice(node.Choices[i], (i+1).ToString());
+
+                currentDisplays = displayList.ToArray();
+            }
+        }
+
+        /// <summary>
+        /// Clears all existing displays when a choice has been made.
+        /// </summary>
+        /// <param name="currentNode"></param>
+        /// <param name="decisionIndex"></param>
+        /// <param name="nextNode"></param>
+        private void ClearDisplays(DarkScaryNode currentNode, int decisionIndex, DarkScaryNode nextNode)
+        {
+            if (currentDisplays == null) { return; }
+            foreach(var display in currentDisplays)
+            {
+                display.Clear();
+                ReturnDisplay(display);
+            }
+            currentDisplays = null;
         }
 
         #region Display Object Pooling
-        private DecisionDisplay GetDisplay()
+        private ChoiceDisplay GetDisplay()
         {
-            DecisionDisplay display = displayPool.Count > 0 ? displayPool.Dequeue() : 
+            ChoiceDisplay display = displayPool.Count > 0 ? displayPool.Dequeue() : 
                 Instantiate(displayPrefab, transform);
             display.gameObject.SetActive(true);
             return display;
         }
 
-        private void ReturnDisplay(DecisionDisplay display)
+        private void ReturnDisplay(ChoiceDisplay display)
         {
             displayPool.Enqueue(display);
             display.gameObject.SetActive(false);

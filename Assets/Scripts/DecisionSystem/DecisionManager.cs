@@ -51,7 +51,8 @@ namespace IDAS.Decisions
             {
                 return nodePoints[node];
             }
-            return null;
+            throw new System.Collections.Generic.KeyNotFoundException($"There is no NodePoint in the scene " +
+                $"for the node {node.name}");
         }
     }
 

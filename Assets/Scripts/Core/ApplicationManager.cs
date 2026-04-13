@@ -31,6 +31,13 @@ namespace IDAS
                 //managerInstances[i] = inst;
                 await managers[i].Initialize(this, cts.Token);
             }
+            // Add a start-esque method for performing starting actions after initialization has occured.
+            for (int i = 0; i < managers.Length; i++)
+            {
+                //Manager inst = Instantiate(managers[i], transform);
+                //managerInstances[i] = inst;
+                await managers[i].GameStart(cts.Token);
+            }
         }
 
         /// <summary>
