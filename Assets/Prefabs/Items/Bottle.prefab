@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7513243503363781713}
   - component: {fileID: 275197994233158277}
   m_Layer: 0
-  m_Name: ItemTest
+  m_Name: Bottle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,8 +30,8 @@ Transform:
   m_GameObject: {fileID: 2804859124985207925}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 23.79389, y: 0, z: -2.59086}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 23.79389, y: 1.0639, z: -2.59086}
+  m_LocalScale: {x: 0.37068, y: 1.1594499, z: 0.37068}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
