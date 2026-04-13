@@ -239,7 +239,7 @@ MonoBehaviour:
       _typeQualifiedName: IDAS.Decisions.Tree.Choice, Assembly-CSharp, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
-      - fieldName: choices 1
+      - fieldName: choices 0
         node: {fileID: 2745487143618092937}
         reroutePoints: []
       _direction: 0
@@ -534,7 +534,7 @@ MonoBehaviour:
         Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: inputChoice
-        node: {fileID: 9080418658155482612}
+        node: {fileID: -4753767631099065923}
         reroutePoints: []
       _direction: 1
       _connectionType: 0
@@ -546,7 +546,7 @@ MonoBehaviour:
         Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: inputChoice
-        node: {fileID: -4753767631099065923}
+        node: {fileID: 9080418658155482612}
         reroutePoints: []
       _direction: 1
       _connectionType: 0
@@ -571,11 +571,11 @@ MonoBehaviour:
     consume: 0
   flavor: 
   choices:
-  - name: Dead End
+  - name: Do Thing
     stamina: 0
     item: 0
     consume: 0
-  - name: Do Thing
+  - name: Dead End
     stamina: 0
     item: 0
     consume: 0
@@ -616,7 +616,7 @@ MonoBehaviour:
       _typeQualifiedName: IDAS.Decisions.Tree.Choice, Assembly-CSharp, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
-      - fieldName: choices 0
+      - fieldName: choices 1
         node: {fileID: 2745487143618092937}
         reroutePoints: []
       _direction: 0

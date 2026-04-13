@@ -8,7 +8,6 @@
 *****************************************************************************/
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using Unity.Cinemachine;
 using Unity.Mathematics;
@@ -17,7 +16,6 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Splines;
-using XNode;
 
 namespace IDAS.Decisions.Editors
 {
@@ -26,7 +24,7 @@ namespace IDAS.Decisions.Editors
     {
         private int selectionIndex;
         private bool initialized;
-
+        private bool showChoicePoints;
 
         // Serialized Properties
         private SerializedProperty tree;
@@ -91,11 +89,11 @@ namespace IDAS.Decisions.Editors
 
                 DrawNodeSelector(point, nodeNames);
 
-                DrawConnections(point);
+                DrawChoicePoints(point);
 
                 DrawItems(point);
 
-                // Draw Choice Points
+                DrawConnections(point);
             }
 
             //Show components if null.
@@ -151,13 +149,41 @@ namespace IDAS.Decisions.Editors
             GUI.enabled = true;
         }
 
+        private void DrawChoicePoints(NodePoint point)
+        {
+            // Draw Choice Points
+            if (point.Node is DecisionNode decisionNode && choicePoints.isArray)
+            {
+                EditorGUILayout.Space(10);
+                showChoicePoints = EditorGUILayout.Foldout(showChoicePoints, "Choice Points", EditorStyles.boldFont);
+                if (showChoicePoints)
+                {
+                    EditorGUI.indentLevel++;
+
+                    // Set the size of the choice points array.
+                    choicePoints.arraySize = decisionNode.Choices.Length;
+
+                    // Draw each choice point element.
+                    for (int i = 0; i < choicePoints.arraySize; i++)
+                    {
+                        EditorGUILayout.PropertyField(choicePoints.GetArrayElementAtIndex(i),
+                            new GUIContent(decisionNode.Choices[i].Name));
+                    }
+
+                    EditorGUI.indentLevel--;
+                }
+            }
+        }
+
         private void DrawConnections(NodePoint point)
         {
             // Show buttons for spline management.
             if (!point.IsDuplicate && point.HasSplines)
             {
                 EditorGUILayout.Space(10);
-                EditorGUILayout.LabelField("Splines");
+                EditorGUILayout.LabelField("Splines", EditorStyles.boldLabel);
+                EditorGUI.indentLevel++;
+
                 GUI.enabled = false;
                 EditorGUILayout.PropertyField(nextPoints);
                 EditorGUILayout.PropertyField(splines);
@@ -172,6 +198,8 @@ namespace IDAS.Decisions.Editors
                 {
                     UpdateSplineEndPoints(point);
                 }
+
+                EditorGUI.indentLevel--;
             }
         }
 
@@ -180,10 +208,13 @@ namespace IDAS.Decisions.Editors
             // Draw an item field if this is an item node.
             if (point.Item != Items.ItemID.None)
             {
+
                 EditorGUILayout.Space(10);
-                EditorGUILayout.LabelField("Items");
+                EditorGUILayout.LabelField("Items", EditorStyles.boldLabel);
+                EditorGUI.indentLevel++;
                 EditorGUILayout.LabelField($"Item ID: {point.Item}");
                 EditorGUILayout.PropertyField(associatedItem);
+                EditorGUI.indentLevel--;
             }
         }
         #endregion
