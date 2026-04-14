@@ -136,7 +136,6 @@ namespace IDAS.Decisions
                     await Awaitable.NextFrameAsync();
                 }
                 SetPriorityCamera(endPoint.CCam);
-                Debug.Log("Hit end of track");
             }
             catch (Exception e)
             {

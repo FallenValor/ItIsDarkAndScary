@@ -23,8 +23,16 @@ namespace IDAS.Decisions
         public event Action TimerStartEvent;
         public event Action<float, float> TimerUpdateEvent;
         public event Action TimerCompleteEvent;
-        public event Action TimerCancelEvent;
+        public event Action TimerStopEvent;
         #endregion
+
+        /// <summary>
+        /// Setup event for timer hiding when the player loses.
+        /// </summary>
+        protected override void Initialize()
+        {
+            HealthService.LoseGameEvent += StopTimer;
+        }
 
         /// <summary>
         /// Starts the timer counting down.
@@ -38,7 +46,7 @@ namespace IDAS.Decisions
         {
             if (isRunning)
             {
-                StopTimerInternal();
+                StopTimer();
             }
             cts = new CancellationTokenSource();
             isRunning = true;
@@ -51,28 +59,20 @@ namespace IDAS.Decisions
         /// </summary>
         public override void Deinitialize()
         {
-            if(cts != null)
+            HealthService.LoseGameEvent -= StopTimer;
+            if (cts != null)
             {
                 cts.Cancel();
             }
         } 
 
         /// <summary>
-        /// Stops the timer.
+        /// Actually stops the timer, skipping event calls.
         /// </summary>
         public void StopTimer()
         {
             if (!isRunning) { return; }
-            StopTimerInternal();
-            TimerCancelEvent?.Invoke();
-        }
-
-        /// <summary>
-        /// Actually stops the timer, skipping event calls.
-        /// </summary>
-        private void StopTimerInternal()
-        {
-            if (!isRunning) { return; }
+            TimerStopEvent?.Invoke();
             cts.Cancel();
         }
 
@@ -111,7 +111,6 @@ namespace IDAS.Decisions
                 // Timer Complete.
                 CleanUpTimer();
                 TimerCompleteEvent?.Invoke();
-                Debug.Log("Timer Complete.");
             }
             catch (Exception e)
             {

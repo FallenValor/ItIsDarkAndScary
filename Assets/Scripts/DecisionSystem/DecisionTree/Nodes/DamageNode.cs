@@ -27,7 +27,10 @@ namespace IDAS
             {
                 healthService.TakeDamage(damage);
             }
-            base.OnNodeEnter(treeTraveler);
+            if (!healthService.IsDead)
+            {
+                base.OnNodeEnter(treeTraveler);
+            }
         }
     }
 }

@@ -30,8 +30,7 @@ namespace IDAS.UI
             timer = AppManager.GetManager<DecisionManager>().GetService<TimerService>();
             timer.TimerUpdateEvent += OnUpdateTimer;
             timer.TimerStartEvent += ShowTimer;
-            timer.TimerCancelEvent += HideTimer;
-            timer.TimerCompleteEvent += HideTimer;
+            timer.TimerStopEvent += HideTimer;
 
             currentSteepness = startingSteepness;
         }
@@ -43,8 +42,7 @@ namespace IDAS.UI
         {
             timer.TimerUpdateEvent -= OnUpdateTimer;
             timer.TimerStartEvent -= ShowTimer;
-            timer.TimerCancelEvent -= HideTimer;
-            timer.TimerCompleteEvent -= HideTimer;
+            timer.TimerStopEvent -= HideTimer;
         }
 
         public void ShowTimer()

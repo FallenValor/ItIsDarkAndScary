@@ -16,9 +16,14 @@ namespace IDAS.Decisions
         [SerializeField] private int maxHealth = 3;
 
         private int health;
+        private bool isDead;
 
         public event Action<int, int> HealthChangedEvent;
         public static event Action LoseGameEvent;
+
+        #region Properties
+        public bool IsDead => isDead;
+        #endregion
 
         /// <summary>
         /// Initializes health.
@@ -38,6 +43,7 @@ namespace IDAS.Decisions
             HealthChangedEvent?.Invoke(damage, health);
             if (health <= 0)
             {
+                isDead = true;
                 // Lose Condition.
                 Debug.Log("Player lost");
                 LoseGameEvent?.Invoke();

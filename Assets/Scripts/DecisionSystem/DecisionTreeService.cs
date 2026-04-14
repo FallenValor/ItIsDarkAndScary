@@ -106,7 +106,6 @@ namespace IDAS.Decisions
                 SetCurrentNode(nextNode);
                 return Awaitable.NextFrameAsync();
             }
-            Debug.Log("Set Queued");
             sequencer.QueueAction(SetNodeWrapper);
         }
 
@@ -189,15 +188,6 @@ namespace IDAS.Decisions
 
             // Start the timer.
             timer.StartTimer();
-
-            // Debug
-            for(int i = 0; i < decisionNode.Choices.Length; i++)
-            {
-                if (decisionNode.Choices[i].IsValid(DecisionManager))
-                {
-                    Debug.Log($"{i}. {decisionNode.Choices[i].Name}");
-                }
-            }
         }
         #endregion
 
