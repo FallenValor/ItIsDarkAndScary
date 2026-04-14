@@ -8,6 +8,7 @@
 *****************************************************************************/
 using IDAS.Items;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using UnityEngine;
@@ -59,8 +60,11 @@ namespace IDAS.Decisions
         {
             // Retrieves from persistent data.  If no data, set to a new array.
             // Update Persistent Data.
-            heldItems = InstantiateItems(PersistentData.RetrieveData<ItemData[]>(ITEM_DATA_KEY));
-            if (heldItems == null)
+            try
+            {
+                heldItems = InstantiateItems(PersistentData.RetrieveDataAsClass<ItemData[]>(ITEM_DATA_KEY));
+            }
+            catch (KeyNotFoundException)
             {
                 heldItems = new ItemData[maxItems];
             }
@@ -73,7 +77,6 @@ namespace IDAS.Decisions
             else
             {
                 Debug.LogWarning("ItemService is missing it's dependen service PlayerControllerService.");
-
             }
 
             sequencer = DecisionManager.GetService<SequencerService>();

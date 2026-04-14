@@ -7,12 +7,17 @@
 // Brief Description : Control's the players health as a lose condition.
 *****************************************************************************/
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace IDAS.Decisions
 {
     public class HealthService : DecisionService
     {
+        #region CONSTS
+        private const string HEALTH_KEY = "Health";
+        #endregion
+
         [SerializeField] private int maxHealth = 3;
         [SerializeField, Tooltip("The amount of health the player loses when the timer expires.")] 
         private int damageOnTimerFail = 1;
@@ -35,6 +40,7 @@ namespace IDAS.Decisions
                 int change = health - oldHealth;
                 HealthChangedEvent?.Invoke(change, health);
                 Debug.Log("Health is now " + health);
+                PersistentData.SaveData(HEALTH_KEY, health);
 
                 if (health <= 0)
                 {
@@ -64,7 +70,14 @@ namespace IDAS.Decisions
         /// </summary>
         protected override void GameStart()
         {
-            ResetHealth();
+            try
+            {
+                Health = PersistentData.RetrieveData<int>(HEALTH_KEY);
+            }
+            catch (KeyNotFoundException)
+            {
+                ResetHealth();
+            }
         }
 
         /// <summary>

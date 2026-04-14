@@ -7,12 +7,17 @@
 // Brief Description : Controls the player's stamina that they can expend on certain decisions.
 *****************************************************************************/
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace IDAS.Decisions
 {
     public class StaminaService : DecisionService
     {
+        #region CONSTS
+        private const string STAMINA_KEY = "Stamina";
+        #endregion
+
         [SerializeField] private int maxStamina;
 
         private int stamina;
@@ -30,13 +35,21 @@ namespace IDAS.Decisions
                 int change = stamina - oldStamina;
                 StaminaUpdateEvent?.Invoke(change, stamina);
                 Debug.Log("Stamina is now " + stamina);
+                PersistentData.SaveData(STAMINA_KEY, stamina);
             }
         }
         #endregion
 
         protected override void GameStart()
         {
-           ResetStamina();
+            try
+            { 
+                Stamina = PersistentData.RetrieveData<int>(STAMINA_KEY);
+            }
+            catch (KeyNotFoundException)
+            {
+                ResetStamina();
+            }
         }
 
         /// <summary>

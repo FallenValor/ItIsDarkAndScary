@@ -114,7 +114,7 @@ MonoBehaviour:
     item: 0
     consume: 0
   - name: Less
-    stamina: 2
+    stamina: 0
     item: 0
     consume: 0
 --- !u!114 &11400000

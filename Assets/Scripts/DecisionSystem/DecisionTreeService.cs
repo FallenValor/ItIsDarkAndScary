@@ -116,14 +116,7 @@ namespace IDAS.Decisions
         /// <param name="decision"></param>
         private void OnDecisionInput(int decision)
         {
-            if (currentDecision != null &&
-                decision < currentDecision.Choices.Length &&
-                currentDecision.Choices[decision].IsValid(DecisionManager))
-            {
-                // Debug.
-                Debug.Log($"You chose {currentDecision.Choices[decision].Name}");
-                MakeDecision(decision);
-            }
+            MakeDecision(decision);
         }
 
         /// <summary>
@@ -200,7 +193,10 @@ namespace IDAS.Decisions
             if (currentDecision != null &&
                 decision < currentDecision.Choices.Length &&
                 currentDecision.Choices[decision].IsValid(DecisionManager))
-            { 
+            {
+                // Debug.
+                Debug.Log($"You chose {currentDecision.Choices[decision].Name}");
+
                 DarkScaryNode nextNode = currentDecision.GetDecisionNode(decision);
 
                 currentDecision.Choices[decision].OnChosen(DecisionManager);
