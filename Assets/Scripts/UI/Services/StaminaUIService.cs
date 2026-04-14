@@ -16,13 +16,15 @@ namespace IDAS.UI
         [SerializeField] private GameObject[] staminaFills;
 
         private StaminaService staminaService;
-        private int currentStaminaNum;
+        private int currentStaminaNum = -1;
 
         /// <summary>
         /// Set up event subscriptions to update the stamina UI.
         /// </summary>
         protected override void Initialize()
         {
+            currentStaminaNum = -1;
+
             staminaService = AppManager.GetManager<DecisionManager>().GetService<StaminaService>();
             staminaService.StaminaUpdateEvent += UpdateStaminaUI;
         }
@@ -39,14 +41,41 @@ namespace IDAS.UI
         private void UpdateStaminaUI(int staminaChange, int stamina)
         {
             if (staminaChange == 0) { return; }
-            bool enabled = staminaChange > 0;
+            bool changeSign = staminaChange > 0;
             // Disable or Enable the corresponding stamina fills.
-            for(int i = currentStaminaNum; i != currentStaminaNum + staminaChange; i += (enabled ? 1 : -1))
+            int i = currentStaminaNum;
+            while (true)
             {
-                staminaFills[i].SetActive(enabled);
+                // Increment, then set for positive changes/
+                if (changeSign)
+                {
+                    i++;
+                    if (i < staminaFills.Length)
+                    {
+                        staminaFills[i].SetActive(changeSign);
+                    }
+                    if (i == currentStaminaNum + staminaChange)
+                    {
+                        currentStaminaNum = i;
+                        break;
+                    }
+                }
+                // Set, then decrement for negative changes.
+                else
+                { 
+                    if (i < staminaFills.Length)
+                    {
+                        staminaFills[i].SetActive(changeSign);
+                    }
+                    i--;
+                    if (i == currentStaminaNum + staminaChange)
+                    {
+                        currentStaminaNum = i;
+                        break;
+                    }
+                }
             }
-
-            currentStaminaNum += staminaChange - 1;
+            Debug.Log(currentStaminaNum);
         }
     }
 }
