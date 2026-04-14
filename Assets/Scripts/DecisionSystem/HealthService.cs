@@ -14,6 +14,8 @@ namespace IDAS.Decisions
     public class HealthService : DecisionService
     {
         [SerializeField] private int maxHealth = 3;
+        [SerializeField, Tooltip("The amount of health the player loses when the timer expires.")] 
+        private int damageOnTimerFail = 1;
 
         private int health;
         private bool isDead;
@@ -23,31 +25,62 @@ namespace IDAS.Decisions
 
         #region Properties
         public bool IsDead => isDead;
+        public int Health
+        {
+            get { return health; }
+            set 
+            {
+                int oldHealth = health;
+                health = Mathf.Clamp(value, 0, maxHealth);
+                int change = health - oldHealth;
+                HealthChangedEvent?.Invoke(change, health);
+                Debug.Log("Health is now " + health);
+
+                if (health <= 0)
+                {
+                    isDead = true;
+                    // Lose Condition.
+                    Debug.Log("Player lost");
+                    LoseGameEvent?.Invoke();
+                }
+            }
+        }
         #endregion
+
+        /// <summary>
+        /// Setup event for losing health when timer expires.
+        /// </summary>
+        protected override void Initialize()
+        {
+            DecisionManager.GetService<TimerService>().TimerCompleteEvent += OnTimerComplete;
+        }
+        public override void Deinitialize()
+        {
+            DecisionManager.GetService<TimerService>().TimerCompleteEvent -= OnTimerComplete;
+        }
 
         /// <summary>
         /// Initializes health.
         /// </summary>
-        protected override void Initialize()
+        protected override void GameStart()
         {
-            health = maxHealth;
+            ResetHealth();
         }
 
         /// <summary>
-        /// Makes the player take damage.
+        /// Resets the player back to base health.
         /// </summary>
-        /// <param name="damage"></param>
-        public void TakeDamage(int damage)
+        public void ResetHealth()
         {
-            health -= damage;
-            HealthChangedEvent?.Invoke(damage, health);
-            if (health <= 0)
-            {
-                isDead = true;
-                // Lose Condition.
-                Debug.Log("Player lost");
-                LoseGameEvent?.Invoke();
-            }
+            Health = maxHealth;
+        }
+
+        /// <summary>
+        /// Reduces the player's health when the timer expires.
+        /// </summary>
+        private void OnTimerComplete()
+        {
+            Health -= damageOnTimerFail;
         }
     }
 }

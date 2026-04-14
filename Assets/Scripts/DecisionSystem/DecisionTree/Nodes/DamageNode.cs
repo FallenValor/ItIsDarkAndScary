@@ -25,7 +25,7 @@ namespace IDAS
             HealthService healthService = treeTraveler.DecisionManager.GetService<HealthService>();
             if (healthService != null)
             {
-                healthService.TakeDamage(damage);
+                healthService.Health -= damage;
             }
             if (!healthService.IsDead)
             {

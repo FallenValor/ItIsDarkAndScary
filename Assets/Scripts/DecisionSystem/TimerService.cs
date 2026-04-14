@@ -23,7 +23,7 @@ namespace IDAS.Decisions
         public event Action TimerStartEvent;
         public event Action<float, float> TimerUpdateEvent;
         public event Action TimerCompleteEvent;
-        public event Action TimerStopEvent;
+        public event Action TimerCancelEvent;
         #endregion
 
         /// <summary>
@@ -46,7 +46,7 @@ namespace IDAS.Decisions
         {
             if (isRunning)
             {
-                StopTimer();
+                StopTimerInternal();
             }
             cts = new CancellationTokenSource();
             isRunning = true;
@@ -72,7 +72,13 @@ namespace IDAS.Decisions
         public void StopTimer()
         {
             if (!isRunning) { return; }
-            TimerStopEvent?.Invoke();
+            TimerCancelEvent?.Invoke();
+            StopTimerInternal();
+        }
+
+        public void StopTimerInternal()
+        {
+            if (!isRunning) { return; }
             cts.Cancel();
         }
 

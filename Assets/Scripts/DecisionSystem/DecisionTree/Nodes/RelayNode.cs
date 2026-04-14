@@ -19,11 +19,6 @@ namespace IDAS
         [SerializeField] private float delay;
         [SerializeField, Output(backingValue = ShowBackingValue.Never)] private Choice outputChoice;
 
-        #region Properties
-        // Relay nodes cannot be randomly selected.
-        public override bool RandomSelectable => true;
-        #endregion
-
         /// <summary>
         /// Gets an out value based on port name.
         /// </summary>

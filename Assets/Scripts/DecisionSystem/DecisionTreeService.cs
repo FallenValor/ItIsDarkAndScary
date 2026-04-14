@@ -132,7 +132,23 @@ namespace IDAS.Decisions
         private void MakeRandomDecision()
         {
             int randomDecisionIndex = GetRandomDecisionIndex(currentDecision);
-            MakeDecision(randomDecisionIndex);
+            if ( randomDecisionIndex >= 0)
+            {
+                MakeDecision(randomDecisionIndex);
+            }
+            else
+            {
+                // If the player cannot make a valid decision and time runs out, then it's an auto-fail.
+                HealthService healthService = DecisionManager.GetService<HealthService>();
+                if ( healthService != null )
+                {
+                    healthService.Health = 0;
+                }
+                else
+                {
+                    Debug.LogError("Could not find a valid HealthService to trigger a lost state.");
+                }
+            }
         }
 
         /// <summary>
@@ -151,6 +167,27 @@ namespace IDAS.Decisions
                     validIndicies.Add(i);
                 }
             }
+
+            // If no indicies are valid, perform another check, ignoring the cost limits on choices.
+            if (validIndicies.Count == 0)
+            {
+                for (int i = 0; i < decision.Choices.Length; i++)
+                {
+                    // Ignore checking choices for validity, as it only matters if not all choices have a cost.
+                    if (decision.Choices[i].IsValid(DecisionManager) &&
+                        decision.GetDecisionNode(i).RandomSelectable)
+                    {
+                        validIndicies.Add(i);
+                    }
+                }
+            }
+
+            // If no indicies are still valid, return a fail condition.
+            if (validIndicies.Count == 0)
+            {
+                return -1;
+            }
+
             return validIndicies[UnityEngine.Random.Range(0, validIndicies.Count)];
         }
 
