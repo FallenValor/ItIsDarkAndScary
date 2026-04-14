@@ -20,7 +20,6 @@ namespace IDAS
 
 
         #region Properties
-        // Relay nodes cannot be randomly selected.
         public override bool RandomSelectable => true;
         public ItemID ID => gainedItem;
         #endregion
