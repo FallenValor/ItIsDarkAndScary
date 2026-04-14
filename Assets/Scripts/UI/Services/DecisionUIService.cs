@@ -53,7 +53,7 @@ namespace IDAS.UI
             for(int i = 0; i < node.Choices.Length; i++)
             {
                 // Get the ChoiceDisplay to edit.
-                Transform choicePoint = point.ChoicePoints[i];
+                Transform choicePoint = i < point.ChoicePoints.Length ? point.ChoicePoints[i] : null;
                 ChoiceDisplay display;
                 if (displayDict.ContainsKey(choicePoint))
                 {
