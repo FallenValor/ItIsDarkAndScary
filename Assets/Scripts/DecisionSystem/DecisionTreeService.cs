@@ -106,7 +106,6 @@ namespace IDAS.Decisions
                 SetCurrentNode(nextNode);
                 return Awaitable.NextFrameAsync();
             }
-            Debug.Log("Set Queued");
             sequencer.QueueAction(SetNodeWrapper);
         }
 
@@ -117,14 +116,7 @@ namespace IDAS.Decisions
         /// <param name="decision"></param>
         private void OnDecisionInput(int decision)
         {
-            if (currentDecision != null &&
-                decision < currentDecision.Choices.Length &&
-                currentDecision.Choices[decision].IsValid(DecisionManager))
-            {
-                // Debug.
-                Debug.Log($"You chose {currentDecision.Choices[decision].Name}");
-                MakeDecision(decision);
-            }
+            MakeDecision(decision);
         }
 
         /// <summary>
@@ -133,7 +125,23 @@ namespace IDAS.Decisions
         private void MakeRandomDecision()
         {
             int randomDecisionIndex = GetRandomDecisionIndex(currentDecision);
-            MakeDecision(randomDecisionIndex);
+            if ( randomDecisionIndex >= 0)
+            {
+                MakeDecision(randomDecisionIndex);
+            }
+            else
+            {
+                // If the player cannot make a valid decision and time runs out, then it's an auto-fail.
+                HealthService healthService = DecisionManager.GetService<HealthService>();
+                if ( healthService != null )
+                {
+                    healthService.Health = 0;
+                }
+                else
+                {
+                    Debug.LogError("Could not find a valid HealthService to trigger a lost state.");
+                }
+            }
         }
 
         /// <summary>
@@ -152,6 +160,27 @@ namespace IDAS.Decisions
                     validIndicies.Add(i);
                 }
             }
+
+            // If no indicies are valid, perform another check, ignoring the cost limits on choices.
+            if (validIndicies.Count == 0)
+            {
+                for (int i = 0; i < decision.Choices.Length; i++)
+                {
+                    // Ignore checking choices for validity, as it only matters if not all choices have a cost.
+                    if (decision.Choices[i].IsValid(DecisionManager) &&
+                        decision.GetDecisionNode(i).RandomSelectable)
+                    {
+                        validIndicies.Add(i);
+                    }
+                }
+            }
+
+            // If no indicies are still valid, return a fail condition.
+            if (validIndicies.Count == 0)
+            {
+                return -1;
+            }
+
             return validIndicies[UnityEngine.Random.Range(0, validIndicies.Count)];
         }
 
@@ -164,7 +193,10 @@ namespace IDAS.Decisions
             if (currentDecision != null &&
                 decision < currentDecision.Choices.Length &&
                 currentDecision.Choices[decision].IsValid(DecisionManager))
-            { 
+            {
+                // Debug.
+                Debug.Log($"You chose {currentDecision.Choices[decision].Name}");
+
                 DarkScaryNode nextNode = currentDecision.GetDecisionNode(decision);
 
                 currentDecision.Choices[decision].OnChosen(DecisionManager);
@@ -189,15 +221,6 @@ namespace IDAS.Decisions
 
             // Start the timer.
             timer.StartTimer();
-
-            // Debug
-            for(int i = 0; i < decisionNode.Choices.Length; i++)
-            {
-                if (decisionNode.Choices[i].IsValid(DecisionManager))
-                {
-                    Debug.Log($"{i}. {decisionNode.Choices[i].Name}");
-                }
-            }
         }
         #endregion
 

@@ -22,7 +22,14 @@ namespace IDAS
         /// <param name="obj">The object to save.</param>
         public static void SaveData(string key, object obj)
         {
-            persistentDataDict.Add(key, obj);
+            if (persistentDataDict.ContainsKey(key))
+            {
+                persistentDataDict[key] = obj;
+            }
+            else
+            {
+                persistentDataDict.Add(key, obj);
+            }
         }
 
         /// <summary>
@@ -31,13 +38,28 @@ namespace IDAS
         /// <typeparam name="T">The type of the object to retrieve.</typeparam>
         /// <param name="key">The key to retrieve.</param>
         /// <returns>The data object stored at the key.</returns>
-        public static T RetrieveData<T>(string key) where T : class
+        public static T RetrieveDataAsClass<T>(string key) where T : class
         {
             if (persistentDataDict.ContainsKey(key))
             {
                 return persistentDataDict[key] as T;
             }
-            return null;
+             throw new KeyNotFoundException("Could not find PersistentData saved under the key " + key);
+        }
+
+        /// <summary>
+        /// Retrieves persistent data saved between scenes.
+        /// </summary>
+        /// <typeparam name="T">The type of the object to retrieve.</typeparam>
+        /// <param name="key">The key to retrieve.</param>
+        /// <returns>The data object stored at the key.</returns>
+        public static T RetrieveData<T>(string key)
+        {
+            if (persistentDataDict.ContainsKey(key))
+            {
+                return (T)persistentDataDict[key];
+            }
+            throw new KeyNotFoundException("Could not find PersistentData saved under the key " + key);
         }
     }
 }

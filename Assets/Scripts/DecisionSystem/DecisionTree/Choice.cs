@@ -37,20 +37,32 @@ namespace IDAS.Decisions.Tree
             bool isInvalid = false;
 
             // Check for required stamina.
+            if (stamina > 0)
+            {
+                StaminaService stamService = manager.GetService<StaminaService>();
+                if (stamService != null)
+                {
+                    isInvalid |= stamService.Stamina < stamina;
+                }
+                else
+                {
+                    isInvalid |= true;
+                }
+            }
 
             // Check for required item.
             if (item != ItemID.None)
             {
                 ItemService itemService = manager.GetService<ItemService>();
                 // If item required and no service, then this decision isnt valid.
-                if (itemService == null)
-                {
-                    isInvalid |= true;
-                }
-                else
+                if (itemService != null)
                 {
                     // If the player doesnt have the item, mark as invalid.
                     isInvalid |= !itemService.HasItem(item);
+                }
+                else
+                {
+                    isInvalid |= true;
                 }
             }
 
@@ -72,6 +84,14 @@ namespace IDAS.Decisions.Tree
         public void OnChosen(DecisionManager manager)
         {
             // Decrease Stamina.
+            if (stamina > 0)
+            {
+                StaminaService stamService = manager.GetService<StaminaService>();
+                if (stamService != null)
+                {
+                    stamService.Stamina -= stamina;
+                }
+            }
 
             // Remove Item
             if (consume && item != ItemID.None)

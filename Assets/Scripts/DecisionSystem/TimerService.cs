@@ -27,6 +27,14 @@ namespace IDAS.Decisions
         #endregion
 
         /// <summary>
+        /// Setup event for timer hiding when the player loses.
+        /// </summary>
+        protected override void Initialize()
+        {
+            HealthService.LoseGameEvent += StopTimer;
+        }
+
+        /// <summary>
         /// Starts the timer counting down.
         /// </summary>
         /// <param name="time"></param>
@@ -51,26 +59,24 @@ namespace IDAS.Decisions
         /// </summary>
         public override void Deinitialize()
         {
-            if(cts != null)
+            HealthService.LoseGameEvent -= StopTimer;
+            if (cts != null)
             {
                 cts.Cancel();
             }
         } 
 
         /// <summary>
-        /// Stops the timer.
+        /// Actually stops the timer, skipping event calls.
         /// </summary>
         public void StopTimer()
         {
             if (!isRunning) { return; }
-            StopTimerInternal();
             TimerCancelEvent?.Invoke();
+            StopTimerInternal();
         }
 
-        /// <summary>
-        /// Actually stops the timer, skipping event calls.
-        /// </summary>
-        private void StopTimerInternal()
+        public void StopTimerInternal()
         {
             if (!isRunning) { return; }
             cts.Cancel();
@@ -111,7 +117,6 @@ namespace IDAS.Decisions
                 // Timer Complete.
                 CleanUpTimer();
                 TimerCompleteEvent?.Invoke();
-                Debug.Log("Timer Complete.");
             }
             catch (Exception e)
             {

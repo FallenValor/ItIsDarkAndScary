@@ -30,6 +30,8 @@ namespace IDAS.Decisions
         /// <returns></returns>
         protected override void Initialize()
         {
+            HealthService.LoseGameEvent += ClearQueue;
+
             queueCts = new CancellationTokenSource();
             QueueIterator(queueCts.Token);
         }
@@ -39,6 +41,7 @@ namespace IDAS.Decisions
         /// </summary>
         public override void Deinitialize()
         {
+            HealthService.LoseGameEvent += ClearQueue;
             queueCts.Cancel();
         }
 
@@ -77,6 +80,14 @@ namespace IDAS.Decisions
         public void QueueAction(SequenceTask toQueue)
         {
             taskQueue.Enqueue(toQueue);
+        }
+
+        /// <summary>
+        /// Completely clears the sequencer's action queue.
+        /// </summary>
+        public void ClearQueue()
+        {
+            taskQueue.Clear();
         }
     }
 }

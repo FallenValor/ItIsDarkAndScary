@@ -18,6 +18,7 @@ namespace IDAS.UI
         [SerializeField] private ChoiceDisplay displayPrefab;
 
         private DecisionTreeService decisionService;
+        private DecisionManager decisionManager;
 
         private ChoiceDisplay[] currentDisplays;
 
@@ -28,7 +29,8 @@ namespace IDAS.UI
         /// </summary>
         protected override void Initialize()
         {
-            decisionService = AppManager.GetManager<DecisionManager>().GetService<DecisionTreeService>();
+            decisionManager = AppManager.GetManager<DecisionManager>();
+            decisionService = decisionManager.GetService<DecisionTreeService>();
             decisionService.ReachDecisionEvent += VisualizeDecision;
             decisionService.MakeDecisionEvent += ClearDisplays;
         }
@@ -52,6 +54,8 @@ namespace IDAS.UI
             //loop through each choice.
             for(int i = 0; i < node.Choices.Length; i++)
             {
+                // Skip invalid choices.
+                if (!node.Choices[i].IsValid(decisionManager)) { continue; }
                 // Get the ChoiceDisplay to edit.
                 Transform choicePoint = i < point.ChoicePoints.Length ? point.ChoicePoints[i] : null;
                 ChoiceDisplay display;
