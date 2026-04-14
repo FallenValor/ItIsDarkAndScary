@@ -15,7 +15,7 @@ namespace IDAS.UI
     public class HealthUIService : UIService
     {
         [SerializeField] private RectTransform healthFill;
-
+         
         private HealthService healthService;
 
         /// <summary>
