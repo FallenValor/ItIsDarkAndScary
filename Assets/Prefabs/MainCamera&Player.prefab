@@ -403,7 +403,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: FMODUnity::FMODUnity.StudioListener
   nonRigidbodyVelocity: 0
-  attenuationObject: {fileID: 0}
+  attenuationObject: {fileID: 7723090697045707867}
 --- !u!114 &6824816410158584091
 MonoBehaviour:
   m_ObjectHideFlags: 0

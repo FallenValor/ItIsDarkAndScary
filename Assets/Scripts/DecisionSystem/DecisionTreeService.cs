@@ -27,8 +27,8 @@ namespace IDAS.Decisions
         private TimerService timer;
 
         #region Events
-        public event Action<DarkScaryNode, int, DarkScaryNode> MovementEvent;
-        public event Action<DecisionNode> ReachDecisionEvent;
+        public event Action<DarkScaryNode, int, DarkScaryNode> MakeDecisionEvent;
+        public event Action<DecisionNode, NodePoint> ReachDecisionEvent;
         #endregion
 
         /// <summary>
@@ -42,7 +42,9 @@ namespace IDAS.Decisions
 
             timer = Manager.GetService<TimerService>();
             timer.TimerCompleteEvent += MakeRandomDecision;
-
+        }
+        protected override void GameStart()
+        {
             // Set the current decision to the starting decision.
             SetCurrentNode(DecisionTree.GetStartNode());
         }
@@ -93,7 +95,7 @@ namespace IDAS.Decisions
         public void MoveToNode(DarkScaryNode nextNode, int decisionIndex)
         {
             // Broadcast that a decision has been made.
-            MovementEvent?.Invoke(currentNode, decisionIndex, nextNode);
+            MakeDecisionEvent?.Invoke(currentNode, decisionIndex, nextNode);
 
             ResetCurrentNode();
 
@@ -183,7 +185,7 @@ namespace IDAS.Decisions
         public void QueueDecision(DecisionNode decisionNode)
         {
             currentDecision = decisionNode;
-            ReachDecisionEvent?.Invoke(decisionNode);
+            ReachDecisionEvent?.Invoke(decisionNode, DecisionManager.GetPoint(decisionNode));
 
             // Start the timer.
             timer.StartTimer();
