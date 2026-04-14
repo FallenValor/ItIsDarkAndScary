@@ -47,5 +47,6 @@ MonoBehaviour:
   services:
   - {fileID: 4788920762506588205, guid: a5c4977539380ad4687761fd5506fd0a, type: 3}
   - {fileID: 1505595237743640138, guid: 0d5059cb26c4d1b448d21faa2e17fb07, type: 3}
+  - {fileID: 8888824489221539864, guid: 277f1a90f7c6c3d4dbabc6d40d2e1b7e, type: 3}
   canvasPrefab: {fileID: 5789463987370740381, guid: ed09def9561255844a63f4d26f522350, type: 3}
   eventSystemPrefab: {fileID: 1183968719894883271, guid: d11d8a5909e54ab4380fcbb9991285c9, type: 3}
