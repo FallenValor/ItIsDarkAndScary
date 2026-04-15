@@ -6,6 +6,7 @@
 //
 // Brief Description : Manages initializing all manager systems.
 *****************************************************************************/
+using System;
 using System.Threading;
 using UnityEngine;
 
@@ -23,21 +24,29 @@ namespace IDAS
         /// </summary>
         private async Awaitable Awake()
         {
-            //managerInstances = new Manager[managers.Length];
-            cts = new CancellationTokenSource();
-            for (int i = 0; i < managers.Length; i++)
+            try
             {
-                //Manager inst = Instantiate(managers[i], transform);
-                //managerInstances[i] = inst;
-                await managers[i].Initialize(this, cts.Token);
+                //managerInstances = new Manager[managers.Length];
+                cts = new CancellationTokenSource();
+                for (int i = 0; i < managers.Length; i++)
+                {
+                    //Manager inst = Instantiate(managers[i], transform);
+                    //managerInstances[i] = inst;
+                    await managers[i].Initialize(this, cts.Token);
+                }
+                // Add a start-esque method for performing starting actions after initialization has occured.
+                for (int i = 0; i < managers.Length; i++)
+                {
+                    //Manager inst = Instantiate(managers[i], transform);
+                    //managerInstances[i] = inst;
+                    await managers[i].GameStart(cts.Token);
+                }
             }
-            // Add a start-esque method for performing starting actions after initialization has occured.
-            for (int i = 0; i < managers.Length; i++)
+            catch (Exception e)
             {
-                //Manager inst = Instantiate(managers[i], transform);
-                //managerInstances[i] = inst;
-                await managers[i].GameStart(cts.Token);
+                Debug.LogException(e);
             }
+            
         }
 
         /// <summary>

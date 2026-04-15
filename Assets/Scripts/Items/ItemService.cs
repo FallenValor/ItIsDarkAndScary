@@ -226,6 +226,7 @@ namespace IDAS.Decisions
                 if (items[i] == null) { continue; }
                 Item spawnedItem = Instantiate(items[i].prefab);
                 instItems[i] = new ItemInstanceData(items[i], spawnedItem);
+                spawnedItem.SetEquippedTransform(player.GetItemSlot(i), true);
             }
             return instItems;
         }
