@@ -91,6 +91,7 @@ namespace IDAS.UI
         private void ClearDisplays(DarkScaryNode currentNode, int decisionIndex, DarkScaryNode nextNode)
         {
             if (currentDisplays == null) { return; }
+            defaultDisplay.Clear();
             foreach(var display in currentDisplays)
             {
                 display.Clear();
