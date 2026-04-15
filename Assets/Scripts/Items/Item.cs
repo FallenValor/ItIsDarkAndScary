@@ -15,7 +15,6 @@ namespace IDAS.Items
     [RequireComponent(typeof(Rigidbody))]
     public class Item : MonoBehaviour
     {
-        [SerializeField] private Item itemPrefab;
         [SerializeField] private float lerpTime;
         [SerializeField] private AnimationCurve lerpCurve;
 
@@ -26,11 +25,6 @@ namespace IDAS.Items
         {
             rb = GetComponent<Rigidbody>();
         }
-        #endregion
-
-
-        #region Properties
-        public Item Prefab => itemPrefab;
         #endregion
 
         /// <summary>
