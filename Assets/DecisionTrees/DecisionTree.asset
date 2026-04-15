@@ -110,7 +110,7 @@ MonoBehaviour:
   flavor: 
   choices:
   - name: More
-    stamina: 3
+    stamina: 1
     item: 0
     consume: 0
   - name: Less
@@ -329,10 +329,10 @@ MonoBehaviour:
   flavor: 
   choices:
   - name: More
-    stamina: 3
+    stamina: 2
     item: 0
     consume: 0
   - name: Less
-    stamina: 2
+    stamina: 1
     item: 0
     consume: 0
