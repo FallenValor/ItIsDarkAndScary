@@ -75,7 +75,6 @@ namespace IDAS.UI
                     }
                 }
             }
-            Debug.Log(currentStaminaNum);
         }
     }
 }
