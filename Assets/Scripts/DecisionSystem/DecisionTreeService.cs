@@ -29,6 +29,7 @@ namespace IDAS.Decisions
         #region Events
         public event Action<DarkScaryNode, int, DarkScaryNode> MakeDecisionEvent;
         public event Action<DecisionNode, NodePoint> ReachDecisionEvent;
+        public event Action TreeEndEvent;
         #endregion
 
         /// <summary>
@@ -231,6 +232,7 @@ namespace IDAS.Decisions
         {
             // TODO: Tree End implementation.
             Debug.Log("Tree Ended.");
+            TreeEndEvent?.Invoke();
         }
     }
 }

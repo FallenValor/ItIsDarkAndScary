@@ -41,7 +41,7 @@ namespace IDAS.Decisions
         /// </summary>
         public override void Deinitialize()
         {
-            HealthService.LoseGameEvent += ClearQueue;
+            HealthService.LoseGameEvent -= ClearQueue;
             queueCts.Cancel();
         }
 

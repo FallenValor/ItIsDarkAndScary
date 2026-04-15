@@ -42,14 +42,13 @@ namespace IDAS.UI
         /// Sets the transform that determines the position of this choice display on the canvas.
         /// </summary>
         /// <param name="target">The transform to use as the world position of this element.</param>
-        public void SetTargetTransform(Transform target, Vector3 defaultPos)
+        public void SetTargetTransform(Transform target)
         {
             targetTransform = target;
             if (target == null)
             {
                 isFollowing = false;
                 // Return to the default position.
-                transform.position = defaultPos;
             }
             else if (!isFollowing)
             {
