@@ -28,6 +28,8 @@ namespace IDAS.Decisions
         private PlayerController player;
         private SequencerService sequencer;
 
+        public event Action<ItemID[]> ItemsChangedEvent;
+
         #region Nested
         [System.Serializable]
         private class ItemData
@@ -47,6 +49,7 @@ namespace IDAS.Decisions
             /// <returns></returns>
             internal ItemData GetPrefabData()
             {
+                if (obj == null) { return null; }
                 return new ItemData(id, obj.Prefab);
             }
         }
@@ -58,17 +61,6 @@ namespace IDAS.Decisions
         /// </summary>
         protected override void Initialize()
         {
-            // Retrieves from persistent data.  If no data, set to a new array.
-            // Update Persistent Data.
-            try
-            {
-                heldItems = InstantiateItems(PersistentData.RetrieveDataAsClass<ItemData[]>(ITEM_DATA_KEY));
-            }
-            catch (KeyNotFoundException)
-            {
-                heldItems = new ItemData[maxItems];
-            }
-
             PlayerControllerService pcs = DecisionManager.GetService<PlayerControllerService>();
             if (pcs != null)
             {
@@ -82,6 +74,29 @@ namespace IDAS.Decisions
             sequencer = DecisionManager.GetService<SequencerService>();
 
             // Load items from PersistentDataService.
+        }
+
+        /// <summary>
+        /// Set the players items in ServiceStart after initialization.
+        /// </summary>
+        protected override void ServiceStart()
+        {
+            // Retrieves from persistent data.  If no data, set to a new array.
+            // Update Persistent Data.
+            try
+            {
+                heldItems = InstantiateItems(PersistentData.RetrieveDataAsClass<ItemData[]>(ITEM_DATA_KEY));
+            }
+            catch (KeyNotFoundException)
+            {
+                heldItems = new ItemData[maxItems];
+            }
+            BroadcastItemChangedEvent();
+        }
+
+        private void BroadcastItemChangedEvent()
+        {
+            ItemsChangedEvent?.Invoke(heldItems.Select(x => x == null ? ItemID.None : x.id).ToArray());
         }
 
         /// <summary>
@@ -150,6 +165,8 @@ namespace IDAS.Decisions
                 heldItems[0].obj.SetEquippedTransform(player.GetItemSlot(0));
             }
 
+            BroadcastItemChangedEvent();
+
             // Update Persistent Data.
             PersistentData.SaveData(ITEM_DATA_KEY, ExtractPrefabData(heldItems));
         }
@@ -166,6 +183,10 @@ namespace IDAS.Decisions
             // Do cleanup on the removed item.
             data.obj.RemoveItem();
             heldItems[index] = null;
+
+            BroadcastItemChangedEvent();
+            // Update Persistent Data.
+            PersistentData.SaveData(ITEM_DATA_KEY, ExtractPrefabData(heldItems));
         }
 
         /// <summary>
@@ -178,6 +199,8 @@ namespace IDAS.Decisions
             return heldItems.Any(x => x != null && x.id == itemId);
         }
 
+        // If I have time after playtest, swap this to a database.
+        #region Item Data Management
         /// <summary>
         /// Converts an array of item instance data to item prefab data.
         /// </summary>
@@ -212,5 +235,6 @@ namespace IDAS.Decisions
             }
             return instItems;
         }
+        #endregion
     }
 }
