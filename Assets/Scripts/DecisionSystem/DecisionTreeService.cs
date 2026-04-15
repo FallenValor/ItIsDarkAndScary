@@ -43,7 +43,7 @@ namespace IDAS.Decisions
             timer = Manager.GetService<TimerService>();
             timer.TimerCompleteEvent += MakeRandomDecision;
         }
-        protected override void GameStart()
+        protected override void ServiceStart()
         {
             // Set the current decision to the starting decision.
             SetCurrentNode(DecisionTree.GetStartNode());

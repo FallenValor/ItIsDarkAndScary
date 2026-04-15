@@ -40,7 +40,7 @@ namespace IDAS.Decisions
         }
         #endregion
 
-        protected override void GameStart()
+        protected override void ServiceStart()
         {
             try
             { 
