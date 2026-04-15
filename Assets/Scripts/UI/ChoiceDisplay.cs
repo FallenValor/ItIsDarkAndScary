@@ -7,6 +7,7 @@
 // Brief Description : Visualizes a set of choice names on the UI.
 *****************************************************************************/
 using IDAS.Decisions.Tree;
+using IDAS.Items;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -15,6 +16,10 @@ namespace IDAS.UI
 {
     public class ChoiceDisplay : MonoBehaviour
     {
+        #region CONSTS
+        private const string STAMINA_TAG = "<sprite name=\"Stamina\">";
+        #endregion
+
         [SerializeField] private TMP_Text textComp;
 
         private Transform targetTransform;
@@ -59,7 +64,15 @@ namespace IDAS.UI
         /// <param name="choice"></param>
         public void AddChoice(Choice choice, string binding)
         {
-            string choiceString = $"{binding}. {choice.Name}";
+            // Add icons for stamina cost and item requirements.
+            string icons = GetItemTag(choice.Item);
+            for(int i = 0; i < choice.Stamina; i++)
+            {
+                icons += STAMINA_TAG;
+            }
+
+
+            string choiceString = $"{icons} {binding}. {choice.Name}";
             ChoiceString += choiceString + "\n";
         }
 
@@ -79,6 +92,17 @@ namespace IDAS.UI
                 transform.position = Camera.main.WorldToScreenPoint(targetTransform.position);
                 yield return null;
             }
+        }
+
+        /// <summary>
+        /// Gets the tag for an item icon based on the item's ID.
+        /// </summary>
+        /// <param name="item">The item ID to get the tag of.</param>
+        /// <returns>The icon tag for that item.</returns>
+        private string GetItemTag(ItemID item)
+        {
+            if (item == ItemID.None) { return string.Empty; }
+            return $"<sprite index={(int)item}>";
         }
     }
 }
