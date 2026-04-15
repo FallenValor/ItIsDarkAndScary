@@ -17,8 +17,8 @@ namespace IDAS.Decisions
     public class DecisionManager : Manager
     {
         [field: SerializeField] public DecisionTree DecisionTree { get; private set; }
-        public Dictionary<DarkScaryNode, NodePoint> NodePoints { get; private set; } 
-            = new Dictionary<DarkScaryNode, NodePoint>();
+
+        private readonly Dictionary<DarkScaryNode, NodePoint> nodePoints = new Dictionary<DarkScaryNode, NodePoint>();
 
         /// <summary>
         /// Initialize the NodePoints dictionary, in addition to managers.
@@ -35,9 +35,24 @@ namespace IDAS.Decisions
             // Initialize the node point dictionary.
             for (int i = 0; i < points.Length; i++)
             {
-                NodePoints.Add(points[i].Node, points[i]);
+                nodePoints.Add(points[i].Node, points[i]);
             }
             await base.Initialize(applicationManager, ct);
+        }
+
+        /// <summary>
+        /// Gets the associated NodePoint for a node.
+        /// </summary>
+        /// <param name="node">The node to get the node point of.</param>
+        /// <returns>The NodePoint of the node.</returns>
+        public NodePoint GetPoint(DarkScaryNode node)
+        {
+            if (nodePoints.ContainsKey(node))
+            {
+                return nodePoints[node];
+            }
+            throw new System.Collections.Generic.KeyNotFoundException($"There is no NodePoint in the scene " +
+                $"for the node {node.name}");
         }
     }
 

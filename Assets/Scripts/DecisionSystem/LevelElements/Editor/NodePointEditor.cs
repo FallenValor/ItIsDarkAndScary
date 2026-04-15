@@ -8,7 +8,6 @@
 *****************************************************************************/
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using Unity.Cinemachine;
 using Unity.Mathematics;
@@ -17,7 +16,6 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Splines;
-using XNode;
 
 namespace IDAS.Decisions.Editors
 {
@@ -26,7 +24,7 @@ namespace IDAS.Decisions.Editors
     {
         private int selectionIndex;
         private bool initialized;
-
+        private bool showChoicePoints;
 
         // Serialized Properties
         private SerializedProperty tree;
@@ -91,11 +89,14 @@ namespace IDAS.Decisions.Editors
 
                 DrawNodeSelector(point, nodeNames);
 
-                DrawConnections(point);
+                if (!point.IsDuplicate)
+                {
+                    DrawChoicePoints(point);
 
-                DrawItems(point);
+                    DrawItems(point);
 
-                // Draw Choice Points
+                    DrawConnections(point, splines);
+                }
             }
 
             //Show components if null.
@@ -151,26 +152,64 @@ namespace IDAS.Decisions.Editors
             GUI.enabled = true;
         }
 
-        private void DrawConnections(NodePoint point)
+        private void DrawChoicePoints(NodePoint point)
         {
-            // Show buttons for spline management.
-            if (!point.IsDuplicate && point.HasSplines)
+            // Draw Choice Points
+            if (point.Node is DecisionNode decisionNode && choicePoints.isArray)
             {
                 EditorGUILayout.Space(10);
-                EditorGUILayout.LabelField("Splines");
+                showChoicePoints = EditorGUILayout.Foldout(showChoicePoints, "Choice Points", EditorStyles.boldFont);
+                if (showChoicePoints)
+                {
+                    EditorGUI.indentLevel++;
+
+                    // Set the size of the choice points array.
+                    choicePoints.arraySize = decisionNode.Choices.Length;
+
+                    // Draw each choice point element.
+                    for (int i = 0; i < choicePoints.arraySize; i++)
+                    {
+                        EditorGUILayout.PropertyField(choicePoints.GetArrayElementAtIndex(i),
+                            new GUIContent(decisionNode.Choices[i].Name));
+                    }
+
+                    EditorGUI.indentLevel--;
+                }
+            }
+        }
+
+        private void DrawConnections(NodePoint point, SerializedProperty splinesProp)
+        {
+            // Show buttons for spline management.
+            if (point.HasSplines)
+            {
+                EditorGUILayout.Space(10);
+                EditorGUILayout.LabelField("Splines", EditorStyles.boldLabel);
+                EditorGUI.indentLevel++;
+
                 GUI.enabled = false;
                 EditorGUILayout.PropertyField(nextPoints);
-                EditorGUILayout.PropertyField(splines);
+                EditorGUILayout.PropertyField(splinesProp);
                 GUI.enabled = true;
                 // Update the splines for this node to another node.
                 if (GUILayout.Button("Create Splines"))
                 {
-                    CreateNodeSplines(point, splines, nextPoints);
+                    CreateNodeSplines(point, splinesProp, nextPoints);
                 }
                 // Update the splines for this node to another node.
                 if (GUILayout.Button("Update Spline End Points"))
                 {
                     UpdateSplineEndPoints(point);
+                }
+
+                EditorGUI.indentLevel--;
+            }
+            else if (splinesProp.arraySize > 0)
+            {
+                // Display a button to clear splines if the node should have no splines.
+                if (GUILayout.Button("Clear Splines"))
+                {
+                    ClearSplines(splinesProp, nextPoints);
                 }
             }
         }
@@ -180,10 +219,13 @@ namespace IDAS.Decisions.Editors
             // Draw an item field if this is an item node.
             if (point.Item != Items.ItemID.None)
             {
+
                 EditorGUILayout.Space(10);
-                EditorGUILayout.LabelField("Items");
+                EditorGUILayout.LabelField("Items", EditorStyles.boldLabel);
+                EditorGUI.indentLevel++;
                 EditorGUILayout.LabelField($"Item ID: {point.Item}");
                 EditorGUILayout.PropertyField(associatedItem);
+                EditorGUI.indentLevel--;
             }
         }
         #endregion
@@ -290,11 +332,12 @@ namespace IDAS.Decisions.Editors
         /// Automatically links this node to it's transition nodes with a cinemachine spline.
         /// </summary>
         /// <param name="point">The node point to update splines for.</param>
-        private void CreateNodeSplines(NodePoint point, SerializedProperty splinesProp, SerializedProperty nextPoints)
+        private void CreateNodeSplines(NodePoint point, SerializedProperty splinesProp, 
+            SerializedProperty nextPointsProp)
         {
             // Store existing spline and point arrays.
             SplineContainer[] oldSplines = PropertyToArray<SplineContainer>(splinesProp);
-            NodePoint[] oldNextPoints = PropertyToArray<NodePoint>(nextPoints);
+            NodePoint[] oldNextPoints = PropertyToArray<NodePoint>(nextPointsProp);
 
             // Find the other NodePoints in the scene.
             List<NodePoint> points = GetAllNodePointsInScene();
@@ -303,10 +346,10 @@ namespace IDAS.Decisions.Editors
             List<SplineContainer> toDelete = oldSplines.ToList();
 
             splinesProp.ClearArray();
-            nextPoints.ClearArray();
+            nextPointsProp.ClearArray();
 
             splinesProp.arraySize = nextNodes.Length;
-            nextPoints.arraySize = nextNodes.Length;
+            nextPointsProp.arraySize = nextNodes.Length;
             // Create new splines.
             for (int i = 0; i < nextNodes.Length; i++)
             {
@@ -323,7 +366,7 @@ namespace IDAS.Decisions.Editors
                     {
                         SetSplineEndPoint(existingSpline, linkedPoint.transform.position);
                         splinesProp.GetArrayElementAtIndex(i).objectReferenceValue = existingSpline;
-                        nextPoints.GetArrayElementAtIndex(i).objectReferenceValue = linkedPoint;
+                        nextPointsProp.GetArrayElementAtIndex(i).objectReferenceValue = linkedPoint;
                         toDelete.Remove(existingSpline);
                         continue;
                     }
@@ -351,7 +394,7 @@ namespace IDAS.Decisions.Editors
                 // Add the spline.
                 splineCont.Spline = spline;
                 splinesProp.GetArrayElementAtIndex(i).objectReferenceValue = splineCont;
-                nextPoints.GetArrayElementAtIndex(i).objectReferenceValue = linkedPoint;
+                nextPointsProp.GetArrayElementAtIndex(i).objectReferenceValue = linkedPoint;
             }
 
             // Clear unused splines.
@@ -360,6 +403,24 @@ namespace IDAS.Decisions.Editors
                 if (toDelete[i] == null) { continue; }
                 DestroyImmediate(toDelete[i].gameObject);
             }
+        }
+
+        /// <summary>
+        /// Clears all splines that extend from a given point point.
+        /// </summary>
+        /// <param name="splinesProp">The SerializedProperty of the splines array.</param>
+        /// <param name="nextPointsProp">The SerializedProperty for the next nodes array.</param>
+        private void ClearSplines(SerializedProperty splinesProp, SerializedProperty nextPointsProp)
+        {
+            SplineContainer[] splines = PropertyToArray<SplineContainer>(splinesProp);
+            foreach (SplineContainer spline in splines)
+            {
+                if (spline == null) { continue; }
+                DestroyImmediate(spline.gameObject);
+            }
+
+            splinesProp.ClearArray();
+            nextPointsProp.ClearArray();
         }
 
         /// <summary>

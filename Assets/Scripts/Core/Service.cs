@@ -47,7 +47,30 @@ namespace IDAS
         protected virtual void Initialize() { }
 
         /// <summary>
-        /// Initializes the service.
+        /// Begins the game with start of game logic.
+        /// </summary>
+        /// <returns></returns>
+        public virtual Task GameStartAsync(CancellationToken ct)
+        {
+            try
+            {
+                if (!ct.IsCancellationRequested)
+                {
+                    ct.ThrowIfCancellationRequested();
+                    ServiceStart();
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.LogException(ex);
+            }
+            return Task.CompletedTask;
+        }
+
+        protected virtual void ServiceStart() { }
+
+        /// <summary>
+        /// Deinitializes the service and cleans up.
         /// </summary>
         /// <returns></returns>
         public virtual Task DeinitializeAsync()
