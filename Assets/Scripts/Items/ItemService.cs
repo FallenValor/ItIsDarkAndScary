@@ -22,6 +22,7 @@ namespace IDAS.Decisions
         #endregion
 
         [SerializeField] private int maxItems;
+        [SerializeField] private ItemData[] itemDatabase;
 
         private ItemData[] heldItems;
 
