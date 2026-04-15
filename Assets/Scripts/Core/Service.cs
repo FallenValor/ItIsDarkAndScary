@@ -57,7 +57,7 @@ namespace IDAS
                 if (!ct.IsCancellationRequested)
                 {
                     ct.ThrowIfCancellationRequested();
-                    GameStart();
+                    ServiceStart();
                 }
             }
             catch (Exception ex)
@@ -67,7 +67,7 @@ namespace IDAS
             return Task.CompletedTask;
         }
 
-        protected virtual void GameStart() { }
+        protected virtual void ServiceStart() { }
 
         /// <summary>
         /// Deinitializes the service and cleans up.

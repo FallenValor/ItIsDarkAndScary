@@ -68,7 +68,7 @@ namespace IDAS.Decisions
         /// <summary>
         /// Initializes health.
         /// </summary>
-        protected override void GameStart()
+        protected override void ServiceStart()
         {
             try
             {

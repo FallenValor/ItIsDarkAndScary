@@ -72,7 +72,7 @@ namespace IDAS.UI
             }
 
 
-            string choiceString = $"{icons} {binding}. {choice.Name}";
+            string choiceString = $"{binding}. {choice.Name} {icons}";
             ChoiceString += choiceString + "\n";
         }
 
