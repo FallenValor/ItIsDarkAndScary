@@ -14,7 +14,7 @@ namespace IDAS.UI
 {
     public class DecisionUIService : UIService
     {
-        [SerializeField] private Transform defaultDisplayPosition;
+        [SerializeField] private ChoiceDisplay defaultDisplay;
         [SerializeField] private ChoiceDisplay displayPrefab;
 
         private DecisionTreeService decisionService;
@@ -59,7 +59,11 @@ namespace IDAS.UI
                 // Get the ChoiceDisplay to edit.
                 Transform choicePoint = i < point.ChoicePoints.Length ? point.ChoicePoints[i] : null;
                 ChoiceDisplay display;
-                if (displayDict.ContainsKey(choicePoint))
+                if (choicePoint == null)
+                {
+                    display = defaultDisplay;
+                }
+                else if (displayDict.ContainsKey(choicePoint))
                 {
                     display = displayDict[choicePoint];
                 }
@@ -67,7 +71,7 @@ namespace IDAS.UI
                 {
                     // Get a new display to use.
                     display = GetDisplay();
-                    display.SetTargetTransform(choicePoint, defaultDisplayPosition.position);
+                    display.SetTargetTransform(choicePoint);
                     displayDict.Add(choicePoint, display);
                     displayList.Add(display);
                 }
