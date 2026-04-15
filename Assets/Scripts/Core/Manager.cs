@@ -33,6 +33,11 @@ namespace IDAS
             serviceInstances = new Service[services.Length];
             for (int i = 0; i < services.Length; i++)
             {
+                if (services[i] == null)
+                {
+                    Debug.LogError($"Null Service Reference in manager {name} at index {i}");
+                    continue;
+                }
                 Service inst = Instantiate(services[i], ParentTransform);
                 serviceInstances[i] = inst;
                 ct.ThrowIfCancellationRequested();

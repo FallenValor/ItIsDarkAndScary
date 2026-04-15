@@ -24,7 +24,7 @@ namespace IDAS.Decisions
         [SerializeField] private int maxItems;
         [SerializeField] private ItemData[] itemDatabase;
 
-        private ItemData[] heldItems;
+        private ItemInstanceData[] heldItems;
 
         private PlayerController player;
         private SequencerService sequencer;
@@ -36,22 +36,29 @@ namespace IDAS.Decisions
         private class ItemData
         {
             [SerializeField] internal ItemID id;
-            [SerializeField] internal Item obj;
+            [SerializeField] internal Item prefab;
 
             internal ItemData(ItemID id, Item obj)
             {
                 this.id = id;
-                this.obj = obj;
+                this.prefab = obj;
             }
+        }
 
-            /// <summary>
-            /// Creates a new version of this class containing data for the prefab of the item.
-            /// </summary>
-            /// <returns></returns>
-            internal ItemData GetPrefabData()
+        [System.Serializable]
+        private class ItemInstanceData
+        {
+            [SerializeField] internal ItemData data;
+            [SerializeField] internal Item obj;
+
+            #region Properties
+            internal ItemID id => data.id;
+            #endregion
+
+            internal ItemInstanceData(ItemData data, Item obj)
             {
-                if (obj == null) { return null; }
-                return new ItemData(id, obj.Prefab);
+                this.data = data;
+                this.obj = obj;
             }
         }
         #endregion
@@ -74,7 +81,13 @@ namespace IDAS.Decisions
 
             sequencer = DecisionManager.GetService<SequencerService>();
 
-            // Load items from PersistentDataService.
+            // Reorder ItemDatabase for easy ID indexing.
+            ItemData[] database = itemDatabase;
+            itemDatabase = new ItemData[Enum.GetValues(typeof(ItemID)).Length];
+            for(int i = 0; i < database.Length; i++)
+            {
+                itemDatabase[i] = Array.Find(database, x => x.id == (ItemID)i);
+            }
         }
 
         /// <summary>
@@ -90,14 +103,16 @@ namespace IDAS.Decisions
             }
             catch (KeyNotFoundException)
             {
-                heldItems = new ItemData[maxItems];
+                heldItems = new ItemInstanceData[maxItems];
             }
-            BroadcastItemChangedEvent();
+            RegisterItemChange();
         }
 
-        private void BroadcastItemChangedEvent()
+        private void RegisterItemChange()
         {
             ItemsChangedEvent?.Invoke(heldItems.Select(x => x == null ? ItemID.None : x.id).ToArray());
+            // Update Persistent Data.
+            PersistentData.SaveData(ITEM_DATA_KEY, heldItems.Select(x => x == null ? null : x.data).ToArray());
         }
 
         /// <summary>
@@ -142,7 +157,7 @@ namespace IDAS.Decisions
             // Shift all items over 1 index.
             for(int i = 0; i < maxItems - 1; i++)
             {
-                ItemData current = heldItems[i];
+                ItemInstanceData current = heldItems[i];
                 heldItems[i + 1] = current;
                 // Update the item's hand location.
                 if (current != null && current.obj != null)
@@ -159,17 +174,14 @@ namespace IDAS.Decisions
                 itemObj = point.AssociatedItem;
             }
 
-            heldItems[0] = new ItemData(item, itemObj);
+            heldItems[0] = new ItemInstanceData(itemDatabase[(int)item], itemObj);
             if (heldItems[0].obj != null)
             {
                 // Update the item's hand location.
                 heldItems[0].obj.SetEquippedTransform(player.GetItemSlot(0));
             }
 
-            BroadcastItemChangedEvent();
-
-            // Update Persistent Data.
-            PersistentData.SaveData(ITEM_DATA_KEY, ExtractPrefabData(heldItems));
+            RegisterItemChange();
         }
 
         /// <summary>
@@ -180,14 +192,12 @@ namespace IDAS.Decisions
         {
             //Debug.Log("Removed " + itemId);
             int index = Array.FindIndex(heldItems, x => x.id == itemId);
-            ItemData data = heldItems[index];
+            ItemInstanceData data = heldItems[index];
             // Do cleanup on the removed item.
             data.obj.RemoveItem();
             heldItems[index] = null;
 
-            BroadcastItemChangedEvent();
-            // Update Persistent Data.
-            PersistentData.SaveData(ITEM_DATA_KEY, ExtractPrefabData(heldItems));
+            RegisterItemChange();
         }
 
         /// <summary>
@@ -203,36 +213,20 @@ namespace IDAS.Decisions
         // If I have time after playtest, swap this to a database.
         #region Item Data Management
         /// <summary>
-        /// Converts an array of item instance data to item prefab data.
-        /// </summary>
-        /// <param name="items"></param>
-        /// <returns></returns>
-        private ItemData[] ExtractPrefabData(ItemData[] items)
-        {
-            if (items == null) { return null; }
-            ItemData[] prefabItems = new ItemData[items.Length];
-            for(int i = 0; i < items.Length; i++)
-            {
-                if (items[i] == null) { continue; }
-                prefabItems[i] = items[i].GetPrefabData();
-            }
-            return prefabItems;
-        }
-
-        /// <summary>
         /// Instantiates an array of item data from prefabs.
         /// </summary>
         /// <param name="items"></param>
         /// <returns></returns>
-        private ItemData[] InstantiateItems(ItemData[] items)
+        private ItemInstanceData[] InstantiateItems(ItemData[] items)
         {
             if (items == null) { return null; }
-            ItemData[] instItems = new ItemData[items.Length];
+            ItemInstanceData[] instItems = new ItemInstanceData[items.Length];
             for (int i = 0; i < items.Length; i++)
             {
                 if (items[i] == null) { continue; }
-                Item spawnedItem = Instantiate(items[i].obj);
-                instItems[i] = new ItemData(items[i].id, spawnedItem);
+                Item spawnedItem = Instantiate(items[i].prefab);
+                instItems[i] = new ItemInstanceData(items[i], spawnedItem);
+                spawnedItem.SetEquippedTransform(player.GetItemSlot(i), true);
             }
             return instItems;
         }

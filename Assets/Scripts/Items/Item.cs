@@ -15,7 +15,6 @@ namespace IDAS.Items
     [RequireComponent(typeof(Rigidbody))]
     public class Item : MonoBehaviour
     {
-        [SerializeField] private Item itemPrefab;
         [SerializeField] private float lerpTime;
         [SerializeField] private AnimationCurve lerpCurve;
 
@@ -28,20 +27,22 @@ namespace IDAS.Items
         }
         #endregion
 
-
-        #region Properties
-        public Item Prefab => itemPrefab;
-        #endregion
-
         /// <summary>
         /// Sets this item as a child of the equpped transform and makes it LERP to it's new position.
         /// </summary>
         /// <param name="holder"></param>
-        public void SetEquippedTransform(Transform holder)
+        public void SetEquippedTransform(Transform holder, bool snap = false)
         {
             transform.SetParent(holder, true);
 
-            StartCoroutine(LerpToCenter());
+            if (snap)
+            {
+                transform.localPosition = Vector3.zero;
+            }
+            else
+            {
+                StartCoroutine(LerpToCenter());
+            }  
         }
 
         /// <summary>
@@ -61,6 +62,7 @@ namespace IDAS.Items
                 timer += Time.deltaTime;
                 yield return null;
             }
+            transform.localPosition = Vector3.zero;
         }
 
         /// <summary>
