@@ -39,7 +39,6 @@ namespace IDAS.UI
         /// <param name="obj">The node to display the flavor text of.</param>
         private void DisplayFlavorText(DarkScaryNode obj)
         {
-            Debug.Log(obj);
             textDisplay.text = obj.Flavor;
         }
 

@@ -9,7 +9,6 @@
 using NaughtyAttributes;
 using System;
 using System.Threading;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -59,6 +58,36 @@ namespace IDAS.Decisions
         }
 
         /// <summary>
+        /// Returns to the main menu after a specified death delay.
+        /// </summary>
+        private void MoveToNextSceneDelayed()
+        {
+            async Awaitable MoveToNextSceneWrapper(CancellationToken ct)
+            {
+                try
+                {
+                    await Awaitable.WaitForSecondsAsync(sceneTransitionDelay, ct);
+                }
+                catch (OperationCanceledException)
+                {
+                    Debug.LogWarning("Operation Cancelled");
+                }
+                SceneManager.LoadScene(nextScene);
+            }
+
+            if (isVictory)
+            {
+                WinGameEvent?.Invoke();
+                MoveToMainMenuDelayed();
+            }
+            else
+            {
+                // Queue the MoveToPoint call with the SequencerService.
+                sequencer.QueueAction(MoveToNextSceneWrapper);
+            }
+        }
+
+        /// <summary>
         /// Returns to the main menu.
         /// </summary>
         public void MoveToMainMenu()
@@ -85,27 +114,6 @@ namespace IDAS.Decisions
             }
             // Queue the MoveToPoint call with the SequencerService.
             sequencer.QueueAction(MoveToMainMenuWrapper);
-        }
-
-        /// <summary>
-        /// Returns to the main menu after a specified death delay.
-        /// </summary>
-        private void MoveToNextSceneDelayed()
-        {
-            async Awaitable MoveToNextSceneWrapper(CancellationToken ct)
-            {
-                try
-                {
-                    await Awaitable.WaitForSecondsAsync(sceneTransitionDelay, ct);
-                }
-                catch (OperationCanceledException)
-                {
-                    Debug.LogWarning("Operation Cancelled");
-                }
-                MoveToNextScene();
-            }
-            // Queue the MoveToPoint call with the SequencerService.
-            sequencer.QueueAction(MoveToNextSceneWrapper);
         }
     }
 }
