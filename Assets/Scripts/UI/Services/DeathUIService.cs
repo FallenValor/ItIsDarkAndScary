@@ -4,7 +4,7 @@
 // Creation Date : 4/15/2026
 // Last Modified : 4/15/2026
 //
-// Brief Description : Displays UI for when the player dies or completes the game.
+// Brief Description : Displays UI for when the player dies game.
 *****************************************************************************/
 using IDAS.Decisions;
 using System.Collections;

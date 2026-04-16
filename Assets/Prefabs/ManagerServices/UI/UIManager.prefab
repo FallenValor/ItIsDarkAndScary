@@ -52,5 +52,6 @@ MonoBehaviour:
   - {fileID: 4098165887104510825, guid: a2dc6cbd2ea89b94c92b04a0a2f1f20e, type: 3}
   - {fileID: 7216956375309943111, guid: 3f2fd9e21a4e6044ab2105b78226f671, type: 3}
   - {fileID: 5906951652430644459, guid: 255a7652fbbcf724fa2880867a5a5039, type: 3}
+  - {fileID: 3225434289836167978, guid: 6ab4541d1885a8f4189341ac694b0f24, type: 3}
   canvasPrefab: {fileID: 5789463987370740381, guid: ed09def9561255844a63f4d26f522350, type: 3}
   eventSystemPrefab: {fileID: 1183968719894883271, guid: d11d8a5909e54ab4380fcbb9991285c9, type: 3}
