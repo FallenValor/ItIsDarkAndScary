@@ -53,16 +53,58 @@ MonoBehaviour:
     m_GlyphIndex: 4
     m_Scale: 1
     m_Name: SpookyKey
+  - m_ElementType: 2
+    m_Unicode: 65534
+    m_GlyphIndex: 0
+    m_Scale: 1
+    m_Name: Hatchet
+  - m_ElementType: 2
+    m_Unicode: 65534
+    m_GlyphIndex: 1
+    m_Scale: 1
+    m_Name: Torch
   m_GlyphTable:
+  - m_Index: 0
+    m_Metrics:
+      m_Width: 60
+      m_Height: 60
+      m_HorizontalBearingX: 0.5
+      m_HorizontalBearingY: 50
+      m_HorizontalAdvance: 60
+    m_GlyphRect:
+      m_X: 180
+      m_Y: 0
+      m_Width: 60
+      m_Height: 60
+    m_Scale: 1
+    m_AtlasIndex: 0
+    m_ClassDefinitionType: 0
+    sprite: {fileID: 406988986, guid: 52c5876e122fe17469a441eba8cb0b83, type: 3}
+  - m_Index: 1
+    m_Metrics:
+      m_Width: 60
+      m_Height: 60
+      m_HorizontalBearingX: 0.5
+      m_HorizontalBearingY: 50
+      m_HorizontalAdvance: 60
+    m_GlyphRect:
+      m_X: 240
+      m_Y: 0
+      m_Width: 60
+      m_Height: 60
+    m_Scale: 1
+    m_AtlasIndex: 0
+    m_ClassDefinitionType: 0
+    sprite: {fileID: -80822608, guid: 52c5876e122fe17469a441eba8cb0b83, type: 3}
   - m_Index: 2
     m_Metrics:
       m_Width: 114
       m_Height: 106
-      m_HorizontalBearingX: -26.7
-      m_HorizontalBearingY: 89.1
-      m_HorizontalAdvance: 87.8
+      m_HorizontalBearingX: -12
+      m_HorizontalBearingY: 80
+      m_HorizontalAdvance: 60
     m_GlyphRect:
-      m_X: -17
+      m_X: 0
       m_Y: 0
       m_Width: 60
       m_Height: 60
@@ -74,8 +116,8 @@ MonoBehaviour:
     m_Metrics:
       m_Width: 60
       m_Height: 60
-      m_HorizontalBearingX: -7.8
-      m_HorizontalBearingY: 49.6
+      m_HorizontalBearingX: 0.5
+      m_HorizontalBearingY: 50
       m_HorizontalAdvance: 60
     m_GlyphRect:
       m_X: 60
@@ -90,8 +132,8 @@ MonoBehaviour:
     m_Metrics:
       m_Width: 60
       m_Height: 60
-      m_HorizontalBearingX: -13.2
-      m_HorizontalBearingY: 51.7
+      m_HorizontalBearingX: 0.5
+      m_HorizontalBearingY: 50
       m_HorizontalAdvance: 60
     m_GlyphRect:
       m_X: 120

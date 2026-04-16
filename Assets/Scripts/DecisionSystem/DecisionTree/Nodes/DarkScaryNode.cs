@@ -22,6 +22,7 @@ namespace IDAS
         #region Properties
         public virtual bool RandomSelectable => true;
         public virtual bool HasOut => true;
+        public string Flavor => flavor;
         #endregion
 
         /// <summary>
