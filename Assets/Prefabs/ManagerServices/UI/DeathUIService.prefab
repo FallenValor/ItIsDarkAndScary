@@ -187,7 +187,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.UI.DeathUIService
   deathText: {fileID: 9019720976641198285}
   animationDuration: 5
-  minFontSize: 75
+  minFontSize: 100
   maxFontSize: 150
   opacityCurve:
     serializedVersion: 2
@@ -195,12 +195,12 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 2
-      outSlope: 2
+      inSlope: 3.8441527
+      outSlope: 3.8441527
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0
+      outWeight: 0.061111134
     - serializedVersion: 3
       time: 0.5
       value: 1
@@ -213,11 +213,11 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 1
       value: 0
-      inSlope: -2.6086998
-      outSlope: -2.6086998
+      inSlope: -4.8888917
+      outSlope: -4.8888917
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.12777758
+      inWeight: 0.049999952
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
