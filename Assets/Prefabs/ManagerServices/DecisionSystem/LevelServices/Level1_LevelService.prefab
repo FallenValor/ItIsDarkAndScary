@@ -46,5 +46,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.Decisions.LevelService
   isVictory: 0
   nextScene: CellerScene
-  mainMenuDelay: 5
+  sceneTransitionDelay: 5
   mainMenuScene: MainMenu

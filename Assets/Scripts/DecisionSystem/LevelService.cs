@@ -19,7 +19,7 @@ namespace IDAS.Decisions
     {
         [SerializeField] private bool isVictory;
         [SerializeField, Scene, HideIf("isVictory")] private string nextScene;
-        [SerializeField] private float mainMenuDelay;
+        [SerializeField] private float sceneTransitionDelay;
         [SerializeField, Scene] private string mainMenuScene;
 
 
@@ -33,12 +33,12 @@ namespace IDAS.Decisions
         protected override void Initialize()
         {
             sequencer = DecisionManager.GetService<SequencerService>();
-            DecisionManager.GetService<DecisionTreeService>().TreeEndEvent += MoveToNextScene;
+            DecisionManager.GetService<DecisionTreeService>().TreeEndEvent += MoveToNextSceneDelayed;
             HealthService.LoseGameEvent += MoveToMainMenuDelayed;
         }
         public override void Deinitialize()
         {
-            DecisionManager.GetService<DecisionTreeService>().TreeEndEvent -= MoveToNextScene;
+            DecisionManager.GetService<DecisionTreeService>().TreeEndEvent -= MoveToNextSceneDelayed;
             HealthService.LoseGameEvent -= MoveToMainMenuDelayed;
         }
 
@@ -75,7 +75,7 @@ namespace IDAS.Decisions
             {
                 try
                 {
-                    await Awaitable.WaitForSecondsAsync(mainMenuDelay, ct);
+                    await Awaitable.WaitForSecondsAsync(sceneTransitionDelay, ct);
                 }
                 catch (OperationCanceledException)
                 {
@@ -85,6 +85,27 @@ namespace IDAS.Decisions
             }
             // Queue the MoveToPoint call with the SequencerService.
             sequencer.QueueAction(MoveToMainMenuWrapper);
+        }
+
+        /// <summary>
+        /// Returns to the main menu after a specified death delay.
+        /// </summary>
+        private void MoveToNextSceneDelayed()
+        {
+            async Awaitable MoveToNextSceneWrapper(CancellationToken ct)
+            {
+                try
+                {
+                    await Awaitable.WaitForSecondsAsync(sceneTransitionDelay, ct);
+                }
+                catch (OperationCanceledException)
+                {
+                    Debug.LogWarning("Operation Cancelled");
+                }
+                MoveToNextScene();
+            }
+            // Queue the MoveToPoint call with the SequencerService.
+            sequencer.QueueAction(MoveToNextSceneWrapper);
         }
     }
 }
