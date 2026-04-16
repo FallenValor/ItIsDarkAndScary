@@ -73,7 +73,14 @@ namespace IDAS.Decisions
         {
             async Awaitable MoveToMainMenuWrapper(CancellationToken ct)
             {
-                await Awaitable.WaitForSecondsAsync(mainMenuDelay, ct);
+                try
+                {
+                    await Awaitable.WaitForSecondsAsync(mainMenuDelay, ct);
+                }
+                catch (OperationCanceledException)
+                {
+                    Debug.LogWarning("Operation Cancelled");
+                }
                 MoveToMainMenu();
             }
             // Queue the MoveToPoint call with the SequencerService.

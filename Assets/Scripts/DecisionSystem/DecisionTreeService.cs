@@ -27,6 +27,8 @@ namespace IDAS.Decisions
         private TimerService timer;
 
         #region Events
+        public event Action<DarkScaryNode> OnEnterNode;
+        public event Action<DarkScaryNode> OnExitNode;
         public event Action<DarkScaryNode, int, DarkScaryNode> MakeDecisionEvent;
         public event Action<DecisionNode, NodePoint> ReachDecisionEvent;
         public event Action TreeEndEvent;
@@ -64,6 +66,7 @@ namespace IDAS.Decisions
             // Clean up the current node.
             if (currentNode != null)
             {
+                OnExitNode?.Invoke(currentNode);
                 currentNode.OnNodeExit(this);
             }
             currentNode = null;
@@ -78,6 +81,7 @@ namespace IDAS.Decisions
             // Clean up the current node.
             if (currentNode != null)
             {
+                OnExitNode?.Invoke(currentNode);
                 currentNode.OnNodeExit(this);
             }
             currentNode = node;
@@ -85,6 +89,7 @@ namespace IDAS.Decisions
             if (currentNode != null)
             {
                 currentNode.OnNodeEnter(this);
+                OnEnterNode?.Invoke(currentNode);
             }
         }
 
@@ -95,10 +100,17 @@ namespace IDAS.Decisions
         /// <param name="decisionIndex">The index of the decision made.</param>
         public void MoveToNode(DarkScaryNode nextNode, int decisionIndex)
         {
+            // Add a reset of the current node to the sequencer.
+            Awaitable ResetNodeWrapper(CancellationToken ct)
+            {
+                ct.ThrowIfCancellationRequested();
+                ResetCurrentNode();
+                return Awaitable.NextFrameAsync();
+            }
+            sequencer.QueueAction(ResetNodeWrapper);
+
             // Broadcast that a decision has been made.
             MakeDecisionEvent?.Invoke(currentNode, decisionIndex, nextNode);
-
-            ResetCurrentNode();
 
             // Queue a SetCurrentNode call in the SequencerService.
             Awaitable SetNodeWrapper(CancellationToken ct)
