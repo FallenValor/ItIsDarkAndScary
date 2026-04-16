@@ -35230,6 +35230,63 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+--- !u!1001 &1440207077
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2540109258014847447, guid: fcd4207222b0566478378acd316ce1c4, type: 3}
+      propertyPath: m_Name
+      value: ApplicationManager (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3121887343321938645, guid: fcd4207222b0566478378acd316ce1c4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 6.16754
+      objectReference: {fileID: 0}
+    - target: {fileID: 3121887343321938645, guid: fcd4207222b0566478378acd316ce1c4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 8.03371
+      objectReference: {fileID: 0}
+    - target: {fileID: 3121887343321938645, guid: fcd4207222b0566478378acd316ce1c4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 18.59168
+      objectReference: {fileID: 0}
+    - target: {fileID: 3121887343321938645, guid: fcd4207222b0566478378acd316ce1c4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3121887343321938645, guid: fcd4207222b0566478378acd316ce1c4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3121887343321938645, guid: fcd4207222b0566478378acd316ce1c4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3121887343321938645, guid: fcd4207222b0566478378acd316ce1c4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3121887343321938645, guid: fcd4207222b0566478378acd316ce1c4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3121887343321938645, guid: fcd4207222b0566478378acd316ce1c4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3121887343321938645, guid: fcd4207222b0566478378acd316ce1c4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: fcd4207222b0566478378acd316ce1c4, type: 3}
 --- !u!43 &1444154773
 Mesh:
   m_ObjectHideFlags: 0
@@ -40888,52 +40945,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 86739c4316bd85b4f94d281df12940a8, type: 3}
---- !u!1 &1751338176
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1751338177}
-  - component: {fileID: 1751338178}
-  m_Layer: 0
-  m_Name: ApplicationManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1751338177
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1751338176}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1751338178
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1751338176}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ff53f06dd528de4daa47df6f2375965, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ApplicationManager
-  managers:
-  - {fileID: 81364017700269550, guid: c25d9478d0d3ba34a9b223560d90790b, type: 3}
 --- !u!1 &1751658902
 GameObject:
   m_ObjectHideFlags: 0
@@ -48262,9 +48273,9 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 1440207077}
   - {fileID: 6366679255264160884}
   - {fileID: 2104440589}
-  - {fileID: 1751338177}
   - {fileID: 1105311344}
   - {fileID: 851104842}
   - {fileID: 1659043176}
