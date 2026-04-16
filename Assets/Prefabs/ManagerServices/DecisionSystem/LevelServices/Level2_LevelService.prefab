@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3af6aad36ca746f4a872b0e4fc3aebbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.Decisions.LevelService
-  deathDelay: 5
+  isVictory: 1
   nextScene: MansionScene
+  mainMenuDelay: 5
   mainMenuScene: MainMenu

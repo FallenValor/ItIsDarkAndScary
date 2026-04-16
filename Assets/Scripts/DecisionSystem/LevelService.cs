@@ -7,6 +7,7 @@
 // Brief Description : Controls moving between levels when a tree is completed.
 *****************************************************************************/
 using NaughtyAttributes;
+using System;
 using System.Threading;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -16,11 +17,15 @@ namespace IDAS.Decisions
 {
     public class LevelService : DecisionService
     {
-        [SerializeField] private float deathDelay;
-        [SerializeField, Scene] private string nextScene;
+        [SerializeField] private bool isVictory;
+        [SerializeField, Scene, HideIf("isVictory")] private string nextScene;
+        [SerializeField] private float mainMenuDelay;
         [SerializeField, Scene] private string mainMenuScene;
 
+
         private SequencerService sequencer;
+
+        public static event Action WinGameEvent;
 
         /// <summary>
         /// Setup event references.
@@ -29,12 +34,12 @@ namespace IDAS.Decisions
         {
             sequencer = DecisionManager.GetService<SequencerService>();
             DecisionManager.GetService<DecisionTreeService>().TreeEndEvent += MoveToNextScene;
-            HealthService.LoseGameEvent += OnDeath;
+            HealthService.LoseGameEvent += MoveToMainMenuDelayed;
         }
         public override void Deinitialize()
         {
             DecisionManager.GetService<DecisionTreeService>().TreeEndEvent -= MoveToNextScene;
-            HealthService.LoseGameEvent -= OnDeath;
+            HealthService.LoseGameEvent -= MoveToMainMenuDelayed;
         }
 
         /// <summary>
@@ -42,7 +47,15 @@ namespace IDAS.Decisions
         /// </summary>
         public void MoveToNextScene()
         {
-            SceneManager.LoadScene(nextScene);
+            if (isVictory)
+            {
+                WinGameEvent?.Invoke();
+                MoveToMainMenuDelayed();
+            }
+            else
+            {
+                SceneManager.LoadScene(nextScene);
+            }
         }
 
         /// <summary>
@@ -56,11 +69,11 @@ namespace IDAS.Decisions
         /// <summary>
         /// Returns to the main menu after a specified death delay.
         /// </summary>
-        private void OnDeath()
+        private void MoveToMainMenuDelayed()
         {
             async Awaitable MoveToMainMenuWrapper(CancellationToken ct)
             {
-                await Awaitable.WaitForSecondsAsync(deathDelay, ct);
+                await Awaitable.WaitForSecondsAsync(mainMenuDelay, ct);
                 MoveToMainMenu();
             }
             // Queue the MoveToPoint call with the SequencerService.
