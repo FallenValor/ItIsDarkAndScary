@@ -38,14 +38,14 @@ namespace IDAS.UI
         /// <summary>
         /// Updates the icons shown on the UI.
         /// </summary>
-        /// <param name="itemIDs">The array of item ID's that the player is holding.</param>
-        private void UpdateItemIcons(ItemID[] itemIDs)
+        /// <param name="itemData">The array of item ID's that the player is holding.</param>
+        private void UpdateItemIcons(ItemData[] itemData)
         {
             Debug.Log("Updating items");
-            for(int i = 0; i < itemIDs.Length && i < iconImages.Length; i++)
+            for(int i = 0; i < itemData.Length && i < iconImages.Length; i++)
             {
                 // Show no icon for Item.none
-                if (itemIDs[i] == ItemID.None)
+                if (itemData[i] == null || itemData[i].id == ItemID.None)
                 {
                     iconImages[i].gameObject.SetActive(false);
                     continue;
@@ -53,9 +53,7 @@ namespace IDAS.UI
                 else
                 {
                     iconImages[i].gameObject.SetActive(true);
-                    int iconIndex = (int)itemIDs[i] - 1;
-                    Sprite itemSprite = iconIndex < itemIcons.Length ?
-                        itemIcons[iconIndex] : defaultIcon;
+                    Sprite itemSprite = itemData[i].icon != null ? itemData[i].icon : defaultIcon;
                     iconImages[i].sprite = itemSprite;
                 }
             }

@@ -112,7 +112,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ad1e46de1e43c44469a3120e042bbebd
+      spriteID: b5e56e29762819648a14ddb76e5b560c
       internalID: 59996823
       vertices: []
       indices: 
@@ -134,7 +134,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 62015ece309761c468c0fedfc1583260
+      spriteID: 48e3c83ab96a95843b46e0bace26f7e5
       internalID: -1994728353
       vertices: []
       indices: 
@@ -156,8 +156,52 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8f51bfb7c0fcf97438f3eea3778c6499
+      spriteID: ddecf2296891bfb43bf3b4bbeb0db25c
       internalID: 897238700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hatchet
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 0
+        width: 60
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f4c0945881a7b804fb633092ad5ca6b3
+      internalID: 406988986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Torch
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 0
+        width: 60
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2936e2f33f17abb479397dffa1d30e9c
+      internalID: -80822608
       vertices: []
       indices: 
       edges: []
@@ -179,8 +223,10 @@ TextureImporter:
         value: '{"sliceOnImport":false,"gridCellCount":{"x":7.0,"y":1.0},"gridSpriteSize":{"x":60.0,"y":60.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       AlcoholBottle: -1994728353
+      Hatchet: 406988986
       SpookyKey: 897238700
       Stamina: 59996823
+      Torch: -80822608
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

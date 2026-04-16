@@ -29,22 +29,9 @@ namespace IDAS.Decisions
         private PlayerController player;
         private SequencerService sequencer;
 
-        public event Action<ItemID[]> ItemsChangedEvent;
+        public event Action<ItemData[]> ItemsChangedEvent;
 
         #region Nested
-        [System.Serializable]
-        private class ItemData
-        {
-            [SerializeField] internal ItemID id;
-            [SerializeField] internal Item prefab;
-
-            internal ItemData(ItemID id, Item obj)
-            {
-                this.id = id;
-                this.prefab = obj;
-            }
-        }
-
         [System.Serializable]
         private class ItemInstanceData
         {
@@ -110,7 +97,7 @@ namespace IDAS.Decisions
 
         private void RegisterItemChange()
         {
-            ItemsChangedEvent?.Invoke(heldItems.Select(x => x == null ? ItemID.None : x.id).ToArray());
+            ItemsChangedEvent?.Invoke(heldItems.Select(x => x == null ? null : x.data).ToArray());
             // Update Persistent Data.
             PersistentData.SaveData(ITEM_DATA_KEY, heldItems.Select(x => x == null ? null : x.data).ToArray());
         }
@@ -208,6 +195,16 @@ namespace IDAS.Decisions
         public bool HasItem(ItemID itemId)
         {
             return heldItems.Any(x => x != null && x.id == itemId);
+        }
+
+        /// <summary>
+        /// Gets the corresponding item data for a given item ID.
+        /// </summary>
+        /// <param name="itemId"></param>
+        /// <returns></returns>
+        public ItemData GetItemData(ItemID itemId)
+        {
+            return itemDatabase[(int)itemId];
         }
 
         // If I have time after playtest, swap this to a database.
