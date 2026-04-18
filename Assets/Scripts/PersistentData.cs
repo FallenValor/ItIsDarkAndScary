@@ -61,5 +61,13 @@ namespace IDAS
             }
             throw new KeyNotFoundException("Could not find PersistentData saved under the key " + key);
         }
+
+        /// <summary>
+        /// Clears all stored persistent data.
+        /// </summary>
+        public static void ClearData()
+        {
+            persistentDataDict.Clear();
+        }
     }
 }
