@@ -6,11 +6,6 @@
 //
 // Brief Description : Base class for services that manage the UI.
 *****************************************************************************/
-using IDAS.Decisions;
-using System;
-using UnityEditor.PackageManager;
-using UnityEngine;
-
 namespace IDAS.UI
 {
     public class UIService : Service
