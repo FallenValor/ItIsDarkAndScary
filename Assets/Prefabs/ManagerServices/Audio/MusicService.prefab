@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4233912711644445951
+--- !u!1 &5366009064515535491
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,44 +8,46 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7608315087374373287}
-  - component: {fileID: 6867018859651855959}
+  - component: {fileID: 11100888753868904}
+  - component: {fileID: 223442051742445072}
   m_Layer: 0
-  m_Name: AudioManager
+  m_Name: MusicService
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7608315087374373287
+--- !u!4 &11100888753868904
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4233912711644445951}
+  m_GameObject: {fileID: 5366009064515535491}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.42397, y: 5.79555, z: -0.09}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6867018859651855959
+--- !u!114 &223442051742445072
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4233912711644445951}
+  m_GameObject: {fileID: 5366009064515535491}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 195df513acc56bf4ea1d3adda5346723, type: 3}
+  m_Script: {fileID: 11500000, guid: f7bfa5169a31c884995779326817c6e6, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::IDAS.Audio.AudioManager
-  services:
-  - {fileID: 3645272925143859570, guid: 06ecacefe304b8f4395f6c3e021bda88, type: 3}
-  - {fileID: 5286027712301834436, guid: 4f523891d540f8340819b15d2fc4b9ee, type: 3}
-  - {fileID: 1698010386448813955, guid: c6bf4a95773932d4295431a05e01c78e, type: 3}
-  - {fileID: 223442051742445072, guid: 3a20d32ba03686b40be58c9306f255c0, type: 3}
+  m_EditorClassIdentifier: Assembly-CSharp::IDAS.Audio.MusicService
+  musicEvent:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 

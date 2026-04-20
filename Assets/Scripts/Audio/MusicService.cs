@@ -16,11 +16,25 @@ namespace IDAS.Audio
     {
         [SerializeField] private EventReference musicEvent;
 
+        private EventInstance musicInstance;
 
-
+        #region Instance Handling
         protected override void Initialize()
         {
-            base.Initialize();
+            musicInstance = RuntimeManager.CreateInstance(musicEvent);
         }
+
+        protected override void ServiceStart()
+        {
+            musicInstance.start();
+        }
+
+        public override void Deinitialize()
+        {
+            musicInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        }
+        #endregion
+
+        // Add parameter adjusting here.
     }
 }
