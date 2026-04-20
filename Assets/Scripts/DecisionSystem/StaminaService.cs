@@ -35,21 +35,22 @@ namespace IDAS.Decisions
                 int change = stamina - oldStamina;
                 StaminaUpdateEvent?.Invoke(change, stamina);
                 Debug.Log("Stamina is now " + stamina);
-                PersistentData.SaveData(STAMINA_KEY, stamina);
+                //PersistentData.SaveData(STAMINA_KEY, stamina);
             }
         }
         #endregion
 
         protected override void ServiceStart()
         {
-            try
-            { 
-                Stamina = PersistentData.RetrieveData<int>(STAMINA_KEY);
-            }
-            catch (KeyNotFoundException)
-            {
-                ResetStamina();
-            }
+            ResetStamina();
+            //try
+            //{ 
+            //    Stamina = PersistentData.RetrieveData<int>(STAMINA_KEY);
+            //}
+            //catch (KeyNotFoundException)
+            //{
+                
+            //}
         }
 
         /// <summary>

@@ -16,6 +16,12 @@ namespace IDAS.UI
     {
         [SerializeField, Scene] private string startingScene;
 
+        private void Awake()
+        {
+            // Clear all persistent data when the main menu is entered.
+            PersistentData.ClearData();
+        }
+
         public void Play()
         {
             SceneManager.LoadScene(startingScene);
