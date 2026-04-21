@@ -90,6 +90,7 @@ namespace IDAS.Decisions
             {
                 currentNode.OnNodeEnter(this);
                 OnEnterNode?.Invoke(currentNode);
+                DecisionManager.GetPoint(currentNode).OnPointVisited();
             }
         }
 
@@ -233,7 +234,10 @@ namespace IDAS.Decisions
             ReachDecisionEvent?.Invoke(decisionNode, DecisionManager.GetPoint(decisionNode));
 
             // Start the timer.
-            timer.StartTimer();
+            if (currentDecision.Timed)
+            {
+                timer.StartTimer();
+            }
         }
         #endregion
 
