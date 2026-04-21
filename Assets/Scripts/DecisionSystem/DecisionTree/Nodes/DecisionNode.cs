@@ -22,6 +22,7 @@ namespace IDAS
         public const string CHOICE_PORT_NAME = "choices";
         #endregion
 
+        [field: SerializeField] public bool Timed {  get; private set; }
         [SerializeField, Output(dynamicPortList = true, connectionType = ConnectionType.Override)] 
         private Choice[] choices;
 

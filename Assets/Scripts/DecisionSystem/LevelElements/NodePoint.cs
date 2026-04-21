@@ -11,6 +11,7 @@ using IDAS.Decisions.Tree;
 using IDAS.Items;
 using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Splines;
 
 namespace IDAS.Decisions
@@ -37,6 +38,8 @@ namespace IDAS.Decisions
 
         [Header("Components")]
         [SerializeField] private CinemachineCamera cCam;
+
+        [SerializeField] private UnityEvent NodeVisitedEvent;
 
 
 
@@ -75,6 +78,14 @@ namespace IDAS.Decisions
         private void Reset()
         {
             cCam = GetComponentInChildren<CinemachineCamera>();
+        }
+
+        /// <summary>
+        /// Called when this node point is visited by the player.
+        /// </summary>
+        public void OnPointVisited()
+        {
+            NodeVisitedEvent?.Invoke();
         }
     }
 }

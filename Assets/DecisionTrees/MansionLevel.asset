@@ -59,6 +59,7 @@ MonoBehaviour:
     item: 0
     consume: 0
   flavor: Run. Now. Run.
+  <Timed>k__BackingField: 0
   choices:
   - name: Jump down
     stamina: 1
@@ -136,6 +137,7 @@ MonoBehaviour:
     item: 0
     consume: 0
   flavor: "It doesn\u2019t seem too dangerous, just dark..."
+  <Timed>k__BackingField: 0
   choices:
   - name: Use left door
     stamina: 0
@@ -204,6 +206,7 @@ MonoBehaviour:
     item: 0
     consume: 0
   flavor: I locked the gate, a moment to breathe...
+  <Timed>k__BackingField: 0
   choices:
   - name: Rest
     stamina: 0
@@ -324,6 +327,7 @@ MonoBehaviour:
     item: 0
     consume: 0
   flavor: "Said it\u2019s dangerous... Why?"
+  <Timed>k__BackingField: 0
   choices:
   - name: Door's already open
     stamina: 0
@@ -388,6 +392,7 @@ MonoBehaviour:
     item: 0
     consume: 0
   flavor: Uneaten food? A bit spooky...
+  <Timed>k__BackingField: 0
   choices:
   - name: Enter passageway
     stamina: 0
@@ -468,6 +473,7 @@ MonoBehaviour:
     item: 0
     consume: 0
   flavor: Why is my hair standing on end...
+  <Timed>k__BackingField: 0
   choices:
   - name: Use left door
     stamina: 0
@@ -609,6 +615,7 @@ MonoBehaviour:
     item: 0
     consume: 0
   flavor: Why is it so quiet now...
+  <Timed>k__BackingField: 0
   choices:
   - name: Enter door
     stamina: 0
@@ -677,6 +684,7 @@ MonoBehaviour:
     item: 0
     consume: 0
   flavor: Meals never served...
+  <Timed>k__BackingField: 0
   choices:
   - name: Grab the wine bottle
     stamina: 0
@@ -775,6 +783,7 @@ MonoBehaviour:
     item: 0
     consume: 0
   flavor: I can still hear the music...
+  <Timed>k__BackingField: 0
   choices:
   - name: Grab the key
     stamina: 0
@@ -842,6 +851,7 @@ MonoBehaviour:
     item: 0
     consume: 0
   flavor: "A sound behind. Something\u2019s coming."
+  <Timed>k__BackingField: 0
   choices:
   - name: Enter poolroom
     stamina: 0
@@ -976,6 +986,7 @@ MonoBehaviour:
     item: 0
     consume: 0
   flavor: I could use this.
+  <Timed>k__BackingField: 0
   choices:
   - name: Use key
     stamina: 0
@@ -1041,6 +1052,7 @@ MonoBehaviour:
     item: 0
     consume: 0
   flavor: Mom said to be careful of the house on the hill.
+  <Timed>k__BackingField: 0
   choices:
   - name: Aproach
     stamina: 0
@@ -1108,6 +1120,7 @@ MonoBehaviour:
     item: 0
     consume: 0
   flavor: The door opened.
+  <Timed>k__BackingField: 0
   choices:
   - name: Enter patio
     stamina: 0
@@ -1172,6 +1185,7 @@ MonoBehaviour:
     item: 0
     consume: 0
   flavor: I can almost see the dancers...
+  <Timed>k__BackingField: 0
   choices:
   - name: Move farther
     stamina: 0
