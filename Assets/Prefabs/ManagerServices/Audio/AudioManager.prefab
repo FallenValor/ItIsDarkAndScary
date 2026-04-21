@@ -46,6 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.Audio.AudioManager
   services:
   - {fileID: 3645272925143859570, guid: 06ecacefe304b8f4395f6c3e021bda88, type: 3}
-  - {fileID: 5286027712301834436, guid: 4f523891d540f8340819b15d2fc4b9ee, type: 3}
   - {fileID: 1698010386448813955, guid: c6bf4a95773932d4295431a05e01c78e, type: 3}
+  - {fileID: 5286027712301834436, guid: 4f523891d540f8340819b15d2fc4b9ee, type: 3}
   - {fileID: 223442051742445072, guid: 3a20d32ba03686b40be58c9306f255c0, type: 3}
