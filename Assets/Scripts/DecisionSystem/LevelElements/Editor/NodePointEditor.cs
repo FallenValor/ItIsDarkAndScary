@@ -42,6 +42,8 @@ namespace IDAS.Decisions.Editors
 
         private SerializedProperty cCam;
 
+        private SerializedProperty NodeVisitedEvent;
+
         /// <summary>
         /// Initialize SerializedProperties
         /// </summary>
@@ -60,6 +62,7 @@ namespace IDAS.Decisions.Editors
             isDuplicate = serializedObject.FindProperty(nameof(isDuplicate));
 
             cCam = serializedObject.FindProperty(nameof(cCam));
+            NodeVisitedEvent = serializedObject.FindProperty(nameof(NodeVisitedEvent));
         }
 
 
@@ -97,6 +100,9 @@ namespace IDAS.Decisions.Editors
 
                     DrawConnections(point, splines);
                 }
+
+                EditorGUILayout.Space(10);
+                EditorGUILayout.PropertyField(NodeVisitedEvent);
             }
 
             //Show components if null.

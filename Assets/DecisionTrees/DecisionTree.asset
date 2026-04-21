@@ -168,6 +168,7 @@ MonoBehaviour:
     item: 0
     consume: 0
   flavor: Test
+  <Timed>k__BackingField: 1
   choices:
   - name: More
     stamina: 3
@@ -269,6 +270,7 @@ MonoBehaviour:
     item: 0
     consume: 0
   flavor: Test continues.
+  <Timed>k__BackingField: 0
   choices:
   - name: No
     stamina: 0
@@ -347,6 +349,7 @@ MonoBehaviour:
     item: 0
     consume: 0
   flavor: Start the test
+  <Timed>k__BackingField: 0
   choices:
   - name: Stam
     stamina: 0
@@ -470,6 +473,7 @@ MonoBehaviour:
     item: 0
     consume: 0
   flavor: This is still a test
+  <Timed>k__BackingField: 1
   choices:
   - name: More
     stamina: 2
