@@ -44,5 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd36c76cd8f643649b9eadb7b5a78b58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.Decisions.HealthService
-  maxHealth: 5
+  maxHealth: 3
   damageOnTimerFail: 1
