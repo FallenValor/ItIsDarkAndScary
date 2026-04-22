@@ -57,5 +57,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08f10f8c83897614bbae8e322af66823, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.Audio.DecisionAudioRelay
-  staminaChoiceSound: 
-  normalChoiceSound: 
+  staminaChoiceSound: BoardCreak
+  normalChoiceSound: RiverSplash

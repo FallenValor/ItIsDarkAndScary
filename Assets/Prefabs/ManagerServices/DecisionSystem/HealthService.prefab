@@ -59,4 +59,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f67da5a34c2a47a4c857e6d6551bf9f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.Audio.DamageAudioRelay
-  damageSound: 
+  damageSound: RiverSplash

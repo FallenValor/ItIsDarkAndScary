@@ -45,11 +45,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.Audio.FMODEvents
   sounds:
-  - name: 
+  - name: RiverLoop
     sound:
       Guid:
-        Data1: 0
-        Data2: 0
-        Data3: 0
-        Data4: 0
-      Path: 
+        Data1: 834585824
+        Data2: 1301846046
+        Data3: -1257323379
+        Data4: -251320806
+      Path: event:/RiverLoop
+  - name: BoardCreak
+    sound:
+      Guid:
+        Data1: 1872143643
+        Data2: 1220140519
+        Data3: -667681605
+        Data4: 1378265850
+      Path: event:/BoardCreak
+  - name: RiverSplash
+    sound:
+      Guid:
+        Data1: -2001960393
+        Data2: 1154650466
+        Data3: -1031009918
+        Data4: 1752873133
+      Path: event:/RiverSplash
+  - name: TickingLoop
+    sound:
+      Guid:
+        Data1: -1268046521
+        Data2: 1084982246
+        Data3: 456048061
+        Data4: 1571478825
+      Path: event:/TickingLoop

@@ -352,7 +352,7 @@ MonoBehaviour:
   <Timed>k__BackingField: 0
   choices:
   - name: Stam
-    stamina: 0
+    stamina: 1
     item: 0
     consume: 0
   - name: Win
