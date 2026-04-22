@@ -30,16 +30,19 @@ namespace IDAS.Audio
 
         private void PlayDecisionSound(DarkScaryNode currentNode, int decisionIndex, DarkScaryNode nextNode)
         {
-            DecisionNode dNode = currentNode as DecisionNode;
-            Choice choice = dNode.Choices[decisionIndex];
-            if (choice.Stamina > 0)
+            if (currentNode is DecisionNode dNode)
             {
-                PlayOneShot(staminaChoiceSound);
+                Choice choice = dNode.Choices[decisionIndex];
+                if (choice.Stamina > 0)
+                {
+                    PlayOneShot(staminaChoiceSound);
+                }
+                else
+                {
+                    PlayOneShot(normalChoiceSound);
+                }
             }
-            else
-            {
-                PlayOneShot(normalChoiceSound);
-            }
+            
         }
     }
 }

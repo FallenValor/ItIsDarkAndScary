@@ -17,7 +17,7 @@ namespace IDAS.Audio
     {
         private FMODEvents events;
 
-        private Dictionary<string, EventInstance> runningInstances;
+        private readonly Dictionary<string, EventInstance> runningInstances = new Dictionary<string, EventInstance>();
 
         /// <summary>
         /// SoundPlayerService always initializes after the FMODEvents.
@@ -30,11 +30,13 @@ namespace IDAS.Audio
         #region One Shots
         public void PlayOneShot(string soundName)
         {
+            Debug.Log("Played one shot " + soundName);
             RuntimeManager.PlayOneShot(events.GetEvent(soundName));
         }
 
         public void PlayOneShot(string soundName, Vector3 worldPos)
         {
+            Debug.Log("Played one shot " + soundName);
             RuntimeManager.PlayOneShot(events.GetEvent(soundName), worldPos);
         }
         #endregion
@@ -42,13 +44,23 @@ namespace IDAS.Audio
         #region Continuous Sounds
         public void StartSound(string soundName)
         {
-            EventInstance inst = RuntimeManager.CreateInstance(events.GetEvent(soundName));
-            runningInstances.Add(soundName, inst);
-            inst.start();
+            try
+            {
+                EventInstance inst = RuntimeManager.CreateInstance(events.GetEvent(soundName));
+                runningInstances.Add(soundName, inst);
+                inst.start();
+                Debug.Log("Started " + soundName);
+            }
+            catch (EventNotFoundException)
+            {
+                Debug.LogWarning($"No FMOD Event with the name {soundName} was found.");
+            }
+            
         }
 
         public void StopSound(string soundName)
         {
+            Debug.Log("stopped " + soundName);
             if (runningInstances.ContainsKey(soundName))
             {
                 EventInstance inst = runningInstances[soundName];

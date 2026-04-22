@@ -8,6 +8,7 @@
 *****************************************************************************/
 using FMOD.Studio;
 using FMODUnity;
+using UnityEditor.PackageManager;
 using UnityEngine;
 
 namespace IDAS.Audio
@@ -21,7 +22,15 @@ namespace IDAS.Audio
         #region Instance Handling
         protected override void Initialize()
         {
-            ambienceInstance = RuntimeManager.CreateInstance(ambienceEvent);
+            try
+            {
+                ambienceInstance = RuntimeManager.CreateInstance(ambienceEvent);
+            }
+            catch (EventNotFoundException)
+            {
+                Debug.LogWarning($"No FMOD Event for ambience has been set.");
+            }
+            
         }
 
         protected override void ServiceStart()

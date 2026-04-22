@@ -34,7 +34,6 @@ namespace IDAS.Decisions
                 stamina = Mathf.Clamp(value, 0, maxStamina);
                 int change = stamina - oldStamina;
                 StaminaUpdateEvent?.Invoke(change, stamina);
-                Debug.Log("Stamina is now " + stamina);
                 //PersistentData.SaveData(STAMINA_KEY, stamina);
             }
         }
