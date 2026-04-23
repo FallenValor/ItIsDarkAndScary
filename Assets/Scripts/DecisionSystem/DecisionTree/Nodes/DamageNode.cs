@@ -11,6 +11,7 @@ using UnityEngine;
 
 namespace IDAS
 {
+    [NodeTint("#ae3723")]
     public class DamageNode : RelayNode
     {
         [Header("Damage")]
