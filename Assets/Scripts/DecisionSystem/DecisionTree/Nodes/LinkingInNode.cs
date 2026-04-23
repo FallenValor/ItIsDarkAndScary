@@ -15,7 +15,7 @@ namespace IDAS
     [NodeTint("#a53284")]
     public class LinkingInNode : DarkScaryNode
     {
-        [SerializeField] private LinkingOutNode node;
+        [SerializeField] private LinkingOutNode linkedNode;
 
         /// <summary>
         /// Linking nodes always return the node that their respective out node links to as the next node.
@@ -23,12 +23,12 @@ namespace IDAS
         /// <returns></returns>
         public override DarkScaryNode GetNode()
         {
-            return node.GetLinkedNode();
+            return linkedNode.GetLinkedNode();
         }
 
         public override DarkScaryNode[] GetAllNextNodes()
         {
-            return node.GetAllNextNodes();
+            return linkedNode.GetAllNextNodes();
         }
 
         public override void OnNodeEnter(DecisionTreeService treeTraveler) { } // This node should never be entered.

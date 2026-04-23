@@ -72,7 +72,7 @@ MonoBehaviour:
       _typeQualifiedName: IDAS.Decisions.Tree.Choice, Assembly-CSharp, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
-      - fieldName: outChoice
+      - fieldName: outputChoice
         node: {fileID: -1602705646320748037}
         reroutePoints: []
       _direction: 0
@@ -188,13 +188,13 @@ MonoBehaviour:
   m_Name: Linking Out
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.LinkingOutNode
   graph: {fileID: 11400000}
-  position: {x: 1352, y: 568}
+  position: {x: 1448, y: 344}
   ports:
     keys:
-    - outChoice
+    - outputChoice
     - inputChoice
     values:
-    - _fieldName: outChoice
+    - _fieldName: outputChoice
       _node: {fileID: -1602705646320748037}
       _typeQualifiedName: IDAS.Decisions.Tree.Choice, Assembly-CSharp, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
@@ -221,7 +221,7 @@ MonoBehaviour:
     item: 0
     consume: 0
   flavor: 
-  outChoice:
+  outputChoice:
     name: 
     stamina: 0
     item: 0
@@ -572,4 +572,4 @@ MonoBehaviour:
     item: 0
     consume: 0
   flavor: 
-  node: {fileID: -1602705646320748037}
+  linkedNode: {fileID: -1602705646320748037}

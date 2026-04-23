@@ -18,11 +18,11 @@ namespace IDAS
     [NodeTint("#a53284")]
     public class LinkingOutNode : DarkScaryNode
     {
-        [SerializeField, Output(backingValue = ShowBackingValue.Never)] private Choice outChoice;
+        [SerializeField, Output(backingValue = ShowBackingValue.Never)] private Choice outputChoice;
 
         public DarkScaryNode GetLinkedNode()
         {
-            return GetConnectedNode(nameof(outChoice));
+            return GetConnectedNode(nameof(outputChoice));
         }
         public override DarkScaryNode[] GetAllNextNodes()
         {
@@ -39,8 +39,8 @@ namespace IDAS
         {
             switch (port.fieldName)
             {
-                case nameof(outChoice):
-                    return outChoice;
+                case nameof(outputChoice):
+                    return outputChoice;
                 default:
                     return base.GetValue(port);
             }
