@@ -80,7 +80,7 @@ namespace IDAS.Decisions.Editors
             if (point.Tree != null)
             {
                 DarkScaryNode[] nodes = point.Tree.nodes.Select(n => n as DarkScaryNode)
-                    .Where(n => n is not LinkingInNode && n is not LinkingOutNode).ToArray();
+                    .Where(n => n is not LinkingInNode && n is not LinkingOutNode && n != null).ToArray();
 
                 // Checks for initialization.
                 if (!initialized)
