@@ -14,6 +14,7 @@ using XNode;
 
 namespace IDAS
 {
+    [NodeTint("#797979")]
     public class RelayNode : DarkScaryNode
     {
         [SerializeField] private float delay;
@@ -50,12 +51,7 @@ namespace IDAS
         /// <returns></returns>
         public DarkScaryNode GetNextNode()
         {
-            NodePort otherPort = GetPort(nameof(outputChoice)).Connection;
-            if (otherPort != null)
-            {
-                return otherPort.node as DarkScaryNode;
-            }
-            return null;
+            return GetConnectedNode(nameof(outputChoice));
         }
 
         /// <summary>

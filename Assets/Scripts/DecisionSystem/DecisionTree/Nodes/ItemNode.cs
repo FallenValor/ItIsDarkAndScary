@@ -12,6 +12,7 @@ using UnityEngine;
 
 namespace IDAS
 {
+    [NodeTint("#4e29ad")]
     public class ItemNode : RelayNode
     {
         [Header("Item Settings")]

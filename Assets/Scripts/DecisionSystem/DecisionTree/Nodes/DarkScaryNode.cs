@@ -26,6 +26,29 @@ namespace IDAS
         #endregion
 
         /// <summary>
+        /// Gets a reference to this node, or the node that this node links to.
+        /// </summary>
+        /// <returns></returns>
+        public virtual DarkScaryNode GetNode()
+        {
+            return this;
+        }
+
+        protected DarkScaryNode GetConnectedNode(string connectionPort)
+        {
+            NodePort otherPort = GetPort(connectionPort).Connection;
+            if (otherPort != null)
+            {
+                if (otherPort.node is DarkScaryNode dsn)
+                {
+                    return dsn.GetNode();
+                }
+                return null;
+            }
+            return null;
+        }
+
+        /// <summary>
         /// Queues any behaviour that should trigger when this node is reached.
         /// </summary>
         /// <param name="treeTraveler">The TreeTravelerService scrip that is traversing the DecisionTree.</param>

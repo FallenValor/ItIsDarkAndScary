@@ -15,13 +15,10 @@ using XNode;
 
 namespace IDAS
 {
+    [NodeTint("#559c94")]
     [CreateAssetMenu(fileName = "DecisionNode", menuName = "IDAS/Nodes/Decision Node")]
     public class DecisionNode : DarkScaryNode
     {
-        #region CONSTS
-        public const string CHOICE_PORT_NAME = "choices";
-        #endregion
-
         [field: SerializeField] public bool Timed {  get; private set; }
         [SerializeField, Output(dynamicPortList = true, connectionType = ConnectionType.Override)] 
         private Choice[] choices;
@@ -90,12 +87,7 @@ namespace IDAS
         /// <returns>The subsequent node.</returns>
         public DarkScaryNode GetDecisionNode(int index)
         {
-            NodePort otherPort = GetPort(CHOICE_PORT_NAME + " " + index).Connection;
-            if (otherPort != null)
-            {
-                return otherPort.node as DarkScaryNode;
-            }
-            return null;
+            return GetConnectedNode(nameof(choices) + " " + index);
         }
 
         /// <summary>
