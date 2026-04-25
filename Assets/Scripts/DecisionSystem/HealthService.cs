@@ -39,7 +39,6 @@ namespace IDAS.Decisions
                 health = Mathf.Clamp(value, 0, maxHealth);
                 int change = health - oldHealth;
                 HealthChangedEvent?.Invoke(change, health, (float)health / maxHealth);
-                Debug.Log("Health is now " + health);
                 PersistentData.SaveData(HEALTH_KEY, health);
 
                 if (health <= 0)

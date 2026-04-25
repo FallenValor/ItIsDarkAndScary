@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2936330665803174969}
   - component: {fileID: 3741643597658503542}
+  - component: {fileID: 8721501706399525552}
   m_Layer: 0
   m_Name: DecisionTreeService
   m_TagString: Untagged
@@ -44,3 +45,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec5cbe97813450d49b78bd3718b91cab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.Decisions.DecisionTreeService
+--- !u!114 &8721501706399525552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5505657428692705915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08f10f8c83897614bbae8e322af66823, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::IDAS.Audio.DecisionAudioRelay
+  staminaChoiceSound: BoardCreak
+  normalChoiceSound: RiverSplash

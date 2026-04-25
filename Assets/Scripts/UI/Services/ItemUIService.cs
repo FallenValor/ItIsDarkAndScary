@@ -41,7 +41,6 @@ namespace IDAS.UI
         /// <param name="itemData">The array of item ID's that the player is holding.</param>
         private void UpdateItemIcons(ItemData[] itemData)
         {
-            Debug.Log("Updating items");
             for(int i = 0; i < itemData.Length && i < iconImages.Length; i++)
             {
                 // Show no icon for Item.none

@@ -1,0 +1,79 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7108891745026425287
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6844662782500563552}
+  - component: {fileID: 3645272925143859570}
+  m_Layer: 0
+  m_Name: FMODEvents
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6844662782500563552
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7108891745026425287}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3645272925143859570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7108891745026425287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77a6ebe9158f9dd4e9790b39a3b4b0db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::IDAS.Audio.FMODEvents
+  sounds:
+  - name: RiverLoop
+    sound:
+      Guid:
+        Data1: 834585824
+        Data2: 1301846046
+        Data3: -1257323379
+        Data4: -251320806
+      Path: event:/RiverLoop
+  - name: BoardCreak
+    sound:
+      Guid:
+        Data1: 1872143643
+        Data2: 1220140519
+        Data3: -667681605
+        Data4: 1378265850
+      Path: event:/BoardCreak
+  - name: RiverSplash
+    sound:
+      Guid:
+        Data1: -2001960393
+        Data2: 1154650466
+        Data3: -1031009918
+        Data4: 1752873133
+      Path: event:/RiverSplash
+  - name: TickingLoop
+    sound:
+      Guid:
+        Data1: -1268046521
+        Data2: 1084982246
+        Data3: 456048061
+        Data4: 1571478825
+      Path: event:/TickingLoop

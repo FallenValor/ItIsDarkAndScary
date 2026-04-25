@@ -13,6 +13,7 @@ using XNode;
 
 namespace IDAS
 {
+    [NodeTint("#589954")]
     [CreateAssetMenu(fileName = "EndNode", menuName = "IDAS/Nodes/End Node")]
     public class EndNode : DarkScaryNode
     {
