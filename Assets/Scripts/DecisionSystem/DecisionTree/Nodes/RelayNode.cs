@@ -17,7 +17,7 @@ namespace IDAS
     [NodeTint("#797979")]
     public class RelayNode : DarkScaryNode
     {
-        [SerializeField] private float delay;
+        [SerializeField] private float delay = 0.5f;
         [SerializeField, Output(backingValue = ShowBackingValue.Never)] private Choice outputChoice;
 
         /// <summary>

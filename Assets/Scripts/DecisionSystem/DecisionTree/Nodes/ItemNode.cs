@@ -16,7 +16,7 @@ namespace IDAS
     public class ItemNode : RelayNode
     {
         [Header("Item Settings")]
-        [SerializeField] private float preItemDelay;
+        [SerializeField] private float preItemDelay = 0.5f;
         [SerializeField] private ItemID gainedItem;
 
 
