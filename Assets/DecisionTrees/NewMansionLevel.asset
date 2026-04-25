@@ -411,7 +411,10 @@ MonoBehaviour:
       _node: {fileID: -8187372534551702706}
       _typeQualifiedName: IDAS.Decisions.Tree.Choice, Assembly-CSharp, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
-      connections: []
+      connections:
+      - fieldName: inputChoice
+        node: {fileID: -5732654862477320950}
+        reroutePoints: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0
@@ -1336,6 +1339,88 @@ MonoBehaviour:
     item: 0
     consume: 0
   damage: 1
+--- !u!114 &-5732654862477320950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a7f6ab65eb9db34d953f62f7c2cb441, type: 3}
+  m_Name: Ending_BookCheck
+  m_EditorClassIdentifier: Assembly-CSharp::IDAS.DecisionNode
+  graph: {fileID: 11400000}
+  position: {x: 10072, y: 3560}
+  ports:
+    keys:
+    - choices
+    - inputChoice
+    - choices 0
+    - choices 1
+    values:
+    - _fieldName: choices
+      _node: {fileID: -5732654862477320950}
+      _typeQualifiedName: IDAS.Decisions.Tree.Choice[], Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: inputChoice
+      _node: {fileID: -5732654862477320950}
+      _typeQualifiedName: IDAS.Decisions.Tree.Choice, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: outputChoice
+        node: {fileID: -8187372534551702706}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: choices 0
+      _node: {fileID: -5732654862477320950}
+      _typeQualifiedName: IDAS.Decisions.Tree.Choice[], Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: inputChoice
+        node: {fileID: 9048978144276297436}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: choices 1
+      _node: {fileID: -5732654862477320950}
+      _typeQualifiedName: IDAS.Decisions.Tree.Choice[], Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: inputChoice
+        node: {fileID: 5425068553216413231}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+  inputChoice:
+    name: 
+    stamina: 0
+    item: 0
+    consume: 0
+  flavor: You've escaped...
+  <Timed>k__BackingField: 0
+  choices:
+  - name: Run into the woods.
+    stamina: 0
+    item: 0
+    consume: 0
+  - name: Chant from the book.
+    stamina: 0
+    item: 5
+    consume: 0
 --- !u!114 &-5701933631419776107
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2874,7 +2959,7 @@ MonoBehaviour:
     item: 0
     consume: 0
   preItemDelay: 0.5
-  gainedItem: 0
+  gainedItem: 5
 --- !u!114 &-1900860568309585543
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3539,6 +3624,9 @@ MonoBehaviour:
   - {fileID: -7604716691873551787}
   - {fileID: 5284161871496747161}
   - {fileID: 8450009769659655177}
+  - {fileID: -5732654862477320950}
+  - {fileID: 9048978144276297436}
+  - {fileID: 5425068553216413231}
 --- !u!114 &162283944974332142
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5464,6 +5552,42 @@ MonoBehaviour:
     stamina: 0
     item: 0
     consume: 0
+--- !u!114 &5425068553216413231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5988fe76b17b2904ebf80904b8c2abc7, type: 3}
+  m_Name: Ending_Secret
+  m_EditorClassIdentifier: Assembly-CSharp::IDAS.EndNode
+  graph: {fileID: 11400000}
+  position: {x: 10456, y: 3832}
+  ports:
+    keys:
+    - inputChoice
+    values:
+    - _fieldName: inputChoice
+      _node: {fileID: 5425068553216413231}
+      _typeQualifiedName: IDAS.Decisions.Tree.Choice, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: choices 1
+        node: {fileID: -5732654862477320950}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  inputChoice:
+    name: 
+    stamina: 0
+    item: 0
+    consume: 0
+  flavor: 
 --- !u!114 &6007433403183058065
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6255,7 +6379,7 @@ MonoBehaviour:
   m_Name: Comment
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.CommentNode
   graph: {fileID: 11400000}
-  position: {x: 10088, y: 3400}
+  position: {x: 10072, y: 3400}
   ports:
     keys: []
     values: []
@@ -6508,6 +6632,42 @@ MonoBehaviour:
     stamina: 0
     item: 0
     consume: 0
+--- !u!114 &9048978144276297436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5988fe76b17b2904ebf80904b8c2abc7, type: 3}
+  m_Name: Ending_Normal
+  m_EditorClassIdentifier: Assembly-CSharp::IDAS.EndNode
+  graph: {fileID: 11400000}
+  position: {x: 10456, y: 3640}
+  ports:
+    keys:
+    - inputChoice
+    values:
+    - _fieldName: inputChoice
+      _node: {fileID: 9048978144276297436}
+      _typeQualifiedName: IDAS.Decisions.Tree.Choice, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: choices 0
+        node: {fileID: -5732654862477320950}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  inputChoice:
+    name: 
+    stamina: 0
+    item: 0
+    consume: 0
+  flavor: 
 --- !u!114 &9090389965112373360
 MonoBehaviour:
   m_ObjectHideFlags: 0

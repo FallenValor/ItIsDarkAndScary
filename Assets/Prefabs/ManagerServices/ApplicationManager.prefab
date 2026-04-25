@@ -280,6 +280,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3121887343321938645}
     m_Modifications:
+    - target: {fileID: 81364017700269550, guid: c25d9478d0d3ba34a9b223560d90790b, type: 3}
+      propertyPath: <DecisionTree>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: 141aa4823b4bf7a4eabf1f3a71d16099, type: 2}
     - target: {fileID: 1373746443862018366, guid: c25d9478d0d3ba34a9b223560d90790b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
