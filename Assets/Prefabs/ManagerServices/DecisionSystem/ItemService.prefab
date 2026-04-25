@@ -47,20 +47,17 @@ MonoBehaviour:
   maxItems: 2
   itemDatabase:
   - id: 1
-    prefab: {fileID: 275197994233158277, guid: 86739c4316bd85b4f94d281df12940a8, type: 3}
-    icon: {fileID: -1994728353, guid: 52c5876e122fe17469a441eba8cb0b83, type: 3}
-  - id: 2
     prefab: {fileID: 275197994233158277, guid: 5a3a971ea0606e243b83a9c3f694e610, type: 3}
-    icon: {fileID: 897238700, guid: 52c5876e122fe17469a441eba8cb0b83, type: 3}
+    icon: {fileID: -1789675577, guid: 52c5876e122fe17469a441eba8cb0b83, type: 3}
+  - id: 2
+    prefab: {fileID: 1157771938155575682, guid: d26df650d14eaf443ad4bb7db1b0290b, type: 3}
+    icon: {fileID: 1157010973, guid: 52c5876e122fe17469a441eba8cb0b83, type: 3}
   - id: 3
-    prefab: {fileID: 275197994233158277, guid: 4783feaa59f4ca14bafc7f5b7c894730, type: 3}
-    icon: {fileID: 406988986, guid: 52c5876e122fe17469a441eba8cb0b83, type: 3}
+    prefab: {fileID: 6516514062355748752, guid: 0b0836237ebf17d4ca609de51e7e74e3, type: 3}
+    icon: {fileID: 2013569932, guid: 52c5876e122fe17469a441eba8cb0b83, type: 3}
   - id: 4
-    prefab: {fileID: 275197994233158277, guid: 3d5023015513f584d95a39a5829ad44e, type: 3}
-    icon: {fileID: -80822608, guid: 52c5876e122fe17469a441eba8cb0b83, type: 3}
+    prefab: {fileID: 275197994233158277, guid: 4783feaa59f4ca14bafc7f5b7c894730, type: 3}
+    icon: {fileID: -1776324508, guid: 52c5876e122fe17469a441eba8cb0b83, type: 3}
   - id: 5
     prefab: {fileID: 275197994233158277, guid: 6a2f33e723a357c47945f6ed6b07299d, type: 3}
-    icon: {fileID: 0}
-  - id: 6
-    prefab: {fileID: 275197994233158277, guid: ad33211c53dd12542b5de9ea0605c273, type: 3}
-    icon: {fileID: 0}
+    icon: {fileID: -331578470, guid: 52c5876e122fe17469a441eba8cb0b83, type: 3}

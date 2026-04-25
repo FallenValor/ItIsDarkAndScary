@@ -112,14 +112,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b5e56e29762819648a14ddb76e5b560c
-      internalID: 59996823
+      spriteID: 4cd8f3dc10320824fa2495207c6c45c5
+      internalID: 1008062077
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AlcoholBottle
+      name: Key
       rect:
         serializedVersion: 2
         x: 60
@@ -134,14 +134,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 48e3c83ab96a95843b46e0bace26f7e5
-      internalID: -1994728353
+      spriteID: 1339082863132e444875609823163eb0
+      internalID: -1789675577
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpookyKey
+      name: Disc
       rect:
         serializedVersion: 2
         x: 120
@@ -156,14 +156,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ddecf2296891bfb43bf3b4bbeb0db25c
-      internalID: 897238700
+      spriteID: e993dceece1264d468a842f7cc8a37c6
+      internalID: 1157010973
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hatchet
+      name: Flashlight
       rect:
         serializedVersion: 2
         x: 180
@@ -178,14 +178,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f4c0945881a7b804fb633092ad5ca6b3
-      internalID: 406988986
+      spriteID: c523dd3bee347194eb371ff5acab4221
+      internalID: 2013569932
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Torch
+      name: Axe
       rect:
         serializedVersion: 2
         x: 240
@@ -200,8 +200,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2936e2f33f17abb479397dffa1d30e9c
-      internalID: -80822608
+      spriteID: ee8f1af424056e640a3b1b9d0f577970
+      internalID: -1776324508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Book
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 0
+        width: 60
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 073cdffeb5ba96a4bb3cbfbce5774276
+      internalID: -331578470
       vertices: []
       indices: 
       edges: []
@@ -220,13 +242,14 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":7.0,"y":1.0},"gridSpriteSize":{"x":60.0,"y":60.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":60.0,"y":60.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":true,"isAlternate":false}'
     nameFileIdTable:
-      AlcoholBottle: -1994728353
-      Hatchet: 406988986
-      SpookyKey: 897238700
-      Stamina: 59996823
-      Torch: -80822608
+      Axe: -1776324508
+      Book: -331578470
+      Disc: 1157010973
+      Flashlight: 2013569932
+      Key: -1789675577
+      Stamina: 1008062077
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
