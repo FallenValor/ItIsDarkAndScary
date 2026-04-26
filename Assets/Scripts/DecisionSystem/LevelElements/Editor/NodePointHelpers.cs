@@ -8,6 +8,7 @@
 *****************************************************************************/
 using IDAS.Decisions;
 using IDAS.Decisions.Editors;
+using IDAS.Decisions.Tree;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -18,6 +19,8 @@ namespace IDAS.Editor
 {
     public class NodePointHelpers : EditorWindow
     {
+        [SerializeField] private DecisionTree checkedTree;
+
         [MenuItem("Window/Node Point Helpers")]
         public static void ShowWindow()
         {
@@ -49,6 +52,12 @@ namespace IDAS.Editor
             if (GUILayout.Button("Clear Choice Points"))
             {
                 ClearAllChoicePoints();
+            }
+            checkedTree = (DecisionTree)EditorGUILayout.ObjectField("Checked Tree", checkedTree, typeof(DecisionTree), true);
+            // Update the splines for this node to another node.
+            if (GUILayout.Button("Check Points"))
+            {
+                CheckChoicePoints(checkedTree);
             }
         }
 
@@ -115,5 +124,25 @@ namespace IDAS.Editor
             }
         }
 
+        private void CheckChoicePoints(DecisionTree toCheck)
+        {
+            DarkScaryNode[] nodes = toCheck.nodes.Where(n => n is DarkScaryNode).Select(n => n as DarkScaryNode)
+                    .Where(n => n is not LinkingInNode && n is not LinkingOutNode && n != null).ToArray();
+            List<NodePoint> allPoints = NodePointEditor.GetAllNodePointsInScene();
+            bool isMissing = false;
+            for (int i = 0; i < nodes.Length; i++)
+            {
+                if (!allPoints.Any(n => n.Node == nodes[i]))
+                {
+                    Debug.LogWarning($"This scene is missing a point for the node: {nodes[i]}");
+                    isMissing |= true;
+                }
+            }
+
+            if (!isMissing)
+            {
+                Debug.Log($"This level has points for every node in the tree {toCheck.name}.");
+            }
+        }
     }
 }
