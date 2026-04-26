@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0a38c594db3664d459819319e151a207, type: 3}
-  m_Name: Kitchen_Coffin
+  m_Name: Kitchen/Coffin
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.DamageNode
   graph: {fileID: 11400000}
   position: {x: 6088, y: 2504}
@@ -63,7 +63,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: df4c4b86465f8c74e9b6b1ad7678f366, type: 3}
-  m_Name: Library_ExitDoor
+  m_Name: Library/ExitDoor
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.RelayNode
   graph: {fileID: 11400000}
   position: {x: 5176, y: 4376}
@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a7f6ab65eb9db34d953f62f7c2cb441, type: 3}
-  m_Name: Tutorial_FrontDoor
+  m_Name: Tutorial/FrontDoor
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.DecisionNode
   graph: {fileID: 11400000}
   position: {x: 2152, y: 8}
@@ -209,7 +209,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a774320f0bc0b2845b2e1c8bb6514703, type: 3}
-  m_Name: Lobby_Start
+  m_Name: Lobby/Start
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.LinkingOutNode
   graph: {fileID: 11400000}
   position: {x: -872, y: 2808}
@@ -260,7 +260,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0a38c594db3664d459819319e151a207, type: 3}
-  m_Name: Library_BadSmell
+  m_Name: Library/BadSmell
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.DamageNode
   graph: {fileID: 11400000}
   position: {x: 4840, y: 4456}
@@ -316,7 +316,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a7f6ab65eb9db34d953f62f7c2cb441, type: 3}
-  m_Name: Study_Entrance
+  m_Name: Study/Entrance
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.DecisionNode
   graph: {fileID: 11400000}
   position: {x: 24, y: 1992}
@@ -398,7 +398,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: df4c4b86465f8c74e9b6b1ad7678f366, type: 3}
-  m_Name: Patio_Escape
+  m_Name: Patio/Escape
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.RelayNode
   graph: {fileID: 11400000}
   position: {x: 9704, y: 3512}
@@ -471,7 +471,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a79c9a6f32e66a84c8b885977e13b858, type: 3}
-  m_Name: Study_HiddenPath
+  m_Name: Study/HiddenPath
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.LinkingInNode
   graph: {fileID: 11400000}
   position: {x: 1336, y: 2216}
@@ -508,7 +508,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: df4c4b86465f8c74e9b6b1ad7678f366, type: 3}
-  m_Name: Study_RunAfterJumpscare
+  m_Name: Study/RunAfterJumpscare
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.RelayNode
   graph: {fileID: 11400000}
   position: {x: 2072, y: 2168}
@@ -581,7 +581,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: df4c4b86465f8c74e9b6b1ad7678f366, type: 3}
-  m_Name: Patio_Miss
+  m_Name: Patio/Miss
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.RelayNode
   graph: {fileID: 11400000}
   position: {x: 8664, y: 3160}
@@ -636,7 +636,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a7f6ab65eb9db34d953f62f7c2cb441, type: 3}
-  m_Name: Lounge_MusicLouder
+  m_Name: Lounge/MusicLouder
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.DecisionNode
   graph: {fileID: 11400000}
   position: {x: 248, y: 4072}
@@ -736,7 +736,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a7f6ab65eb9db34d953f62f7c2cb441, type: 3}
-  m_Name: Lobby_Lobby
+  m_Name: Lobby/Lobby
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.DecisionNode
   graph: {fileID: 11400000}
   position: {x: -472, y: 2808}
@@ -874,7 +874,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ac5f02f5b4c420b4fa398a27c4b5ccfb, type: 3}
-  m_Name: Lounge_FindDisc
+  m_Name: Lounge/FindDisc
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.ItemNode
   graph: {fileID: 11400000}
   position: {x: 600, y: 4008}
@@ -931,7 +931,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 671072010f6d8d846be29292b6e340b9, type: 3}
-  m_Name: Tutorial_Start
+  m_Name: Tutorial/Start
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.StartNode
   graph: {fileID: 11400000}
   position: {x: -680, y: -264}
@@ -993,7 +993,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a774320f0bc0b2845b2e1c8bb6514703, type: 3}
-  m_Name: Ballroom_FallInto
+  m_Name: Ballroom/FallInto
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.LinkingOutNode
   graph: {fileID: 11400000}
   position: {x: 184, y: 5608}
@@ -1044,7 +1044,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a774320f0bc0b2845b2e1c8bb6514703, type: 3}
-  m_Name: Ballroom_Entrance
+  m_Name: Ballroom/Entrance
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.LinkingOutNode
   graph: {fileID: 11400000}
   position: {x: 856, y: 5480}
@@ -1095,7 +1095,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a774320f0bc0b2845b2e1c8bb6514703, type: 3}
-  m_Name: Library_StudyHiddenPassage
+  m_Name: Library/StudyHiddenPassage
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.LinkingOutNode
   graph: {fileID: 11400000}
   position: {x: 2686.9355, y: 4319.417}
@@ -1146,7 +1146,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a7f6ab65eb9db34d953f62f7c2cb441, type: 3}
-  m_Name: Tutorial_KeyOnGround
+  m_Name: Tutorial/KeyOnGround
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.DecisionNode
   graph: {fileID: 11400000}
   position: {x: -360, y: -264}
@@ -1211,7 +1211,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a7f6ab65eb9db34d953f62f7c2cb441, type: 3}
-  m_Name: Study_DeskItems
+  m_Name: Study/DeskItems
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.DecisionNode
   graph: {fileID: 11400000}
   position: {x: 424, y: 2200}
@@ -1293,7 +1293,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0a38c594db3664d459819319e151a207, type: 3}
-  m_Name: Patio_BiteFromPlant
+  m_Name: Patio/BiteFromPlant
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.DamageNode
   graph: {fileID: 11400000}
   position: {x: 9240, y: 2760}
@@ -1349,7 +1349,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a7f6ab65eb9db34d953f62f7c2cb441, type: 3}
-  m_Name: Ending_BookCheck
+  m_Name: Ending/BookCheck
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.DecisionNode
   graph: {fileID: 11400000}
   position: {x: 10072, y: 3560}
@@ -1431,7 +1431,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: df4c4b86465f8c74e9b6b1ad7678f366, type: 3}
-  m_Name: Lounge_MusicStops
+  m_Name: Lounge/MusicStops
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.RelayNode
   graph: {fileID: 11400000}
   position: {x: 248, y: 3800}
@@ -1487,7 +1487,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a7f6ab65eb9db34d953f62f7c2cb441, type: 3}
-  m_Name: DiningRoom_Seated
+  m_Name: DiningRoom/Seated
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.DecisionNode
   graph: {fileID: 11400000}
   position: {x: 3496, y: 1864}
@@ -1574,7 +1574,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: df4c4b86465f8c74e9b6b1ad7678f366, type: 3}
-  m_Name: Kitchen_FunbleExit
+  m_Name: Kitchen/FunbleExit
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.RelayNode
   graph: {fileID: 11400000}
   position: {x: 7000, y: 2648}
@@ -1647,7 +1647,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a7f6ab65eb9db34d953f62f7c2cb441, type: 3}
-  m_Name: Library_Creak
+  m_Name: Library/Creak
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.DecisionNode
   graph: {fileID: 11400000}
   position: {x: 3960, y: 4280}
@@ -1735,7 +1735,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a7f6ab65eb9db34d953f62f7c2cb441, type: 3}
-  m_Name: Study_HearSomethingFromBookshelf
+  m_Name: Study/HearSomethingFromBookshelf
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.DecisionNode
   graph: {fileID: 11400000}
   position: {x: 1080, y: 1800}
@@ -1835,7 +1835,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a7f6ab65eb9db34d953f62f7c2cb441, type: 3}
-  m_Name: Patio_FloorboardCreak
+  m_Name: Patio/FloorboardCreak
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.DecisionNode
   graph: {fileID: 11400000}
   position: {x: 8376, y: 3240}
@@ -1951,7 +1951,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a7f6ab65eb9db34d953f62f7c2cb441, type: 3}
-  m_Name: Library_Entrance
+  m_Name: Library/Entrance
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.DecisionNode
   graph: {fileID: 11400000}
   position: {x: 2968, y: 4136}
@@ -2045,7 +2045,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: df4c4b86465f8c74e9b6b1ad7678f366, type: 3}
-  m_Name: Patio_ChopPlant
+  m_Name: Patio/ChopPlant
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.RelayNode
   graph: {fileID: 11400000}
   position: {x: 8616, y: 3928}
@@ -2103,7 +2103,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a7f6ab65eb9db34d953f62f7c2cb441, type: 3}
-  m_Name: Study_HearSomethingFromDesk
+  m_Name: Study/HearSomethingFromDesk
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.DecisionNode
   graph: {fileID: 11400000}
   position: {x: 1080, y: 2376}
@@ -2189,7 +2189,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a7f6ab65eb9db34d953f62f7c2cb441, type: 3}
-  m_Name: Ballroom_ChaseStarts
+  m_Name: Ballroom/ChaseStarts
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.DecisionNode
   graph: {fileID: 11400000}
   position: {x: 2424, y: 5544}
@@ -2288,7 +2288,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0a38c594db3664d459819319e151a207, type: 3}
-  m_Name: Lounge_Screams
+  m_Name: Lounge/Screams
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.DamageNode
   graph: {fileID: 11400000}
   position: {x: 872, y: 4248}
@@ -2344,7 +2344,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a7f6ab65eb9db34d953f62f7c2cb441, type: 3}
-  m_Name: DiningRoom_NextRoom
+  m_Name: DiningRoom/NextRoom
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.DecisionNode
   graph: {fileID: 11400000}
   position: {x: 5032, y: 2360}
@@ -2426,7 +2426,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: df4c4b86465f8c74e9b6b1ad7678f366, type: 3}
-  m_Name: Tutorial_WiggleHandle
+  m_Name: Tutorial/WiggleHandle
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.RelayNode
   graph: {fileID: 11400000}
   position: {x: 2424, y: -24}
@@ -2482,7 +2482,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: df4c4b86465f8c74e9b6b1ad7678f366, type: 3}
-  m_Name: Tutorial_FallInWater
+  m_Name: Tutorial/FallInWater
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.RelayNode
   graph: {fileID: 11400000}
   position: {x: 568, y: -232}
@@ -2537,7 +2537,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0a38c594db3664d459819319e151a207, type: 3}
-  m_Name: Organ_Screams
+  m_Name: Organ/Screams
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.DamageNode
   graph: {fileID: 11400000}
   position: {x: 6936, y: 4728}
@@ -2599,7 +2599,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a7f6ab65eb9db34d953f62f7c2cb441, type: 3}
-  m_Name: DiningRoom_SkeletonInvitation
+  m_Name: DiningRoom/SkeletonInvitation
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.DecisionNode
   graph: {fileID: 11400000}
   position: {x: 3496, y: 2600}
@@ -2701,7 +2701,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ac5f02f5b4c420b4fa398a27c4b5ccfb, type: 3}
-  m_Name: Tutorial_GetKey
+  m_Name: Tutorial/GetKey
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.ItemNode
   graph: {fileID: 11400000}
   position: {x: -56, y: -232}
@@ -2758,7 +2758,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a7f6ab65eb9db34d953f62f7c2cb441, type: 3}
-  m_Name: Kitchen_Darkness
+  m_Name: Kitchen/Darkness
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.DecisionNode
   graph: {fileID: 11400000}
   position: {x: 6600, y: 2248}
@@ -2858,7 +2858,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: df4c4b86465f8c74e9b6b1ad7678f366, type: 3}
-  m_Name: Organ_WalkToExit
+  m_Name: Organ/WalkToExit
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.RelayNode
   graph: {fileID: 11400000}
   position: {x: 5912, y: 4424}
@@ -2913,7 +2913,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ac5f02f5b4c420b4fa398a27c4b5ccfb, type: 3}
-  m_Name: Library_TakeBook
+  m_Name: Library/TakeBook
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.ItemNode
   graph: {fileID: 11400000}
   position: {x: 3480, y: 4632}
@@ -2970,7 +2970,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a79c9a6f32e66a84c8b885977e13b858, type: 3}
-  m_Name: Tutorial_End
+  m_Name: Tutorial/End
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.LinkingInNode
   graph: {fileID: 11400000}
   position: {x: 2760, y: 248}
@@ -3007,7 +3007,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a79c9a6f32e66a84c8b885977e13b858, type: 3}
-  m_Name: DiningRoom_ToBallroom
+  m_Name: DiningRoom/ToBallroom
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.LinkingInNode
   graph: {fileID: 11400000}
   position: {x: 5288, y: 2600}
@@ -3044,7 +3044,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0a38c594db3664d459819319e151a207, type: 3}
-  m_Name: Patio_LargeBite
+  m_Name: Patio/LargeBite
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.DamageNode
   graph: {fileID: 11400000}
   position: {x: 8760, y: 3368}
@@ -3100,7 +3100,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: df4c4b86465f8c74e9b6b1ad7678f366, type: 3}
-  m_Name: Tutorial_ClimbPorch
+  m_Name: Tutorial/ClimbPorch
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.RelayNode
   graph: {fileID: 11400000}
   position: {x: 1784, y: 168}
@@ -3155,7 +3155,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0a38c594db3664d459819319e151a207, type: 3}
-  m_Name: Ballroom_TilesFall
+  m_Name: Ballroom/TilesFall
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.DamageNode
   graph: {fileID: 11400000}
   position: {x: 1096, y: 5880}
@@ -3211,7 +3211,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: df4c4b86465f8c74e9b6b1ad7678f366, type: 3}
-  m_Name: Ballroom_ReachDoor
+  m_Name: Ballroom/ReachDoor
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.RelayNode
   graph: {fileID: 11400000}
   position: {x: 3624, y: 5672}
@@ -3272,7 +3272,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ac5f02f5b4c420b4fa398a27c4b5ccfb, type: 3}
-  m_Name: Study-Flashlight
+  m_Name: Study/Flashlight
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.ItemNode
   graph: {fileID: 11400000}
   position: {x: 744, y: 2520}
@@ -3329,7 +3329,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a79c9a6f32e66a84c8b885977e13b858, type: 3}
-  m_Name: Ballroom_Exit
+  m_Name: Ballroom/Exit
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.LinkingInNode
   graph: {fileID: 11400000}
   position: {x: 3896, y: 5768}
@@ -3366,7 +3366,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a7f6ab65eb9db34d953f62f7c2cb441, type: 3}
-  m_Name: Ballroom_AlmostThere
+  m_Name: Ballroom/AlmostThere
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.DecisionNode
   graph: {fileID: 11400000}
   position: {x: 3304, y: 5368}
@@ -3434,7 +3434,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a7f6ab65eb9db34d953f62f7c2cb441, type: 3}
-  m_Name: Lobby_FoggyDoor
+  m_Name: Lobby/FoggyDoor
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.DecisionNode
   graph: {fileID: 11400000}
   position: {x: -56, y: 2920}
@@ -3637,7 +3637,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0a38c594db3664d459819319e151a207, type: 3}
-  m_Name: Tutorial_BoardSnaps
+  m_Name: Tutorial/BoardSnaps
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.DamageNode
   graph: {fileID: 11400000}
   position: {x: 1784, y: -88}
@@ -3693,7 +3693,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a7f6ab65eb9db34d953f62f7c2cb441, type: 3}
-  m_Name: DiningRoom_TableSet
+  m_Name: DiningRoom/TableSet
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.DecisionNode
   graph: {fileID: 11400000}
   position: {x: 2984, y: 2184}
@@ -3792,7 +3792,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a7f6ab65eb9db34d953f62f7c2cb441, type: 3}
-  m_Name: Ballroom_Fallen
+  m_Name: Ballroom/Fallen
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.DecisionNode
   graph: {fileID: 11400000}
   position: {x: 824, y: 5608}
@@ -3874,7 +3874,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a7f6ab65eb9db34d953f62f7c2cb441, type: 3}
-  m_Name: Organ_Unbearable
+  m_Name: Organ/Unbearable
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.DecisionNode
   graph: {fileID: 11400000}
   position: {x: 6504, y: 4248}
@@ -3991,7 +3991,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: df4c4b86465f8c74e9b6b1ad7678f366, type: 3}
-  m_Name: Study_HiddenPath
+  m_Name: Study/HiddenPath
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.RelayNode
   graph: {fileID: 11400000}
   position: {x: 440, y: 1912}
@@ -4064,7 +4064,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a774320f0bc0b2845b2e1c8bb6514703, type: 3}
-  m_Name: Patio_BallroomEntrance
+  m_Name: Patio/BallroomEntrance
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.LinkingOutNode
   graph: {fileID: 11400000}
   position: {x: 7048, y: 3352}
@@ -4115,7 +4115,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: df4c4b86465f8c74e9b6b1ad7678f366, type: 3}
-  m_Name: Library_BookJumpscare
+  m_Name: Library/BookJumpscare
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.RelayNode
   graph: {fileID: 11400000}
   position: {x: 3720, y: 4664}
@@ -4170,7 +4170,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a7f6ab65eb9db34d953f62f7c2cb441, type: 3}
-  m_Name: Lounge_Enter
+  m_Name: Lounge/Enter
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.DecisionNode
   graph: {fileID: 11400000}
   position: {x: -104, y: 3816}
@@ -4252,7 +4252,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a7f6ab65eb9db34d953f62f7c2cb441, type: 3}
-  m_Name: Patio_Close
+  m_Name: Patio/Close
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.DecisionNode
   graph: {fileID: 11400000}
   position: {x: 9176, y: 3080}
@@ -4337,7 +4337,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: df4c4b86465f8c74e9b6b1ad7678f366, type: 3}
-  m_Name: Ballroom_KillCreature
+  m_Name: Ballroom/KillCreature
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.RelayNode
   graph: {fileID: 11400000}
   position: {x: 3160, y: 5912}
@@ -4392,7 +4392,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: df4c4b86465f8c74e9b6b1ad7678f366, type: 3}
-  m_Name: Tutorial_CrossedStream
+  m_Name: Tutorial/CrossedStream
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.RelayNode
   graph: {fileID: 11400000}
   position: {x: 1224, y: -88}
@@ -4450,7 +4450,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0a38c594db3664d459819319e151a207, type: 3}
-  m_Name: Study_Jumpscare
+  m_Name: Study/Jumpscare
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.DamageNode
   graph: {fileID: 11400000}
   position: {x: 1848, y: 2136}
@@ -4509,7 +4509,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a7f6ab65eb9db34d953f62f7c2cb441, type: 3}
-  m_Name: Organ_Entrance
+  m_Name: Organ/Entrance
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.DecisionNode
   graph: {fileID: 11400000}
   position: {x: 5656, y: 4392}
@@ -4591,7 +4591,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: df4c4b86465f8c74e9b6b1ad7678f366, type: 3}
-  m_Name: Organ_Soothing
+  m_Name: Organ/Soothing
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.RelayNode
   graph: {fileID: 11400000}
   position: {x: 6968, y: 5096}
@@ -4649,7 +4649,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a79c9a6f32e66a84c8b885977e13b858, type: 3}
-  m_Name: Library_AtticIn
+  m_Name: Library/AtticIn
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.LinkingInNode
   graph: {fileID: 11400000}
   position: {x: 4600, y: 4696}
@@ -4706,7 +4706,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a7f6ab65eb9db34d953f62f7c2cb441, type: 3}
-  m_Name: Ballroom_Halfway
+  m_Name: Ballroom/Halfway
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.DecisionNode
   graph: {fileID: 11400000}
   position: {x: 2728, y: 5288}
@@ -4789,7 +4789,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0a38c594db3664d459819319e151a207, type: 3}
-  m_Name: DiningRoom_FoodPoisoning
+  m_Name: DiningRoom/FoodPoisoning
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.DamageNode
   graph: {fileID: 11400000}
   position: {x: 4488, y: 2344}
@@ -4851,7 +4851,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a7f6ab65eb9db34d953f62f7c2cb441, type: 3}
-  m_Name: DiningRoom_SkeletonOffer
+  m_Name: DiningRoom/SkeletonOffer
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.DecisionNode
   graph: {fileID: 11400000}
   position: {x: 4024, y: 2472}
@@ -4934,7 +4934,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0a38c594db3664d459819319e151a207, type: 3}
-  m_Name: Kitchen_FallIntoCoffin
+  m_Name: Kitchen/FallIntoCoffin
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.DamageNode
   graph: {fileID: 11400000}
   position: {x: 7080, y: 2344}
@@ -4990,7 +4990,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a7f6ab65eb9db34d953f62f7c2cb441, type: 3}
-  m_Name: Ballroom_StatuesDance
+  m_Name: Ballroom/StatuesDance
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.DecisionNode
   graph: {fileID: 11400000}
   position: {x: 1352, y: 5480}
@@ -5078,7 +5078,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a79c9a6f32e66a84c8b885977e13b858, type: 3}
-  m_Name: Kitchen_StorageExit
+  m_Name: Kitchen/StorageExit
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.LinkingInNode
   graph: {fileID: 11400000}
   position: {x: 7256, y: 2920}
@@ -5118,7 +5118,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a7f6ab65eb9db34d953f62f7c2cb441, type: 3}
-  m_Name: Tutorial_ReturnToStream
+  m_Name: Tutorial/ReturnToStream
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.DecisionNode
   graph: {fileID: 11400000}
   position: {x: 824, y: -232}
@@ -5201,7 +5201,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: df4c4b86465f8c74e9b6b1ad7678f366, type: 3}
-  m_Name: Ballroom_Fog
+  m_Name: Ballroom/Fog
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.RelayNode
   graph: {fileID: 11400000}
   position: {x: 1784, y: 5544}
@@ -5259,7 +5259,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: df4c4b86465f8c74e9b6b1ad7678f366, type: 3}
-  m_Name: Kitchen_CoffinExit
+  m_Name: Kitchen/CoffinExit
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.RelayNode
   graph: {fileID: 11400000}
   position: {x: 7448, y: 2424}
@@ -5314,7 +5314,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: df4c4b86465f8c74e9b6b1ad7678f366, type: 3}
-  m_Name: Organ_StumbleToPatio
+  m_Name: Organ/StumbleToPatio
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.RelayNode
   graph: {fileID: 11400000}
   position: {x: 7208, y: 4728}
@@ -5369,7 +5369,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: df4c4b86465f8c74e9b6b1ad7678f366, type: 3}
-  m_Name: Ballroom_LookBack
+  m_Name: Ballroom/LookBack
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.RelayNode
   graph: {fileID: 11400000}
   position: {x: 2136, y: 5544}
@@ -5424,7 +5424,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0a38c594db3664d459819319e151a207, type: 3}
-  m_Name: Patio_FenceBite
+  m_Name: Patio/FenceBite
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.DamageNode
   graph: {fileID: 11400000}
   position: {x: 9608, y: 3160}
@@ -5480,7 +5480,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a7f6ab65eb9db34d953f62f7c2cb441, type: 3}
-  m_Name: Tutorial_MansionFront
+  m_Name: Tutorial/MansionFront
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.DecisionNode
   graph: {fileID: 11400000}
   position: {x: 1464, y: -88}
@@ -5562,7 +5562,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5988fe76b17b2904ebf80904b8c2abc7, type: 3}
-  m_Name: Ending_Secret
+  m_Name: Ending/Secret
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.EndNode
   graph: {fileID: 11400000}
   position: {x: 10456, y: 3832}
@@ -5598,7 +5598,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a79c9a6f32e66a84c8b885977e13b858, type: 3}
-  m_Name: Lobby_TeleportDoorIn
+  m_Name: Lobby/TeleportDoorIn
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.LinkingInNode
   graph: {fileID: 11400000}
   position: {x: 232, y: 3112}
@@ -5635,7 +5635,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: df4c4b86465f8c74e9b6b1ad7678f366, type: 3}
-  m_Name: Library_Attic
+  m_Name: Library/Attic
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.RelayNode
   graph: {fileID: 11400000}
   position: {x: 4296, y: 4616}
@@ -5690,7 +5690,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a7f6ab65eb9db34d953f62f7c2cb441, type: 3}
-  m_Name: Patio_Entrance
+  m_Name: Patio/Entrance
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.DecisionNode
   graph: {fileID: 11400000}
   position: {x: 7848, y: 3368}
@@ -5807,7 +5807,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0a38c594db3664d459819319e151a207, type: 3}
-  m_Name: Ballroom_FallDamage
+  m_Name: Ballroom/FallDamage
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.DamageNode
   graph: {fileID: 11400000}
   position: {x: 520, y: 5608}
@@ -5863,7 +5863,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: df4c4b86465f8c74e9b6b1ad7678f366, type: 3}
-  m_Name: Tutorial_OpenFrontDoor
+  m_Name: Tutorial/OpenFrontDoor
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.RelayNode
   graph: {fileID: 11400000}
   position: {x: 2424, y: 216}
@@ -5936,7 +5936,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a7f6ab65eb9db34d953f62f7c2cb441, type: 3}
-  m_Name: Library_FindBook
+  m_Name: Library/FindBook
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.DecisionNode
   graph: {fileID: 11400000}
   position: {x: 3240, y: 4392}
@@ -6018,10 +6018,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a7f6ab65eb9db34d953f62f7c2cb441, type: 3}
-  m_Name: Tutorial_LoseFooting
+  m_Name: Tutorial/LoseFooting
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.DecisionNode
   graph: {fileID: 11400000}
-  position: {x: 216, y: -232}
+  position: {x: 232, y: -248}
   ports:
     keys:
     - choices
@@ -6101,7 +6101,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a7f6ab65eb9db34d953f62f7c2cb441, type: 3}
-  m_Name: Organ_Louder
+  m_Name: Organ/Louder
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.DecisionNode
   graph: {fileID: 11400000}
   position: {x: 6120, y: 4632}
@@ -6240,7 +6240,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ac5f02f5b4c420b4fa398a27c4b5ccfb, type: 3}
-  m_Name: Study_Axe
+  m_Name: Study/Axe
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.ItemNode
   graph: {fileID: 11400000}
   position: {x: 744, y: 2184}
@@ -6297,7 +6297,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: df4c4b86465f8c74e9b6b1ad7678f366, type: 3}
-  m_Name: DiningRoom_SkeletonDissapears
+  m_Name: DiningRoom/SkeletonDissapears
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.RelayNode
   graph: {fileID: 11400000}
   position: {x: 4760, y: 2392}
@@ -6396,7 +6396,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: df4c4b86465f8c74e9b6b1ad7678f366, type: 3}
-  m_Name: DiningRoom_Entrance
+  m_Name: DiningRoom/Entrance
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.RelayNode
   graph: {fileID: 11400000}
   position: {x: 2728, y: 2184}
@@ -6457,7 +6457,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a7f6ab65eb9db34d953f62f7c2cb441, type: 3}
-  m_Name: Kitchen_Entrance
+  m_Name: Kitchen/Entrance
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.DecisionNode
   graph: {fileID: 11400000}
   position: {x: 5848, y: 2488}
@@ -6560,7 +6560,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a7f6ab65eb9db34d953f62f7c2cb441, type: 3}
-  m_Name: Library_ShelvesFork
+  m_Name: Library/ShelvesFork
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.DecisionNode
   graph: {fileID: 11400000}
   position: {x: 4472, y: 4216}
@@ -6642,7 +6642,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5988fe76b17b2904ebf80904b8c2abc7, type: 3}
-  m_Name: Ending_Normal
+  m_Name: Ending/Normal
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.EndNode
   graph: {fileID: 11400000}
   position: {x: 10456, y: 3640}
@@ -6678,7 +6678,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0a38c594db3664d459819319e151a207, type: 3}
-  m_Name: Ballroom_Trip
+  m_Name: Ballroom/Trip
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.DamageNode
   graph: {fileID: 11400000}
   position: {x: 2984, y: 5288}
@@ -6734,7 +6734,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a7f6ab65eb9db34d953f62f7c2cb441, type: 3}
-  m_Name: Patio_Hiding
+  m_Name: Patio/Hiding
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.DecisionNode
   graph: {fileID: 11400000}
   position: {x: 8376, y: 2712}
