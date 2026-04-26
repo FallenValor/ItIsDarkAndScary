@@ -6,6 +6,7 @@
 //
 // Brief Description : Custom editor window to help with automating splines.
 *****************************************************************************/
+using Codice.Client.BaseCommands.Differences;
 using IDAS.Decisions;
 using IDAS.Decisions.Editors;
 using IDAS.Decisions.Tree;
@@ -58,6 +59,11 @@ namespace IDAS.Editor
             if (GUILayout.Button("Check Points"))
             {
                 CheckChoicePoints(checkedTree);
+            }
+            // Update the splines for this node to another node.
+            if (GUILayout.Button("Fix Duplicates"))
+            {
+                FixDuplicates();
             }
         }
 
@@ -143,6 +149,19 @@ namespace IDAS.Editor
             {
                 Debug.Log($"This level has points for every node in the tree {toCheck.name}.");
             }
+        }
+
+        private void FixDuplicates()
+        {
+            List<NodePoint> allPoints = NodePointEditor.GetAllNodePointsInScene();
+            List<SerializedObject> serialOs = allPoints.Select(n => new SerializedObject(n)).ToList();
+            for (int i = 0; i < serialOs.Count; i++)
+            {
+                SerializedProperty isDupe = serialOs[i].FindProperty("isDuplicate");
+                isDupe.boolValue = NodePointEditor.CheckIsDuplicate(allPoints[i], allPoints[i].Node);
+                serialOs[i].ApplyModifiedProperties();
+            }
+            Debug.Log("Fixed all IsDuplicate flags.");
         }
     }
 }

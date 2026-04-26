@@ -324,7 +324,7 @@ namespace IDAS.Decisions.Editors
         /// </summary>
         /// <param name="point">The point to check for duplicates of.</param>
         /// <returns></returns>
-        private static bool CheckIsDuplicate(NodePoint point, DarkScaryNode node)
+        public static bool CheckIsDuplicate(NodePoint point, DarkScaryNode node)
         {
             return GetAllNodePointsInScene().Any(x => x.Node == node && x != point);
         }
