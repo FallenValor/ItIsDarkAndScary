@@ -16,12 +16,12 @@ using UnityEngine;
 
 namespace IDAS.Editor
 {
-    public class SplineHelpersWindow : EditorWindow
+    public class NodePointHelpers : EditorWindow
     {
-        [MenuItem("Window/Spline Helpers")]
+        [MenuItem("Window/Node Point Helpers")]
         public static void ShowWindow()
         {
-            EditorWindow.GetWindow<SplineHelpersWindow>("Spline Helpers");
+            EditorWindow.GetWindow<NodePointHelpers>("Node Point Helpers");
         }
 
         private void OnGUI()
@@ -35,6 +35,15 @@ namespace IDAS.Editor
             if (GUILayout.Button("Update All Spline End Points"))
             {
                 UpdateAllSplineEndPoints();
+            }
+            if (GUILayout.Button("Auto Assign Choice Points"))
+            {
+                AutoAssignAllChoicePoints(false);
+            }
+            // Update the splines for this node to another node.
+            if (GUILayout.Button("Auto Assign Choice Points (Override)"))
+            {
+                AutoAssignAllChoicePoints(true);
             }
         }
 
@@ -60,5 +69,26 @@ namespace IDAS.Editor
                 NodePointEditor.UpdateSplineEndPoints(allPoints[i]);
             }
         }
+
+        private void AutoAssignAllChoicePoints(bool overwrite)
+        {
+            List<NodePoint> allPoints = NodePointEditor.GetAllNodePointsInScene();
+            List<SerializedObject> serialOs = allPoints.Select(n => new SerializedObject(n)).ToList();
+            for (int i = 0; i < serialOs.Count; i++)
+            {
+                if (allPoints[i].Node is DecisionNode decisionNode)
+                {
+                    SerializedProperty pointsProp = serialOs[i].FindProperty("choicePoints");
+                    if (pointsProp.isArray)
+                    {
+                        pointsProp.arraySize = decisionNode.Choices.Length;
+                        NodePointEditor.AutoAssignChoicePoints(allPoints[i], pointsProp, overwrite);
+                        serialOs[i].ApplyModifiedProperties();
+                    }
+                }
+                
+            }
+        }
+
     }
 }

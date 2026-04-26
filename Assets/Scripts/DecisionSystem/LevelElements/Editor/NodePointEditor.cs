@@ -8,6 +8,7 @@
 *****************************************************************************/
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using Unity.Cinemachine;
 using Unity.Mathematics;
@@ -179,8 +180,19 @@ namespace IDAS.Decisions.Editors
                         EditorGUILayout.PropertyField(choicePoints.GetArrayElementAtIndex(i),
                             new GUIContent(decisionNode.Choices[i].Name));
                     }
+                    // Update the splines for this node to another node.
+                    if (GUILayout.Button("Auto Assign Choice Points"))
+                    {
+                        AutoAssignChoicePoints(point, choicePoints, false);
+                    }
+                    // Update the splines for this node to another node.
+                    if (GUILayout.Button("Auto Assign Choice Points (Override)"))
+                    {
+                        AutoAssignChoicePoints(point, choicePoints, true);
+                    }
 
                     EditorGUI.indentLevel--;
+
                 }
             }
         }
@@ -333,6 +345,24 @@ namespace IDAS.Decisions.Editors
             return nodes;
         }
         #endregion
+
+        public static void AutoAssignChoicePoints(NodePoint point, SerializedProperty choicePointsProp, bool overwriteExisting)
+        {
+            // Find the other NodePoints in the scene.
+            List<NodePoint> points = GetAllNodePointsInScene();
+            DarkScaryNode[] nextNodes = point.Node.GetAllNextNodes();
+
+            // Draw each choice point element.
+            for (int i = 0; i < nextNodes.Length; i++)
+            {
+                if (nextNodes[i] == null) { continue; }
+                if (!overwriteExisting && choicePointsProp.GetArrayElementAtIndex(i).objectReferenceValue != null) { continue; }
+
+                // Find the corresponding node point for this node.
+                NodePoint linkedPoint = points.Find(x => x.Node == nextNodes[i]);
+                choicePointsProp.GetArrayElementAtIndex(i).objectReferenceValue = linkedPoint.transform;
+            }
+        }
 
         #region Splines
         /// <summary>
