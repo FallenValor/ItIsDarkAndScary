@@ -322,7 +322,7 @@ namespace IDAS.Decisions.Editors
         /// Gets all node points in the current scene.
         /// </summary>
         /// <returns>A list of all node points in the current scene.</returns>
-        private static List<NodePoint> GetAllNodePointsInScene()
+        public static List<NodePoint> GetAllNodePointsInScene()
         {
             List<NodePoint> nodes = new List<NodePoint>();
             GameObject[] roots = SceneManager.GetActiveScene().GetRootGameObjects();
@@ -339,7 +339,7 @@ namespace IDAS.Decisions.Editors
         /// Automatically links this node to it's transition nodes with a cinemachine spline.
         /// </summary>
         /// <param name="point">The node point to update splines for.</param>
-        private void CreateNodeSplines(NodePoint point, SerializedProperty splinesProp, 
+        public static void CreateNodeSplines(NodePoint point, SerializedProperty splinesProp, 
             SerializedProperty nextPointsProp)
         {
             // Store existing spline and point arrays.
@@ -417,7 +417,7 @@ namespace IDAS.Decisions.Editors
         /// </summary>
         /// <param name="splinesProp">The SerializedProperty of the splines array.</param>
         /// <param name="nextPointsProp">The SerializedProperty for the next nodes array.</param>
-        private void ClearSplines(SerializedProperty splinesProp, SerializedProperty nextPointsProp)
+        public static void ClearSplines(SerializedProperty splinesProp, SerializedProperty nextPointsProp)
         {
             SplineContainer[] splines = PropertyToArray<SplineContainer>(splinesProp);
             foreach (SplineContainer spline in splines)
@@ -434,7 +434,7 @@ namespace IDAS.Decisions.Editors
         /// Updates all the end points of splines related to this node.
         /// </summary>
         /// <param name="point"></param>
-        private void UpdateSplineEndPoints(NodePoint point)
+        public static void UpdateSplineEndPoints(NodePoint point)
         {
             // Update the in spline's end point.
             //SetSplineEndPoint(point.InSpline, point.transform.position);
@@ -464,7 +464,7 @@ namespace IDAS.Decisions.Editors
         /// Updates the spline's end point based on the world position of the spline's end point.
         /// </summary>
         /// <param name="endWorldPos"></param>
-        private void SetSplineEndPoint(SplineContainer spline, Vector3 endWorldPos)
+        public static void SetSplineEndPoint(SplineContainer spline, Vector3 endWorldPos)
         {
             if (spline == null) { return; }
             int knotIndex = spline.Spline.Knots.Count() - 1;
