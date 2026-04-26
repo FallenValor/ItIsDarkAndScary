@@ -1680,6 +1680,7 @@ Transform:
   - {fileID: 6078974316366647944}
   - {fileID: 8162489606499897604}
   - {fileID: 5772405740810379059}
+  - {fileID: 805848527997891694}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8137456640520530400
@@ -2060,6 +2061,79 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineSplineSmoother
   AutoSmooth: 1
+--- !u!1001 &95093280993173697
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2101445606766202190}
+    m_Modifications:
+    - target: {fileID: 756362993621144751, guid: 5a3a971ea0606e243b83a9c3f694e610, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.7089996
+      objectReference: {fileID: 0}
+    - target: {fileID: 756362993621144751, guid: 5a3a971ea0606e243b83a9c3f694e610, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.53
+      objectReference: {fileID: 0}
+    - target: {fileID: 756362993621144751, guid: 5a3a971ea0606e243b83a9c3f694e610, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -32.741695
+      objectReference: {fileID: 0}
+    - target: {fileID: 756362993621144751, guid: 5a3a971ea0606e243b83a9c3f694e610, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 756362993621144751, guid: 5a3a971ea0606e243b83a9c3f694e610, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 756362993621144751, guid: 5a3a971ea0606e243b83a9c3f694e610, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 756362993621144751, guid: 5a3a971ea0606e243b83a9c3f694e610, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 756362993621144751, guid: 5a3a971ea0606e243b83a9c3f694e610, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 756362993621144751, guid: 5a3a971ea0606e243b83a9c3f694e610, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 756362993621144751, guid: 5a3a971ea0606e243b83a9c3f694e610, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2804859124985207925, guid: 5a3a971ea0606e243b83a9c3f694e610, type: 3}
+      propertyPath: m_Name
+      value: Key
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5a3a971ea0606e243b83a9c3f694e610, type: 3}
+--- !u!114 &180255911727938116 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 275197994233158277, guid: 5a3a971ea0606e243b83a9c3f694e610, type: 3}
+  m_PrefabInstance: {fileID: 95093280993173697}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd4ec587a2b0d8740aa7c91d0ef1f379, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::IDAS.Items.Item
+--- !u!4 &805848527997891694 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 756362993621144751, guid: 5a3a971ea0606e243b83a9c3f694e610, type: 3}
+  m_PrefabInstance: {fileID: 95093280993173697}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &176256649019081984
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2454,6 +2528,10 @@ PrefabInstance:
       propertyPath: oldNodeName
       value: Tutorial/GetKey
       objectReference: {fileID: 0}
+    - target: {fileID: 1365335798254726519, guid: 80798833152ccfd43a1aa3ba16ff92b3, type: 3}
+      propertyPath: associatedItem
+      value: 
+      objectReference: {fileID: 180255911727938116}
     - target: {fileID: 1365335798254726519, guid: 80798833152ccfd43a1aa3ba16ff92b3, type: 3}
       propertyPath: splines.Array.size
       value: 1

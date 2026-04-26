@@ -197,7 +197,7 @@ MonoBehaviour:
     consume: 0
   - name: Unlock the door.
     stamina: 0
-    item: 2
+    item: 1
     consume: 1
 --- !u!114 &-8503150483506273448
 MonoBehaviour:
@@ -920,7 +920,7 @@ MonoBehaviour:
     item: 0
     consume: 0
   preItemDelay: 0.5
-  gainedItem: 0
+  gainedItem: 2
 --- !u!114 &-6578193876255231677
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1939,7 +1939,7 @@ MonoBehaviour:
     consume: 0
   - name: Chopt it up.
     stamina: 0
-    item: 3
+    item: 4
     consume: 1
 --- !u!114 &-4232707220266202938
 MonoBehaviour:
@@ -2276,7 +2276,7 @@ MonoBehaviour:
     consume: 0
   - name: Stand your ground.
     stamina: 0
-    item: 3
+    item: 4
     consume: 1
 --- !u!114 &-3720436477770328828
 MonoBehaviour:
@@ -2747,7 +2747,7 @@ MonoBehaviour:
     item: 0
     consume: 0
   preItemDelay: 0.5
-  gainedItem: 2
+  gainedItem: 1
 --- !u!114 &-2390509426520664826
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2846,7 +2846,7 @@ MonoBehaviour:
     consume: 0
   - name: Use the flashlight.
     stamina: 0
-    item: 0
+    item: 3
     consume: 0
 --- !u!114 &-2049770955426830947
 MonoBehaviour:
@@ -3318,7 +3318,7 @@ MonoBehaviour:
     item: 0
     consume: 0
   preItemDelay: 0.5
-  gainedItem: 4
+  gainedItem: 3
 --- !u!114 &-731199693518512838
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5795,7 +5795,7 @@ MonoBehaviour:
     consume: 0
   - name: Chop it up.
     stamina: 0
-    item: 3
+    item: 4
     consume: 1
 --- !u!114 &6485356251927851833
 MonoBehaviour:
@@ -6210,7 +6210,7 @@ MonoBehaviour:
     consume: 0
   - name: Feed the disc.
     stamina: 0
-    item: 0
+    item: 2
     consume: 1
 --- !u!114 &7541749979529727499
 MonoBehaviour:
@@ -6286,7 +6286,7 @@ MonoBehaviour:
     item: 0
     consume: 0
   preItemDelay: 0.5
-  gainedItem: 3
+  gainedItem: 4
 --- !u!114 &7697064237876880918
 MonoBehaviour:
   m_ObjectHideFlags: 0
