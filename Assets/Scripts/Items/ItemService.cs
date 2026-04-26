@@ -71,7 +71,7 @@ namespace IDAS.Decisions
             // Reorder ItemDatabase for easy ID indexing.
             ItemData[] database = itemDatabase;
             itemDatabase = new ItemData[Enum.GetValues(typeof(ItemID)).Length];
-            for(int i = 0; i < database.Length; i++)
+            for(int i = 0; i < itemDatabase.Length; i++)
             {
                 itemDatabase[i] = Array.Find(database, x => x.id == (ItemID)i);
             }
