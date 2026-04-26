@@ -79,7 +79,7 @@ namespace IDAS.Decisions.Editors
 
             if (point.Tree != null)
             {
-                DarkScaryNode[] nodes = point.Tree.nodes.Select(n => n as DarkScaryNode)
+                DarkScaryNode[] nodes = point.Tree.nodes.Where(n => n is DarkScaryNode).Select(n => n as DarkScaryNode)
                     .Where(n => n is not LinkingInNode && n is not LinkingOutNode && n != null).ToArray();
 
                 // Checks for initialization.
@@ -91,7 +91,7 @@ namespace IDAS.Decisions.Editors
                 string[] nodeNames = nodes.Select(n => n.name).ToArray();
                 UpdateSelectionIndex(node, nodes);
 
-                DrawNodeSelector(point, nodeNames);
+                DrawNodeSelector(point, nodeNames, nodes);
 
                 if (!point.IsDuplicate)
                 {
@@ -116,7 +116,7 @@ namespace IDAS.Decisions.Editors
         }
 
         #region Draw Funcions
-        private void DrawNodeSelector(NodePoint point, string[] nodeNames)
+        private void DrawNodeSelector(NodePoint point, string[] nodeNames, DarkScaryNode[] nodes)
         {
             // Display error text if the node point has an invalid name.
             if (oldNodeName.stringValue != node.objectReferenceValue.name)
@@ -127,7 +127,7 @@ namespace IDAS.Decisions.Editors
                 // Update the splines for this node to another node.
                 if (GUILayout.Button("Update Name"))
                 {
-                    UpdateName(point.Node.name, point);
+                    UpdateName(point.Node.name, point, nodes);
                 }
             }
 
@@ -137,9 +137,9 @@ namespace IDAS.Decisions.Editors
             if (EditorGUI.EndChangeCheck())
             {
                 // Update the string field.
-                DarkScaryNode newNode = point.Tree.nodes[selectionIndex] as DarkScaryNode;
+                DarkScaryNode newNode = nodes[selectionIndex];
                 node.objectReferenceValue = newNode;
-                UpdateName(newNode.name, point);
+                UpdateName(newNode.name, point, nodes);
 
                 // Verify the node is unique.
                 isDuplicate.boolValue = CheckIsDuplicate(point, newNode);
@@ -242,12 +242,12 @@ namespace IDAS.Decisions.Editors
         /// </summary>
         /// <param name="name">The name of the node this point connects to.</param>
         /// <param name="point">The point to update the name of.</param>
-        private void UpdateName(string name, NodePoint point)
+        private void UpdateName(string name, NodePoint point, DarkScaryNode[] nodes)
         {
             oldNodeName.stringValue = name;
 
             // Update the node's name.
-            point.gameObject.name = nameof(NodePoint) + " (" + point.Tree.nodes[selectionIndex].name + ")";
+            point.gameObject.name = nameof(NodePoint) + " (" + nodes[selectionIndex].name + ")";
         }
 
         /// <summary>
