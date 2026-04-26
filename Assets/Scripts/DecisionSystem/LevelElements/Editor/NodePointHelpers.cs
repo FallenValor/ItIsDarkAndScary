@@ -45,6 +45,11 @@ namespace IDAS.Editor
             {
                 AutoAssignAllChoicePoints(true);
             }
+            // Update the splines for this node to another node.
+            if (GUILayout.Button("Clear Choice Points"))
+            {
+                ClearAllChoicePoints();
+            }
         }
 
         private void CreateAllSplines()
@@ -87,6 +92,26 @@ namespace IDAS.Editor
                     }
                 }
                 
+            }
+        }
+
+        private void ClearAllChoicePoints()
+        {
+            List<NodePoint> allPoints = NodePointEditor.GetAllNodePointsInScene();
+            List<SerializedObject> serialOs = allPoints.Select(n => new SerializedObject(n)).ToList();
+            for (int i = 0; i < serialOs.Count; i++)
+            {
+                if (allPoints[i].Node is DecisionNode decisionNode)
+                {
+                    SerializedProperty pointsProp = serialOs[i].FindProperty("choicePoints");
+                    if (pointsProp.isArray)
+                    {
+                        pointsProp.arraySize = decisionNode.Choices.Length;
+                        NodePointEditor.ClearChoicePoints(allPoints[i], pointsProp);
+                        serialOs[i].ApplyModifiedProperties();
+                    }
+                }
+
             }
         }
 

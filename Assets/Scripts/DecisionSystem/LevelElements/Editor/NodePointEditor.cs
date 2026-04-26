@@ -364,6 +364,15 @@ namespace IDAS.Decisions.Editors
             }
         }
 
+        public static void ClearChoicePoints(NodePoint point, SerializedProperty choicePointsProp)
+        {
+            // Draw each choice point element.
+            for (int i = 0; i < choicePointsProp.arraySize; i++)
+            {
+                choicePointsProp.GetArrayElementAtIndex(i).objectReferenceValue = null;
+            }
+        }
+
         #region Splines
         /// <summary>
         /// Automatically links this node to it's transition nodes with a cinemachine spline.
