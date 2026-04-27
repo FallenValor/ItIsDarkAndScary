@@ -3938,9 +3938,9 @@ MonoBehaviour:
         Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: inputChoice
-        node: {fileID: 6068009884353547202}
+        node: {fileID: 4080132339458636872}
         reroutePoints:
-        - {x: 7440.078, y: 4640.6323}
+        - {x: 7147.043, y: 4675.387}
       _direction: 1
       _connectionType: 1
       _typeConstraint: 0
@@ -5343,6 +5343,12 @@ MonoBehaviour:
       - fieldName: outputChoice
         node: {fileID: -2670819831843273904}
         reroutePoints: []
+      - fieldName: choices 2
+        node: {fileID: 624204179244416048}
+        reroutePoints: []
+      - fieldName: choices 2
+        node: {fileID: 7440659679262142653}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -5716,14 +5722,8 @@ MonoBehaviour:
       _typeQualifiedName: IDAS.Decisions.Tree.Choice, Assembly-CSharp, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
-      - fieldName: choices 2
-        node: {fileID: 7440659679262142653}
-        reroutePoints: []
       - fieldName: outputChoice
         node: {fileID: 4080132339458636872}
-        reroutePoints: []
-      - fieldName: choices 2
-        node: {fileID: 624204179244416048}
         reroutePoints: []
       - fieldName: outputChoice
         node: {fileID: 2945523678570671793}
@@ -6169,9 +6169,9 @@ MonoBehaviour:
         Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: inputChoice
-        node: {fileID: 6068009884353547202}
+        node: {fileID: 4080132339458636872}
         reroutePoints:
-        - {x: 7180.8247, y: 4993.461}
+        - {x: 7237.995, y: 4964.5347}
       _direction: 1
       _connectionType: 1
       _typeConstraint: 0
