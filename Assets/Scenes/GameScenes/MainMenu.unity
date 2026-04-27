@@ -578,7 +578,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab25693a5ccd7714da0070c0b3484bc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.UI.MainMenu
-  startingScene: MansionScene
+  startingScene: MansionBuilding
 --- !u!1 &1198902601
 GameObject:
   m_ObjectHideFlags: 0

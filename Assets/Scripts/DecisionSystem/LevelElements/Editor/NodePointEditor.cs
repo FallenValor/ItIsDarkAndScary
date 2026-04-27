@@ -79,7 +79,7 @@ namespace IDAS.Decisions.Editors
 
             if (point.Tree != null)
             {
-                DarkScaryNode[] nodes = point.Tree.nodes.Select(n => n as DarkScaryNode)
+                DarkScaryNode[] nodes = point.Tree.nodes.Where(n => n is DarkScaryNode).Select(n => n as DarkScaryNode)
                     .Where(n => n is not LinkingInNode && n is not LinkingOutNode && n != null).ToArray();
 
                 // Checks for initialization.
@@ -91,7 +91,7 @@ namespace IDAS.Decisions.Editors
                 string[] nodeNames = nodes.Select(n => n.name).ToArray();
                 UpdateSelectionIndex(node, nodes);
 
-                DrawNodeSelector(point, nodeNames);
+                DrawNodeSelector(point, nodeNames, nodes);
 
                 if (!point.IsDuplicate)
                 {
@@ -116,7 +116,7 @@ namespace IDAS.Decisions.Editors
         }
 
         #region Draw Funcions
-        private void DrawNodeSelector(NodePoint point, string[] nodeNames)
+        private void DrawNodeSelector(NodePoint point, string[] nodeNames, DarkScaryNode[] nodes)
         {
             // Display error text if the node point has an invalid name.
             if (oldNodeName.stringValue != node.objectReferenceValue.name)
@@ -127,7 +127,7 @@ namespace IDAS.Decisions.Editors
                 // Update the splines for this node to another node.
                 if (GUILayout.Button("Update Name"))
                 {
-                    UpdateName(point.Node.name, point);
+                    UpdateName(point.Node.name, point, nodes);
                 }
             }
 
@@ -137,9 +137,9 @@ namespace IDAS.Decisions.Editors
             if (EditorGUI.EndChangeCheck())
             {
                 // Update the string field.
-                DarkScaryNode newNode = point.Tree.nodes[selectionIndex] as DarkScaryNode;
+                DarkScaryNode newNode = nodes[selectionIndex];
                 node.objectReferenceValue = newNode;
-                UpdateName(newNode.name, point);
+                UpdateName(newNode.name, point, nodes);
 
                 // Verify the node is unique.
                 isDuplicate.boolValue = CheckIsDuplicate(point, newNode);
@@ -179,8 +179,19 @@ namespace IDAS.Decisions.Editors
                         EditorGUILayout.PropertyField(choicePoints.GetArrayElementAtIndex(i),
                             new GUIContent(decisionNode.Choices[i].Name));
                     }
+                    // Update the splines for this node to another node.
+                    if (GUILayout.Button("Auto Assign Choice Points"))
+                    {
+                        AutoAssignChoicePoints(point, choicePoints, false);
+                    }
+                    // Update the splines for this node to another node.
+                    if (GUILayout.Button("Auto Assign Choice Points (Override)"))
+                    {
+                        AutoAssignChoicePoints(point, choicePoints, true);
+                    }
 
                     EditorGUI.indentLevel--;
+
                 }
             }
         }
@@ -242,12 +253,12 @@ namespace IDAS.Decisions.Editors
         /// </summary>
         /// <param name="name">The name of the node this point connects to.</param>
         /// <param name="point">The point to update the name of.</param>
-        private void UpdateName(string name, NodePoint point)
+        private void UpdateName(string name, NodePoint point, DarkScaryNode[] nodes)
         {
             oldNodeName.stringValue = name;
 
             // Update the node's name.
-            point.gameObject.name = nameof(NodePoint) + " (" + point.Tree.nodes[selectionIndex].name + ")";
+            point.gameObject.name = nameof(NodePoint) + " (" + nodes[selectionIndex].name + ")";
         }
 
         /// <summary>
@@ -313,7 +324,7 @@ namespace IDAS.Decisions.Editors
         /// </summary>
         /// <param name="point">The point to check for duplicates of.</param>
         /// <returns></returns>
-        private static bool CheckIsDuplicate(NodePoint point, DarkScaryNode node)
+        public static bool CheckIsDuplicate(NodePoint point, DarkScaryNode node)
         {
             return GetAllNodePointsInScene().Any(x => x.Node == node && x != point);
         }
@@ -322,7 +333,7 @@ namespace IDAS.Decisions.Editors
         /// Gets all node points in the current scene.
         /// </summary>
         /// <returns>A list of all node points in the current scene.</returns>
-        private static List<NodePoint> GetAllNodePointsInScene()
+        public static List<NodePoint> GetAllNodePointsInScene()
         {
             List<NodePoint> nodes = new List<NodePoint>();
             GameObject[] roots = SceneManager.GetActiveScene().GetRootGameObjects();
@@ -334,12 +345,39 @@ namespace IDAS.Decisions.Editors
         }
         #endregion
 
+        public static void AutoAssignChoicePoints(NodePoint point, SerializedProperty choicePointsProp, bool overwriteExisting)
+        {
+            // Find the other NodePoints in the scene.
+            List<NodePoint> points = GetAllNodePointsInScene();
+            DarkScaryNode[] nextNodes = point.Node.GetAllNextNodes();
+
+            // Draw each choice point element.
+            for (int i = 0; i < nextNodes.Length; i++)
+            {
+                if (nextNodes[i] == null) { continue; }
+                if (!overwriteExisting && choicePointsProp.GetArrayElementAtIndex(i).objectReferenceValue != null) { continue; }
+
+                // Find the corresponding node point for this node.
+                NodePoint linkedPoint = points.Find(x => x.Node == nextNodes[i]);
+                choicePointsProp.GetArrayElementAtIndex(i).objectReferenceValue = linkedPoint.transform;
+            }
+        }
+
+        public static void ClearChoicePoints(NodePoint point, SerializedProperty choicePointsProp)
+        {
+            // Draw each choice point element.
+            for (int i = 0; i < choicePointsProp.arraySize; i++)
+            {
+                choicePointsProp.GetArrayElementAtIndex(i).objectReferenceValue = null;
+            }
+        }
+
         #region Splines
         /// <summary>
         /// Automatically links this node to it's transition nodes with a cinemachine spline.
         /// </summary>
         /// <param name="point">The node point to update splines for.</param>
-        private void CreateNodeSplines(NodePoint point, SerializedProperty splinesProp, 
+        public static void CreateNodeSplines(NodePoint point, SerializedProperty splinesProp, 
             SerializedProperty nextPointsProp)
         {
             // Store existing spline and point arrays.
@@ -417,7 +455,7 @@ namespace IDAS.Decisions.Editors
         /// </summary>
         /// <param name="splinesProp">The SerializedProperty of the splines array.</param>
         /// <param name="nextPointsProp">The SerializedProperty for the next nodes array.</param>
-        private void ClearSplines(SerializedProperty splinesProp, SerializedProperty nextPointsProp)
+        public static void ClearSplines(SerializedProperty splinesProp, SerializedProperty nextPointsProp)
         {
             SplineContainer[] splines = PropertyToArray<SplineContainer>(splinesProp);
             foreach (SplineContainer spline in splines)
@@ -434,7 +472,7 @@ namespace IDAS.Decisions.Editors
         /// Updates all the end points of splines related to this node.
         /// </summary>
         /// <param name="point"></param>
-        private void UpdateSplineEndPoints(NodePoint point)
+        public static void UpdateSplineEndPoints(NodePoint point)
         {
             // Update the in spline's end point.
             //SetSplineEndPoint(point.InSpline, point.transform.position);
@@ -464,7 +502,7 @@ namespace IDAS.Decisions.Editors
         /// Updates the spline's end point based on the world position of the spline's end point.
         /// </summary>
         /// <param name="endWorldPos"></param>
-        private void SetSplineEndPoint(SplineContainer spline, Vector3 endWorldPos)
+        public static void SetSplineEndPoint(SplineContainer spline, Vector3 endWorldPos)
         {
             if (spline == null) { return; }
             int knotIndex = spline.Spline.Knots.Count() - 1;

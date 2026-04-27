@@ -15,7 +15,7 @@ namespace IDAS
     public class DamageNode : RelayNode
     {
         [Header("Damage")]
-        [SerializeField] private int damage;
+        [SerializeField] private int damage = 1;
 
         /// <summary>
         /// Signal the health service to take damage.

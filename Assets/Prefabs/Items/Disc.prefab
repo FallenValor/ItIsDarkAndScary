@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2804859124985207925
+--- !u!1 &1324140511098814156
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,49 +8,49 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 756362993621144751}
-  - component: {fileID: 7260590300710688432}
-  - component: {fileID: 8551416597342286080}
-  - component: {fileID: 8080659171212212305}
-  - component: {fileID: 7513243503363781713}
-  - component: {fileID: 275197994233158277}
+  - component: {fileID: 6746965599929886542}
+  - component: {fileID: 5134007953241089789}
+  - component: {fileID: 852155480756736838}
+  - component: {fileID: 3001033265522590941}
+  - component: {fileID: 5111274095699160397}
+  - component: {fileID: 1157771938155575682}
   m_Layer: 0
-  m_Name: Bottle
+  m_Name: Disc
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &756362993621144751
+--- !u!4 &6746965599929886542
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2804859124985207925}
+  m_GameObject: {fileID: 1324140511098814156}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 23.79389, y: 1.0639, z: -2.59086}
-  m_LocalScale: {x: 0.37068, y: 1.1594499, z: 0.37068}
+  m_LocalPosition: {x: -6.9891067, y: 0, z: -3.331194}
+  m_LocalScale: {x: 0.41418898, y: 0.41704074, z: 0.112983055}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &7260590300710688432
+--- !u!33 &5134007953241089789
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2804859124985207925}
+  m_GameObject: {fileID: 1324140511098814156}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &8551416597342286080
+--- !u!23 &852155480756736838
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2804859124985207925}
+  m_GameObject: {fileID: 1324140511098814156}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -92,13 +92,13 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &8080659171212212305
+--- !u!135 &3001033265522590941
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2804859124985207925}
+  m_GameObject: {fileID: 1324140511098814156}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -113,13 +113,13 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &7513243503363781713
+--- !u!54 &5111274095699160397
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2804859124985207925}
+  m_GameObject: {fileID: 1324140511098814156}
   serializedVersion: 5
   m_Mass: 1
   m_LinearDamping: 0
@@ -140,19 +140,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &275197994233158277
+--- !u!114 &1157771938155575682
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2804859124985207925}
+  m_GameObject: {fileID: 1324140511098814156}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bd4ec587a2b0d8740aa7c91d0ef1f379, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.Items.Item
-  itemPrefab: {fileID: 275197994233158277}
   lerpTime: 0.5
   lerpCurve:
     serializedVersion: 2
@@ -178,4 +177,4 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  rb: {fileID: 7513243503363781713}
+  rb: {fileID: 5111274095699160397}
