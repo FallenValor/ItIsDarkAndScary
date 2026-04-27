@@ -6,6 +6,7 @@
 //
 // Brief Description : Custom editor for NodePoints that controls easy assignment of the linked node.
 *****************************************************************************/
+using Codice.Client.BaseCommands.Differences;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -142,7 +143,7 @@ namespace IDAS.Decisions.Editors
                 UpdateName(newNode.name, point, nodes);
 
                 // Verify the node is unique.
-                isDuplicate.boolValue = CheckIsDuplicate(point, newNode);
+                //isDuplicate.boolValue = CheckIsDuplicate(point, newNode);
             }
 
             if (isDuplicate.boolValue == true)
@@ -269,7 +270,7 @@ namespace IDAS.Decisions.Editors
             UpdateSelectionIndex(node, nodes);
 
             // Verify the node is unique.
-            isDuplicate.boolValue = CheckIsDuplicate(point, point.Node);
+            //isDuplicate.boolValue = CheckIsDuplicate(point, point.Node);
         }
 
         private void UpdateSelectionIndex(SerializedProperty nodeProp, DarkScaryNode[] nodes)

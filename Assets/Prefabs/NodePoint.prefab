@@ -122,6 +122,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.Decisions.NodePoint
   tree: {fileID: 0}
   node: {fileID: 0}
-  oldNodeName: 
+  associatedItem: {fileID: 0}
+  choicePoints: []
   splines: []
+  nextPoints: []
+  isDuplicate: 0
+  oldNodeName: 
   cCam: {fileID: 6139273775048074204}
+  NodeVisitedEvent:
+    m_PersistentCalls:
+      m_Calls: []

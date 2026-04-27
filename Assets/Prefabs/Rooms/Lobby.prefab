@@ -3839,10 +3839,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 141aa4823b4bf7a4eabf1f3a71d16099, type: 2}
     - target: {fileID: 1365335798254726519, guid: 80798833152ccfd43a1aa3ba16ff92b3, type: 3}
-      propertyPath: isDuplicate
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1365335798254726519, guid: 80798833152ccfd43a1aa3ba16ff92b3, type: 3}
       propertyPath: oldNodeName
       value: Lobby/Lobby
       objectReference: {fileID: 0}
