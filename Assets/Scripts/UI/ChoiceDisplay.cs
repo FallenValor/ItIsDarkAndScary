@@ -18,6 +18,8 @@ namespace IDAS.UI
     {
         #region CONSTS
         private const string STAMINA_TAG = "<sprite name=\"Stamina\">";
+        private const string INVALID_ALPHA = "<alpha=#66>";
+        private const string VALID_ALPHA = "<alpha=#FF>";
         #endregion
 
         [SerializeField] private TMP_Text textComp;
@@ -61,7 +63,7 @@ namespace IDAS.UI
         /// Adds a choice as text to the display.
         /// </summary>
         /// <param name="choice"></param>
-        public void AddChoice(Choice choice, string binding)
+        public void AddChoice(Choice choice, string binding, bool isValid)
         {
             // Add icons for stamina cost and item requirements.
             string icons = GetItemTag(choice.Item);
@@ -72,6 +74,10 @@ namespace IDAS.UI
 
 
             string choiceString = $"{binding}. {choice.Name} {icons}";
+            if (!isValid)
+            {
+                choiceString = INVALID_ALPHA + choiceString + VALID_ALPHA;
+            }
             ChoiceString += choiceString + "\n";
         }
 
