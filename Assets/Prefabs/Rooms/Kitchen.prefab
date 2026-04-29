@@ -7618,10 +7618,10 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: -435600035
-      Data2: 1109572838
-      Data3: 1273673394
-      Data4: -1044793364
+      Data1: -1550041687
+      Data2: 1224771512
+      Data3: 624289671
+      Data4: 863381256
     Path: event:/HappyBirthday2
   Event: 
   EventPlayTrigger: 1
@@ -7631,7 +7631,7 @@ MonoBehaviour:
   Preload: 0
   NonRigidbodyVelocity: 0
   Params: []
-  OverrideAttenuation: 1
+  OverrideAttenuation: 0
   OverrideMinDistance: 1
   OverrideMaxDistance: 10
 --- !u!4 &9118995579067497798 stripped
