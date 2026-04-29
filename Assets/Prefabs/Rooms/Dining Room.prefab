@@ -1259,7 +1259,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 29121
+  m_VersionIndex: 29070
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -1740,7 +1740,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 28714
+  m_VersionIndex: 28663
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -2095,7 +2095,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 30881
+  m_VersionIndex: 30830
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -2450,7 +2450,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 28714
+  m_VersionIndex: 28663
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -2805,7 +2805,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 30166
+  m_VersionIndex: 30115
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -3605,17 +3605,17 @@ MonoBehaviour:
       TangentIn:
         x: 0
         y: 0
-        z: -1.802115
+        z: -1.8298017
       TangentOut:
         x: 0
         y: 0
-        z: 1.802115
+        z: 1.8298017
       Rotation:
         value:
           x: 0
-          y: -0.26668498
+          y: -0.24780506
           z: -0
-          w: 0.9637838
+          w: 0.96880996
     - Position:
         x: -4.117199
         y: 0
@@ -3623,21 +3623,21 @@ MonoBehaviour:
       TangentIn:
         x: 0
         y: 0
-        z: -2.062741
+        z: -1.8831675
       TangentOut:
         x: 0
         y: 0
-        z: 2.062741
+        z: 1.8831675
       Rotation:
         value:
           x: 0
-          y: -0.10029204
+          y: -0.16221568
           z: -0
-          w: 0.994958
+          w: 0.9867554
     - Position:
-        x: -2.4700012
+        x: -3.617199
         y: 0
-        z: 12.127468
+        z: 10.704361
       TangentIn:
         x: 0
         y: 0
@@ -4456,7 +4456,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 34368
+  m_VersionIndex: 34317
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -4811,7 +4811,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 31189
+  m_VersionIndex: 31138
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -5166,7 +5166,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 30991
+  m_VersionIndex: 30940
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -5341,17 +5341,17 @@ MonoBehaviour:
       TangentIn:
         x: 0
         y: 0
-        z: -0.7557003
+        z: -0.73771065
       TangentOut:
         x: 0
         y: 0
-        z: 0.7557003
+        z: 0.73771065
       Rotation:
         value:
           x: 0
-          y: 0.100841284
+          y: 0.0945582
           z: 0
-          w: 0.9949025
+          w: 0.99551934
     - Position:
         x: -0.0000038146973
         y: 0
@@ -5359,17 +5359,17 @@ MonoBehaviour:
       TangentIn:
         x: 0
         y: 0
-        z: -1.7397764
+        z: -1.7826506
       TangentOut:
         x: 0
         y: 0
-        z: 1.7397764
+        z: 1.7826506
       Rotation:
         value:
           x: 0
-          y: -0.17711644
+          y: -0.1578001
           z: -0
-          w: 0.9841898
+          w: 0.98747104
     - Position:
         x: -2.5000038
         y: 0
@@ -5377,21 +5377,21 @@ MonoBehaviour:
       TangentIn:
         x: 0
         y: 0
-        z: -1.5436249
+        z: -1.3912205
       TangentOut:
         x: 0
         y: 0
-        z: 1.5436249
+        z: 1.3912205
       Rotation:
         value:
           x: 0
-          y: -0.123084314
+          y: -0.2039517
           z: -0
-          w: 0.9923963
+          w: 0.97898096
     - Position:
-        x: -1.3528061
+        x: -2.5000038
         y: 0
-        z: 13.423111
+        z: 12.000004
       TangentIn:
         x: 0
         y: 0
@@ -6532,7 +6532,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1519594126043452361, guid: 3812b9eb417ffe642b3e612e98d73d93, type: 3}
       propertyPath: m_VersionIndex
-      value: 408
+      value: 357
       objectReference: {fileID: 0}
     - target: {fileID: 1519594126043452361, guid: 3812b9eb417ffe642b3e612e98d73d93, type: 3}
       propertyPath: m_Positions.Array.data[0].z
