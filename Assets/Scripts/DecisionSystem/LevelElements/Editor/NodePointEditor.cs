@@ -152,7 +152,8 @@ namespace IDAS.Decisions.Editors
                 EditorGUILayout.HelpBox($"This point is a duplicate point referencing " +
                     $"{node.objectReferenceValue.name} and will be ignored.  Ensure that each node only has " +
                     $"one point.", MessageType.Error);
-            }
+                EditorGUILayout.PropertyField(isDuplicate);
+            }            
 
             // Draw readonly debug fields.
             GUI.enabled = false;
