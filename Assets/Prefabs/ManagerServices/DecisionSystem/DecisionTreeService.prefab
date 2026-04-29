@@ -58,4 +58,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.Audio.DecisionAudioRelay
   staminaChoiceSound: UseStamina
-  normalChoiceSound: RiverSplash
+  normalChoiceSound: 
