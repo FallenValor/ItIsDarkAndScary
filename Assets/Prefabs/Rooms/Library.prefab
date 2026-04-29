@@ -2342,10 +2342,10 @@ MonoBehaviour:
         z: 0.52834773
       Rotation:
         value:
-          x: 0.17518128
+          x: 0.1751813
           y: -0.16554387
           z: -0.5350061
-          w: 0.80973774
+          w: 0.8097377
     - Position:
         x: -1.1658096
         y: 0.5
@@ -2381,7 +2381,7 @@ MonoBehaviour:
           x: -0.1623912
           y: 0.7527435
           z: 0.6363082
-          w: -0.046024643
+          w: -0.04602463
     - Position:
         x: -2.6658096
         y: 4.0769997
@@ -6922,6 +6922,38 @@ PrefabInstance:
       propertyPath: 'choicePoints.Array.data[1]'
       value: 
       objectReference: {fileID: 4148807379384949789}
+    - target: {fileID: 1365335798254726519, guid: 80798833152ccfd43a1aa3ba16ff92b3, type: 3}
+      propertyPath: NodeVisitedEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1365335798254726519, guid: 80798833152ccfd43a1aa3ba16ff92b3, type: 3}
+      propertyPath: NodeVisitedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1365335798254726519, guid: 80798833152ccfd43a1aa3ba16ff92b3, type: 3}
+      propertyPath: NodeVisitedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 639384624981425507}
+    - target: {fileID: 1365335798254726519, guid: 80798833152ccfd43a1aa3ba16ff92b3, type: 3}
+      propertyPath: NodeVisitedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1365335798254726519, guid: 80798833152ccfd43a1aa3ba16ff92b3, type: 3}
+      propertyPath: NodeVisitedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlayOneShotSpatial
+      objectReference: {fileID: 0}
+    - target: {fileID: 1365335798254726519, guid: 80798833152ccfd43a1aa3ba16ff92b3, type: 3}
+      propertyPath: NodeVisitedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: IDAS.Audio.AudioRelay, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1365335798254726519, guid: 80798833152ccfd43a1aa3ba16ff92b3, type: 3}
+      propertyPath: NodeVisitedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: MonsterGrowl
+      objectReference: {fileID: 0}
+    - target: {fileID: 1365335798254726519, guid: 80798833152ccfd43a1aa3ba16ff92b3, type: 3}
+      propertyPath: NodeVisitedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 2736402017171410049, guid: 80798833152ccfd43a1aa3ba16ff92b3, type: 3}
       propertyPath: m_Name
       value: NodePoint (Library/Creak)
@@ -6998,14 +7030,34 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5602423650115050866, guid: 80798833152ccfd43a1aa3ba16ff92b3, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4148807379384949789}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2736402017171410049, guid: 80798833152ccfd43a1aa3ba16ff92b3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 639384624981425507}
   m_SourcePrefab: {fileID: 100100000, guid: 80798833152ccfd43a1aa3ba16ff92b3, type: 3}
+--- !u!1 &683241758056894286 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2736402017171410049, guid: 80798833152ccfd43a1aa3ba16ff92b3, type: 3}
+  m_PrefabInstance: {fileID: 3207402827229676495}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &639384624981425507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 683241758056894286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f384f91cb1cc054c9e1a39b1d0cd5bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::IDAS.Audio.AudioRelay
 --- !u!114 &4499199708497129144 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1365335798254726519, guid: 80798833152ccfd43a1aa3ba16ff92b3, type: 3}
   m_PrefabInstance: {fileID: 3207402827229676495}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 683241758056894286}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 490aafbaa79cb874fbb7d39c88e2a4c4, type: 3}
