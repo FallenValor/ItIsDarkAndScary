@@ -6034,6 +6034,10 @@ PrefabInstance:
       propertyPath: m_UnmodifiedMeshVersion
       value: 455
       objectReference: {fileID: 0}
+    - target: {fileID: 6588136241502984958, guid: 3812b9eb417ffe642b3e612e98d73d93, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: a56e8064a8968c14cac4dd9a845713ba, type: 2}
     - target: {fileID: 8720982301453353565, guid: 3812b9eb417ffe642b3e612e98d73d93, type: 3}
       propertyPath: m_LocalPosition.x
       value: -11.80971
