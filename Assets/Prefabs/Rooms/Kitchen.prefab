@@ -7437,8 +7437,47 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: fae1292670174034eba8d01f7e9f318d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1253861766409098482}
   m_SourcePrefab: {fileID: 100100000, guid: fae1292670174034eba8d01f7e9f318d, type: 3}
+--- !u!1 &8486750402461345788 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: fae1292670174034eba8d01f7e9f318d, type: 3}
+  m_PrefabInstance: {fileID: 8721105604821752493}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1253861766409098482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8486750402461345788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FMODUnity::FMODUnity.StudioEventEmitter
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -435600035
+      Data2: 1109572838
+      Data3: 1273673394
+      Data4: -1044793364
+    Path: event:/HappyBirthday2
+  Event: 
+  EventPlayTrigger: 1
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 1
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 10
 --- !u!4 &9118995579067497798 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: fae1292670174034eba8d01f7e9f318d, type: 3}

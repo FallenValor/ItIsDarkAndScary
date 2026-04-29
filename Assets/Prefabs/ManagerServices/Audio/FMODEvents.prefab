@@ -93,14 +93,6 @@ MonoBehaviour:
         Data3: -1952688963
         Data4: 490232962
       Path: event:/MonssterGrowl
-  - name: RecordMusic
-    sound:
-      Guid:
-        Data1: -1859289573
-        Data2: 1329087268
-        Data3: 1053557695
-        Data4: -96176391
-      Path: event:/RecordMusic
   - name: RiverSplash
     sound:
       Guid:
