@@ -187,3 +187,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.DecisionDisplay
   textComp: {fileID: 6326534714009980611}
+  invalidAlpha: 33

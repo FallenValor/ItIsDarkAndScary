@@ -46,8 +46,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.Audio.AmbienceService
   ambienceEvent:
     Guid:
-      Data1: -190328882
-      Data2: 1245778115
-      Data3: -57027702
-      Data4: -1436767855
-    Path: event:/AmbienceLoop
+      Data1: -1661946010
+      Data2: 1308285265
+      Data3: -1849458269
+      Data4: -358113109
+    Path: event:/LoopingAmbience
