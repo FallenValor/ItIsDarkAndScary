@@ -58,4 +58,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39feee7c80846814ba412858f5d080a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::IDAS.Audio.TimerAudioRelay
-  timerSound: TickingLoop
+  timerSound: Timer

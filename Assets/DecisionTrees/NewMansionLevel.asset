@@ -1471,7 +1471,7 @@ MonoBehaviour:
     item: 0
     consume: 0
   flavor: The music abruptly stops...
-  delay: 0.5
+  delay: 2
   outputChoice:
     name: 
     stamina: 0
@@ -3979,7 +3979,7 @@ MonoBehaviour:
     consume: 0
   - name: Feed the disc.
     stamina: 0
-    item: 0
+    item: 2
     consume: 1
 --- !u!114 &650449420840831298
 MonoBehaviour:
@@ -5997,7 +5997,7 @@ MonoBehaviour:
     stamina: 0
     item: 0
     consume: 0
-  flavor: You find a very scare book.
+  flavor: You find a very scary book.
   <Timed>k__BackingField: 0
   choices:
   - name: No way.
@@ -6621,7 +6621,7 @@ MonoBehaviour:
     stamina: 0
     item: 0
     consume: 0
-  flavor: THere's a stench to the right.
+  flavor: There's a stench to the right.
   <Timed>k__BackingField: 0
   choices:
   - name: Go left.

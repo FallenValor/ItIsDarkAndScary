@@ -18,11 +18,11 @@ namespace IDAS.UI
     {
         #region CONSTS
         private const string STAMINA_TAG = "<sprite name=\"Stamina\">";
-        private const string INVALID_ALPHA = "<alpha=#66>";
         private const string VALID_ALPHA = "<alpha=#FF>";
         #endregion
 
         [SerializeField] private TMP_Text textComp;
+        [SerializeField] private string invalidAlpha = "66";
 
         private Transform targetTransform;
         private bool isFollowing;
@@ -76,7 +76,7 @@ namespace IDAS.UI
             string choiceString = $"{binding}. {choice.Name} {icons}";
             if (!isValid)
             {
-                choiceString = INVALID_ALPHA + choiceString + VALID_ALPHA;
+                choiceString = $"<alpha=#{invalidAlpha}>" + choiceString + VALID_ALPHA;
             }
             ChoiceString += choiceString + "\n";
         }
