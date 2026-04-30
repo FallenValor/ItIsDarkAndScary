@@ -546,8 +546,8 @@ MonoBehaviour:
     stamina: 0
     item: 0
     consume: 0
-  flavor: You run to the dining room.
-  delay: 0.25
+  flavor: 
+  delay: 0
   outputChoice:
     name: 
     stamina: 0
@@ -1331,7 +1331,7 @@ MonoBehaviour:
     stamina: 0
     item: 0
     consume: 0
-  flavor: The monstrocity take s a bite.
+  flavor: The monstrocity takes a bite.
   delay: 0.5
   outputChoice:
     name: 
@@ -4491,7 +4491,7 @@ MonoBehaviour:
     stamina: 0
     item: 0
     consume: 0
-  flavor: 
+  flavor: Jumpscare!
   delay: 0.5
   outputChoice:
     name: 
@@ -6441,7 +6441,7 @@ MonoBehaviour:
     item: 0
     consume: 0
   flavor: 
-  delay: 0.5
+  delay: 1
   outputChoice:
     name: 
     stamina: 0
