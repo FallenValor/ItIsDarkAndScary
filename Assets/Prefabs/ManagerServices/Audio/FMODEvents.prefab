@@ -117,3 +117,35 @@ MonoBehaviour:
         Data3: 907197348
         Data4: 1682634016
       Path: event:/StudyThud
+  - name: AxeHit
+    sound:
+      Guid:
+        Data1: -437283809
+        Data2: 1331370761
+        Data3: 2032178850
+        Data4: 1917988035
+      Path: event:/AxeHit
+  - name: NormalDecision
+    sound:
+      Guid:
+        Data1: 177700732
+        Data2: 1298119388
+        Data3: 1046471815
+        Data4: 1350759506
+      Path: event:/NormalDecision
+  - name: ItemPickup
+    sound:
+      Guid:
+        Data1: 78873571
+        Data2: 1297755724
+        Data3: 1848538519
+        Data4: 1282888795
+      Path: event:/ItemPickup
+  - name: Jumpscare
+    sound:
+      Guid:
+        Data1: -638576911
+        Data2: 1259668586
+        Data3: -309397084
+        Data4: -1085140489
+      Path: event:/Jumpscare

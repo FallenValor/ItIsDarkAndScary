@@ -26,16 +26,23 @@ namespace IDAS.VFX
         private Vignette vignetteSettings;
         private Coroutine flashCoroutine;
 
+        private Color startColor;
+        private float startIntensity;
+
         protected override void Initialize()
         {
             healthService = AppManager.GetManager<DecisionManager>().GetService<HealthService>();
             healthService.HealthChangedEvent += DamageFlash;
 
             volumeProfile.TryGet<Vignette>(out vignetteSettings);
+            Color startColor = vignetteSettings.color.value;
+            float startIntensity = vignetteSettings.intensity.value;
         }
         public override void Deinitialize()
         {
             healthService.HealthChangedEvent -= DamageFlash;
+            vignetteSettings.color.value = startColor;
+            vignetteSettings.intensity.value = startIntensity;
         }
 
         private void DamageFlash(int change, int health, float normalizedHealth)
@@ -54,8 +61,6 @@ namespace IDAS.VFX
         private IEnumerator DamageFlashRoutine(float flashTime, float intensity, Color flashColor, AnimationCurve curve)
         {
             float timer = 0;
-            Color startColor = vignetteSettings.color.value;
-            float startIntensity = vignetteSettings.intensity.value;
 
             while (timer < flashTime)
             {

@@ -63,6 +63,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ChoiceDisplay
       objectReference: {fileID: 0}
+    - target: {fileID: 3343616069296571027, guid: 068d3ecefce6a494b892349699935e59, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5160918062690922733, guid: 068d3ecefce6a494b892349699935e59, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -125,11 +129,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5160918062690922733, guid: 068d3ecefce6a494b892349699935e59, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -100
+      value: -200
       objectReference: {fileID: 0}
     - target: {fileID: 5160918062690922733, guid: 068d3ecefce6a494b892349699935e59, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 100
+      value: -450
       objectReference: {fileID: 0}
     - target: {fileID: 5160918062690922733, guid: 068d3ecefce6a494b892349699935e59, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -145,7 +149,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6326534714009980611, guid: 068d3ecefce6a494b892349699935e59, type: 3}
       propertyPath: m_text
-      value: 1. Open Door
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6326534714009980611, guid: 068d3ecefce6a494b892349699935e59, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 256
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

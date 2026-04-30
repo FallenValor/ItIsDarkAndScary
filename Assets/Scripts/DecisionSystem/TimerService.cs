@@ -26,6 +26,10 @@ namespace IDAS.Decisions
         public event Action TimerCancelEvent;
         #endregion
 
+        #region Properties
+        public static bool IsRunning { get; private set; }
+        #endregion
+
         /// <summary>
         /// Setup event for timer hiding when the player loses.
         /// </summary>
@@ -50,6 +54,7 @@ namespace IDAS.Decisions
             }
             cts = new CancellationTokenSource();
             isRunning = true;
+            IsRunning = true;
             TimerStartEvent?.Invoke();
             TimerAsync(time, cts.Token);
         }
@@ -87,6 +92,7 @@ namespace IDAS.Decisions
         /// </summary>
         private void CleanUpTimer()
         {
+            IsRunning = false;
             isRunning = false;
             cts = null;
         }
