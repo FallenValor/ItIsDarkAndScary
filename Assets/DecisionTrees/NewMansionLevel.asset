@@ -1922,7 +1922,7 @@ MonoBehaviour:
     stamina: 0
     item: 0
     consume: 0
-  flavor: A floorboard creaks!
+  flavor: 
   <Timed>k__BackingField: 1
   choices:
   - name: Back away.
@@ -2086,7 +2086,7 @@ MonoBehaviour:
     stamina: 0
     item: 0
     consume: 0
-  flavor: You chop up the plant.
+  flavor: 
   delay: 0.5
   outputChoice:
     name: 
@@ -2168,7 +2168,7 @@ MonoBehaviour:
     stamina: 0
     item: 0
     consume: 0
-  flavor: you hear something...
+  flavor: You hear something...
   <Timed>k__BackingField: 1
   choices:
   - name: Wait
@@ -3255,7 +3255,7 @@ MonoBehaviour:
     stamina: 0
     item: 0
     consume: 0
-  flavor: You reach the door.
+  flavor: 
   delay: 0.5
   outputChoice:
     name: 
@@ -3496,7 +3496,7 @@ MonoBehaviour:
     stamina: 0
     item: 0
     consume: 0
-  flavor: The door is foggy.
+  flavor: 
   <Timed>k__BackingField: 0
   choices:
   - name: Go back.
@@ -3767,7 +3767,7 @@ MonoBehaviour:
     stamina: 0
     item: 0
     consume: 0
-  flavor: The table is set.
+  flavor: 
   <Timed>k__BackingField: 0
   choices:
   - name: Sit down to eat.
@@ -5358,7 +5358,7 @@ MonoBehaviour:
     stamina: 0
     item: 0
     consume: 0
-  flavor: You stumble into the patio.
+  flavor: 
   delay: 0.5
   outputChoice:
     name: 
@@ -5679,7 +5679,7 @@ MonoBehaviour:
     stamina: 0
     item: 0
     consume: 0
-  flavor: You reach the attic.
+  flavor: 
   delay: 0.5
   outputChoice:
     name: 
@@ -5845,7 +5845,7 @@ MonoBehaviour:
     stamina: 0
     item: 0
     consume: 0
-  flavor: You fall into the ballroom!
+  flavor: 
   delay: 0.5
   outputChoice:
     name: 
@@ -5901,7 +5901,7 @@ MonoBehaviour:
     stamina: 0
     item: 0
     consume: 0
-  flavor: The door opens.
+  flavor: 
   delay: 0.5
   outputChoice:
     name: 
@@ -6621,7 +6621,7 @@ MonoBehaviour:
     stamina: 0
     item: 0
     consume: 0
-  flavor: There's a stench to the right.
+  flavor: 
   <Timed>k__BackingField: 0
   choices:
   - name: Go left.
