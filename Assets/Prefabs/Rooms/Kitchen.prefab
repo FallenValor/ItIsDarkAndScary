@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &50711123926473597
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5624760922739253849}
+  m_Layer: 0
+  m_Name: FumbleRightPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 4162164826716764455, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5624760922739253849
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 50711123926473597}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.5, y: 0, z: 1.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8795287475816893649}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &572159523317164605
 GameObject:
   m_ObjectHideFlags: 0
@@ -2247,7 +2278,7 @@ MonoBehaviour:
           x: 0.1877932
           y: 0.6800748
           z: -0.1865372
-          w: 0.6836929
+          w: 0.68369275
     - Position:
         x: 8.614107
         y: -3.5
@@ -5505,7 +5536,7 @@ PrefabInstance:
     - target: {fileID: 1365335798254726519, guid: 80798833152ccfd43a1aa3ba16ff92b3, type: 3}
       propertyPath: 'choicePoints.Array.data[1]'
       value: 
-      objectReference: {fileID: 1295403005312913826}
+      objectReference: {fileID: 5624760922739253849}
     - target: {fileID: 1365335798254726519, guid: 80798833152ccfd43a1aa3ba16ff92b3, type: 3}
       propertyPath: 'choicePoints.Array.data[2]'
       value: 
@@ -5622,6 +5653,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5602423650115050866, guid: 80798833152ccfd43a1aa3ba16ff92b3, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4905598979720660861}
+    - targetCorrespondingSourceObject: {fileID: 5602423650115050866, guid: 80798833152ccfd43a1aa3ba16ff92b3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5624760922739253849}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 80798833152ccfd43a1aa3ba16ff92b3, type: 3}
 --- !u!114 &2684787839819857108 stripped
@@ -8114,11 +8148,11 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: -942844321
-      Data2: 1254033285
-      Data3: -872408694
-      Data4: 1852154109
-    Path: event:/HappyBirthday1
+      Data1: -1550041687
+      Data2: 1224771512
+      Data3: 624289671
+      Data4: 863381256
+    Path: event:/HappyBirthday2
   Event: 
   EventPlayTrigger: 1
   EventStopTrigger: 0
