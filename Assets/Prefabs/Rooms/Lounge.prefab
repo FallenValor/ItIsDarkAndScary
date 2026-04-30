@@ -2054,6 +2054,10 @@ PrefabInstance:
       value: 257
       objectReference: {fileID: 0}
     - target: {fileID: 6588136241502984958, guid: 3812b9eb417ffe642b3e612e98d73d93, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 7ce1682cb3895b54a862344823e263be, type: 2}
+    - target: {fileID: 6588136241502984958, guid: 3812b9eb417ffe642b3e612e98d73d93, type: 3}
       propertyPath: m_SelectedEditorRenderState
       value: 2
       objectReference: {fileID: 0}
@@ -5724,6 +5728,10 @@ PrefabInstance:
       value: 257
       objectReference: {fileID: 0}
     - target: {fileID: 6588136241502984958, guid: 3812b9eb417ffe642b3e612e98d73d93, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: ceeecffee55602b47ac738489a2c945a, type: 2}
+    - target: {fileID: 6588136241502984958, guid: 3812b9eb417ffe642b3e612e98d73d93, type: 3}
       propertyPath: m_SelectedEditorRenderState
       value: 3
       objectReference: {fileID: 0}
@@ -7372,6 +7380,10 @@ PrefabInstance:
       value: 257
       objectReference: {fileID: 0}
     - target: {fileID: 6588136241502984958, guid: 3812b9eb417ffe642b3e612e98d73d93, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 7ce1682cb3895b54a862344823e263be, type: 2}
+    - target: {fileID: 6588136241502984958, guid: 3812b9eb417ffe642b3e612e98d73d93, type: 3}
       propertyPath: m_SelectedEditorRenderState
       value: 2
       objectReference: {fileID: 0}
@@ -8104,7 +8116,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8720982301453353565, guid: 3812b9eb417ffe642b3e612e98d73d93, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 9.57155
+      value: 8.56
       objectReference: {fileID: 0}
     - target: {fileID: 8720982301453353565, guid: 3812b9eb417ffe642b3e612e98d73d93, type: 3}
       propertyPath: m_LocalRotation.w
@@ -8382,6 +8394,10 @@ PrefabInstance:
       propertyPath: m_UnmodifiedMeshVersion
       value: 257
       objectReference: {fileID: 0}
+    - target: {fileID: 6588136241502984958, guid: 3812b9eb417ffe642b3e612e98d73d93, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: a497734d24afca841b738eff7761a362, type: 2}
     - target: {fileID: 6588136241502984958, guid: 3812b9eb417ffe642b3e612e98d73d93, type: 3}
       propertyPath: m_SelectedEditorRenderState
       value: 2
@@ -9214,6 +9230,10 @@ PrefabInstance:
       propertyPath: m_UnmodifiedMeshVersion
       value: 257
       objectReference: {fileID: 0}
+    - target: {fileID: 6588136241502984958, guid: 3812b9eb417ffe642b3e612e98d73d93, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 7ce1682cb3895b54a862344823e263be, type: 2}
     - target: {fileID: 6588136241502984958, guid: 3812b9eb417ffe642b3e612e98d73d93, type: 3}
       propertyPath: m_SelectedEditorRenderState
       value: 2
@@ -10097,6 +10117,10 @@ PrefabInstance:
       value: Doorway (1)
       objectReference: {fileID: 0}
     - target: {fileID: 4466162681030815126, guid: 4f1ca5f0007fe404290daf2f5d72a1b4, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: e918a12c4f7d37c45a8ea63bb231d0d4, type: 2}
+    - target: {fileID: 4466162681030815126, guid: 4f1ca5f0007fe404290daf2f5d72a1b4, type: 3}
       propertyPath: m_SelectedEditorRenderState
       value: 2
       objectReference: {fileID: 0}
@@ -10953,6 +10977,10 @@ PrefabInstance:
       value: 257
       objectReference: {fileID: 0}
     - target: {fileID: 6588136241502984958, guid: 3812b9eb417ffe642b3e612e98d73d93, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 7ce1682cb3895b54a862344823e263be, type: 2}
+    - target: {fileID: 6588136241502984958, guid: 3812b9eb417ffe642b3e612e98d73d93, type: 3}
       propertyPath: m_SelectedEditorRenderState
       value: 2
       objectReference: {fileID: 0}
@@ -10962,7 +10990,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8720982301453353565, guid: 3812b9eb417ffe642b3e612e98d73d93, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.983
+      value: 7.25
       objectReference: {fileID: 0}
     - target: {fileID: 8720982301453353565, guid: 3812b9eb417ffe642b3e612e98d73d93, type: 3}
       propertyPath: m_LocalPosition.z
