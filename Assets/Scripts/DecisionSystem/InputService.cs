@@ -24,6 +24,8 @@ namespace IDAS.Decisions
 
         public event Action<int> DecisionInputEvent;
 
+        public static bool InputDisabled { get; set; }
+
         /// <summary>
         /// Initializes all decision actions.
         /// </summary>
@@ -58,7 +60,7 @@ namespace IDAS.Decisions
         /// <param name="callbackContext"></param>
         private void OnDecisionInput(InputAction.CallbackContext callbackContext)
         {
-            if (!Listening) { return; }
+            if (!Listening || InputDisabled) { return; }
             // Get the index of the InputAction that was triggered and output the index of the action.
             int index = map.actions.IndexOf((item) => item == callbackContext.action);
             DecisionInputEvent?.Invoke(index);
