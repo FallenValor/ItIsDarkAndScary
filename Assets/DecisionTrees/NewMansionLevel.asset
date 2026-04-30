@@ -976,7 +976,7 @@ MonoBehaviour:
     stamina: 0
     item: 0
     consume: 0
-  flavor: 
+  flavor: Use the number keys to make a choice.
   <Timed>k__BackingField: 0
   choices:
   - name: Walk down the path.
