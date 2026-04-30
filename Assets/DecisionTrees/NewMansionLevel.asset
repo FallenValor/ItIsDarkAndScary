@@ -5297,7 +5297,7 @@ MonoBehaviour:
     stamina: 0
     item: 0
     consume: 0
-  flavor: You find the exit to the patio.
+  flavor: You find an exit to the patio.
   delay: 0.5
   outputChoice:
     name: 
