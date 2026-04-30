@@ -13744,9 +13744,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1952494910039962788}
     - target: {fileID: 1365335798254726519, guid: 80798833152ccfd43a1aa3ba16ff92b3, type: 3}
+      propertyPath: choicePoints.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1365335798254726519, guid: 80798833152ccfd43a1aa3ba16ff92b3, type: 3}
       propertyPath: 'nextPoints.Array.data[0]'
       value: 
       objectReference: {fileID: 3452463725451159928}
+    - target: {fileID: 1365335798254726519, guid: 80798833152ccfd43a1aa3ba16ff92b3, type: 3}
+      propertyPath: 'choicePoints.Array.data[1]'
+      value: 
+      objectReference: {fileID: 5464823395442582250}
     - target: {fileID: 2736402017171410049, guid: 80798833152ccfd43a1aa3ba16ff92b3, type: 3}
       propertyPath: m_Name
       value: NodePoint (Lobby/FoggyDoor)

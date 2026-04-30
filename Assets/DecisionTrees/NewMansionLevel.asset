@@ -2520,7 +2520,7 @@ MonoBehaviour:
     stamina: 0
     item: 0
     consume: 0
-  flavor: You fall into the water...
+  flavor: 
   delay: 0.5
   outputChoice:
     name: 
@@ -3138,7 +3138,7 @@ MonoBehaviour:
     stamina: 0
     item: 0
     consume: 0
-  flavor: You climb up the side.
+  flavor: 
   delay: 0.5
   outputChoice:
     name: 

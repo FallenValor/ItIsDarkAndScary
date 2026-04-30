@@ -2342,10 +2342,10 @@ MonoBehaviour:
         z: 0.52834773
       Rotation:
         value:
-          x: 0.17518128
+          x: 0.1751813
           y: -0.16554387
           z: -0.5350061
-          w: 0.80973774
+          w: 0.8097377
     - Position:
         x: -1.1658096
         y: 0.5
@@ -2378,10 +2378,10 @@ MonoBehaviour:
         z: 0.77836144
       Rotation:
         value:
-          x: -0.16239122
-          y: 0.7527434
-          z: 0.63630813
-          w: -0.046024613
+          x: -0.1623912
+          y: 0.7527435
+          z: 0.6363082
+          w: -0.046024643
     - Position:
         x: -2.6658096
         y: 4.0769997
@@ -11291,7 +11291,7 @@ PrefabInstance:
     - target: {fileID: 1365335798254726519, guid: 80798833152ccfd43a1aa3ba16ff92b3, type: 3}
       propertyPath: 'choicePoints.Array.data[0]'
       value: 
-      objectReference: {fileID: 7006815147519975101}
+      objectReference: {fileID: 0}
     - target: {fileID: 1365335798254726519, guid: 80798833152ccfd43a1aa3ba16ff92b3, type: 3}
       propertyPath: 'choicePoints.Array.data[1]'
       value: 
