@@ -89,6 +89,10 @@ namespace IDAS
         {
             return GetConnectedNode(nameof(choices) + " " + index);
         }
+        public int GetChoiceIndexByKey(int key)
+        {
+            return Array.FindIndex(choices, n => n.Key == key);
+        }
 
         /// <summary>
         /// Gets a decision 

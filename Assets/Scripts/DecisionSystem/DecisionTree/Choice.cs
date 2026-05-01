@@ -15,6 +15,7 @@ namespace IDAS.Decisions.Tree
     public class Choice
     {
         [SerializeField] private string name;
+        [SerializeField, Range(0, 3)] private int key;
         [SerializeField] private int stamina;
         [SerializeField] private ItemID item;
         [SerializeField] private bool consume;
@@ -22,6 +23,7 @@ namespace IDAS.Decisions.Tree
 
         #region Accessors
         public string Name => name;
+        public int Key { get => key; set => key = value; }
         public int Stamina => stamina;
         public ItemID Item => item;
         public bool ConsumeItem => consume;
