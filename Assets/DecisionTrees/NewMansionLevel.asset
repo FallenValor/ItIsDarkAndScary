@@ -2001,7 +2001,7 @@ MonoBehaviour:
     consume: 0
   - name: Run for it!
     key: 0
-    stamina: 0
+    stamina: 1
     item: 0
     consume: 0
   - name: Chopt it up.
