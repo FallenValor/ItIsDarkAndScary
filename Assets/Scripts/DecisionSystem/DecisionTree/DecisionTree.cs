@@ -6,6 +6,7 @@
 //
 // Brief Description : xNode graph used to build out a decision tree.
 *****************************************************************************/
+using System.Linq;
 using UnityEngine;
 using XNode;
 
@@ -49,6 +50,19 @@ namespace IDAS.Decisions.Tree
         public int GetNodeIndex(string nodeName)
         {
             return nodes.FindIndex(item => item.name == nodeName);
+        }
+
+        [ContextMenu("Auto Assign Keys")]
+        private void AutoAllChoiceKeys()
+        {
+            DecisionNode[] dNodes = nodes.Where(n => n is DecisionNode).Select(n => n as DecisionNode).ToArray();
+            foreach(var dNode in dNodes)
+            {
+                for(int i = 0; i < dNode.Choices.Length; i++)
+                {
+                    dNode.Choices[i].Key = i;
+                }
+            }
         }
     }
 }

@@ -130,7 +130,12 @@ namespace IDAS.Decisions
         /// <param name="decision"></param>
         private void OnDecisionInput(int decision)
         {
-            MakeDecision(decision);
+            // Convery input from key to index.
+            if (currentDecision != null)
+            {
+                int index = currentDecision.GetChoiceIndexByKey(decision);
+                MakeDecision(index);
+            }
         }
 
         /// <summary>
@@ -202,7 +207,7 @@ namespace IDAS.Decisions
         /// Progresses the player through a decided choice.
         /// </summary>
         /// <param name="decision"></param>
-        private void MakeDecision(int decision)
+        private void MakeDecision(int decision, bool useIndex = false)
         {
             if (currentDecision != null &&
                 decision < currentDecision.Choices.Length &&

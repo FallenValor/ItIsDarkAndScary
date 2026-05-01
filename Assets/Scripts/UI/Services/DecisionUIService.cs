@@ -74,7 +74,7 @@ namespace IDAS.UI
                     displayList.Add(display);
                 }
 
-                display.AddChoice(node.Choices[i], (i+1).ToString(), node.Choices[i].IsValid(decisionManager));
+                display.AddChoice(node.Choices[i], (node.Choices[i].Key + 1).ToString(), node.Choices[i].IsValid(decisionManager));
 
                 currentDisplays = displayList.ToArray();
             }
