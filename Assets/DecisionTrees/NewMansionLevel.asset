@@ -393,12 +393,12 @@ MonoBehaviour:
   <Timed>k__BackingField: 0
   choices:
   - name: Check the bookshelf.
-    key: 0
+    key: 1
     stamina: 0
     item: 0
     consume: 0
   - name: Check the Desk.
-    key: 1
+    key: 0
     stamina: 0
     item: 0
     consume: 0
@@ -737,7 +737,7 @@ MonoBehaviour:
   <Timed>k__BackingField: 1
   choices:
   - name: Plug your ears and search.
-    key: 0
+    key: 2
     stamina: 0
     item: 0
     consume: 0
@@ -747,7 +747,7 @@ MonoBehaviour:
     item: 0
     consume: 0
   - name: Bolt out the door.
-    key: 2
+    key: 0
     stamina: 1
     item: 0
     consume: 0
@@ -1775,12 +1775,12 @@ MonoBehaviour:
   <Timed>k__BackingField: 1
   choices:
   - name: Keep moving.
-    key: 0
+    key: 1
     stamina: 0
     item: 0
     consume: 0
   - name: Climb the ladder.
-    key: 1
+    key: 0
     stamina: 1
     item: 0
     consume: 0
@@ -1874,12 +1874,12 @@ MonoBehaviour:
   <Timed>k__BackingField: 1
   choices:
   - name: Wait
-    key: 0
+    key: 1
     stamina: 0
     item: 0
     consume: 0
   - name: Run to the dining room.
-    key: 1
+    key: 0
     stamina: 0
     item: 0
     consume: 0
@@ -1990,22 +1990,22 @@ MonoBehaviour:
   <Timed>k__BackingField: 1
   choices:
   - name: Back away.
-    key: 0
+    key: 3
     stamina: 0
     item: 0
     consume: 0
   - name: Dive towards the exit.
-    key: 1
+    key: 2
     stamina: 0
     item: 0
     consume: 0
   - name: Run for it!
-    key: 2
-    stamina: 1
+    key: 0
+    stamina: 0
     item: 0
     consume: 0
   - name: Chopt it up.
-    key: 3
+    key: 1
     stamina: 0
     item: 4
     consume: 1
@@ -2246,12 +2246,12 @@ MonoBehaviour:
   <Timed>k__BackingField: 1
   choices:
   - name: Wait
-    key: 0
+    key: 1
     stamina: 0
     item: 0
     consume: 0
   - name: Run to the dining room.
-    key: 1
+    key: 0
     stamina: 0
     item: 0
     consume: 0
@@ -2940,12 +2940,12 @@ MonoBehaviour:
     item: 0
     consume: 0
   - name: Fumble around to the right.
-    key: 1
+    key: 2
     stamina: 0
     item: 0
     consume: 0
   - name: Use the flashlight.
-    key: 2
+    key: 1
     stamina: 0
     item: 3
     consume: 0
@@ -3621,12 +3621,12 @@ MonoBehaviour:
   <Timed>k__BackingField: 0
   choices:
   - name: Go back.
-    key: 0
+    key: 1
     stamina: 0
     item: 0
     consume: 0
   - name: Step through.
-    key: 1
+    key: 0
     stamina: 0
     item: 0
     consume: 0
@@ -3897,12 +3897,12 @@ MonoBehaviour:
   <Timed>k__BackingField: 0
   choices:
   - name: Sit down to eat.
-    key: 0
+    key: 1
     stamina: 0
     item: 0
     consume: 0
   - name: Sample the food.
-    key: 1
+    key: 0
     stamina: 0
     item: 0
     consume: 0
@@ -4104,17 +4104,17 @@ MonoBehaviour:
     item: 0
     consume: 0
   - name: Hold your ears tighter.
-    key: 1
+    key: 3
     stamina: 0
     item: 0
     consume: 0
   - name: Brace your ears and run.
-    key: 2
+    key: 1
     stamina: 2
     item: 0
     consume: 0
   - name: Feed the disc.
-    key: 3
+    key: 2
     stamina: 0
     item: 2
     consume: 1
@@ -4467,12 +4467,12 @@ MonoBehaviour:
   <Timed>k__BackingField: 1
   choices:
   - name: Go for the gate.
-    key: 0
+    key: 1
     stamina: 0
     item: 0
     consume: 0
   - name: Vault over the fence.
-    key: 1
+    key: 0
     stamina: 0
     item: 0
     consume: 0
@@ -5981,17 +5981,17 @@ MonoBehaviour:
   <Timed>k__BackingField: 0
   choices:
   - name: Hide behind a plant.
-    key: 0
+    key: 2
     stamina: 0
     item: 0
     consume: 0
   - name: Try to sneak around.
-    key: 1
+    key: 0
     stamina: 0
     item: 0
     consume: 0
   - name: Chop it up.
-    key: 2
+    key: 1
     stamina: 0
     item: 4
     consume: 1
@@ -6204,12 +6204,12 @@ MonoBehaviour:
   <Timed>k__BackingField: 0
   choices:
   - name: No way.
-    key: 0
+    key: 1
     stamina: 0
     item: 0
     consume: 0
   - name: Take it.
-    key: 1
+    key: 0
     stamina: 0
     item: 0
     consume: 0
@@ -6406,22 +6406,22 @@ MonoBehaviour:
   <Timed>k__BackingField: 1
   choices:
   - name: Plug your ears.
-    key: 0
+    key: 2
     stamina: 0
     item: 0
     consume: 0
   - name: Keep listening.
-    key: 1
+    key: 3
     stamina: 0
     item: 0
     consume: 0
   - name: Sprint for the Patio.
-    key: 2
+    key: 0
     stamina: 1
     item: 0
     consume: 0
   - name: Feed the disc.
-    key: 3
+    key: 1
     stamina: 0
     item: 2
     consume: 1
@@ -6759,12 +6759,12 @@ MonoBehaviour:
   <Timed>k__BackingField: 0
   choices:
   - name: Get in the coffin.
-    key: 0
+    key: 1
     stamina: 0
     item: 0
     consume: 0
   - name: Blow out the candles.
-    key: 1
+    key: 0
     stamina: 0
     item: 0
     consume: 0
@@ -7047,12 +7047,12 @@ MonoBehaviour:
     item: 0
     consume: 0
   - name: Sneak closer.
-    key: 1
+    key: 2
     stamina: 0
     item: 0
     consume: 0
   - name: Run for it!
-    key: 2
+    key: 1
     stamina: 1
     item: 0
     consume: 0
