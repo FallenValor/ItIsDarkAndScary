@@ -28328,10 +28328,10 @@ MonoBehaviour:
         z: 0.73416173
       Rotation:
         value:
-          x: -0.25420427
-          y: -0.033136778
-          z: -0.12494179
-          w: 0.9584737
+          x: -0.25420424
+          y: -0.03313678
+          z: -0.124941796
+          w: 0.95847356
     - Position:
         x: 0
         y: 2.183
@@ -77947,9 +77947,9 @@ MonoBehaviour:
         z: 0.5030835
       Rotation:
         value:
-          x: 0.33616927
+          x: 0.33616924
           y: -0.43764028
-          z: 0.37349066
+          z: 0.37349063
           w: 0.7456313
     - Position:
         x: -1.2120018
@@ -88493,10 +88493,10 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: 834585824
-      Data2: 1301846046
-      Data3: -1257323379
-      Data4: -251320806
+      Data1: -677630376
+      Data2: 1312025269
+      Data3: 549975963
+      Data4: 1027791331
     Path: event:/RiverLoop
   Event: 
   EventPlayTrigger: 1
