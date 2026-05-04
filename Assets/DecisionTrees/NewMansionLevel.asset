@@ -4646,7 +4646,7 @@ MonoBehaviour:
     item: 0
     consume: 0
   flavor: Jumpscare!
-  delay: 0.5
+  delay: 1
   outputChoice:
     name: 
     key: 0
